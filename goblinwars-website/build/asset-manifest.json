@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/classic/static/css/main.6c5808a9.css",
+    "main.js": "/classic/static/js/main.fade3dbb.js",
+    "static/js/453.bb828c5d.chunk.js": "/classic/static/js/453.bb828c5d.chunk.js",
+    "static/media/mine-min.gif": "/classic/static/media/mine-min.8d787563de3b983cc00b.gif",
+    "static/media/Arena-Mode-Goblin.m4v": "/classic/static/media/Arena-Mode-Goblin.dfa0351a4feef4c0e488.m4v",
+    "static/media/BMYEONSUNG_ttf.ttf": "/classic/static/media/BMYEONSUNG_ttf.7236017a8a6657039c85.ttf",
+    "static/media/logo-goblinwars.png": "/classic/static/media/logo-goblinwars.5904a90dcb32781004a0.png",
+    "static/media/caixa-uncommon.png": "/classic/static/media/caixa-uncommon.59b7964095c12829389c.png",
+    "static/media/caixa-laranja.png": "/classic/static/media/caixa-laranja.1e9d36cbf6809155c9c9.png",
+    "static/media/box-common.png": "/classic/static/media/box-common.32121f1fcf3129a98c43.png",
+    "static/media/arena.jpg": "/classic/static/media/arena.9cccd73d16a0dea7188c.jpg",
+    "static/media/goblins-esq.png": "/classic/static/media/goblins-esq.9d97efb4990aa37c0afe.png",
+    "static/media/goblins-dir.png": "/classic/static/media/goblins-dir.dd1b75b1ccb14f12426c.png",
+    "static/media/bg-site-brown-1.jpg": "/classic/static/media/bg-site-brown-1.d9b67c397fbe9f80c0f5.jpg",
+    "static/media/conquest-1024x577.jpg": "/classic/static/media/conquest-1024x577.bd55f60d7bcb60068e82.jpg",
+    "static/media/Moeda-playtoearn.png": "/classic/static/media/Moeda-playtoearn.c23ce06efe628182c917.png",
+    "static/media/slider02.jpg": "/classic/static/media/slider02.020a9ab488af3431a3e8.jpg",
+    "static/media/crafting.jpg": "/classic/static/media/crafting.0234e84bb62b332f9f52.jpg",
+    "static/media/carlos.jpg": "/classic/static/media/carlos.6bbe223b3756156c0213.jpg",
+    "static/media/Charts-site.png": "/classic/static/media/Charts-site.f72a9783697461ae9401.png",
+    "static/media/eddy.jpg": "/classic/static/media/eddy.cca6ccfab65215350735.jpg",
+    "static/media/pancakeswap.png": "/classic/static/media/pancakeswap.5885125e2181d4e54196.png",
+    "static/media/landim.jpg": "/classic/static/media/landim.d6014026bd19b4c32c5f.jpg",
+    "index.html": "/classic/index.html",
+    "main.6c5808a9.css.map": "/classic/static/css/main.6c5808a9.css.map",
+    "main.fade3dbb.js.map": "/classic/static/js/main.fade3dbb.js.map",
+    "453.bb828c5d.chunk.js.map": "/classic/static/js/453.bb828c5d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6c5808a9.css",
+    "static/js/main.fade3dbb.js"
+  ]
+}

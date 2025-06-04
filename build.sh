@@ -20,6 +20,31 @@ cp slaproyale.com.key ../../../EmagineDeploy
 cd ../../../EmagineDeploy
 pwd
 
+echo GoblinWars - Clean
+echo ----------------------------------------------------------
+
+rm -rf ./goblinwars
+rm goblinwars.net.chained.crt
+rm goblinwars.net.key
+
+echo MonexUp - Build and Copy
+echo ----------------------------------------------------------
+
+cd ../GoblinWars/Frontend
+pwd
+cp -r landing-page ../../EmagineDeploy/goblinwars-landing
+
+cd ./website
+pwd
+npm install
+npm run build
+cp -r build ../../../EmagineDeploy/goblinwars-website
+cp goblinwars.net.chained.crt ../../../EmagineDeploy
+cp goblinwars.net.key ../../../EmagineDeploy
+
+cd ../../../EmagineDeploy
+pwd
+
 echo MonexUp - Clean
 echo ----------------------------------------------------------
 
