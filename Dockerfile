@@ -2,6 +2,8 @@ FROM nginx:alpine
 
 #WORKDIR /app
 
+RUN mkdir -p /etc/nginx/ssl
+
 COPY . .
 
 COPY slaproyale /var/www/slaproyale.com/home
