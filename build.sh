@@ -23,7 +23,8 @@ pwd
 echo GoblinWars - Clean
 echo ----------------------------------------------------------
 
-rm -rf ./goblinwars
+rm -rf ./goblinwars-landing
+rm -rf ./goblinwars-website
 rm goblinwars.net.chained.crt
 rm goblinwars.net.key
 
