@@ -7,17 +7,21 @@ RUN mkdir -p /etc/nginx/ssl
 COPY . .
 
 COPY slaproyale /var/www/slaproyale.com/home
-COPY slaproyale.com.chained.crt /etc/nginx/ssl
-COPY slaproyale.com.key /etc/nginx/ssl
+COPY ./SSL/slaproyale.com.chained.crt /etc/nginx/ssl
+COPY ./SSL/slaproyale.com.key /etc/nginx/ssl
 
 COPY monexup /var/www/monexup.com/home
-COPY monexup.com.chained.crt /etc/nginx/ssl
-COPY monexup.com.key /etc/nginx/ssl
+COPY ./SSL/monexup.com.chained.crt /etc/nginx/ssl
+COPY ./SSL/monexup.com.key /etc/nginx/ssl
 
 COPY goblinwars-landing /var/www/goblinwars.net/home
 COPY goblinwars-website /var/www/goblinwars.net/classic
-COPY goblinwars.net.chained.crt /etc/nginx/ssl
-COPY goblinwars.net.key /etc/nginx/ssl
+COPY ./SSL/goblinwars.net.chained.crt /etc/nginx/ssl
+COPY ./SSL/goblinwars.net.key /etc/nginx/ssl
+
+COPY emagine /var/www/emagine.com.br/home
+COPY ./SSL/emagine.com.br.chained.crt /etc/nginx/ssl
+COPY ./SSL/emagine.com.br.key /etc/nginx/ssl
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 

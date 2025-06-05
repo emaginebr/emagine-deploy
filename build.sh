@@ -4,19 +4,22 @@ echo SlapRoyale - Clean
 echo ----------------------------------------------------------
 
 rm -rf ./slaproyale
-rm slaproyale.com.chained.crt
-rm slaproyale.com.key
+rm ./SSL/slaproyale.com.chained.crt
+rm ./SSL/slaproyale.com.key
 
 echo SlapRoyale - Build and Copy
 echo ----------------------------------------------------------
 
-cd ../SlapRoyale/Frontend/website
+cd ../SlapRoyale
+git pull
+pwd
+cd ./Frontend/website
 pwd
 npm install
 npm run build
 cp -r build ../../../EmagineDeploy/slaproyale
-cp slaproyale.com.chained.crt ../../../EmagineDeploy
-cp slaproyale.com.key ../../../EmagineDeploy
+cp slaproyale.com.chained.crt ../../../EmagineDeploy/SSL
+cp slaproyale.com.key ../../../EmagineDeploy/SSL
 cd ../../../EmagineDeploy
 pwd
 
@@ -25,13 +28,16 @@ echo ----------------------------------------------------------
 
 rm -rf ./goblinwars-landing
 rm -rf ./goblinwars-website
-rm goblinwars.net.chained.crt
-rm goblinwars.net.key
+rm ./SSL/goblinwars.net.chained.crt
+rm ./SSL/goblinwars.net.key
 
-echo MonexUp - Build and Copy
+echo GoblinWars - Build and Copy
 echo ----------------------------------------------------------
 
-cd ../GoblinWars/Frontend
+cd ../GoblinWars
+pwd
+git pull
+cd ./Frontend
 pwd
 cp -r landing-page ../../EmagineDeploy/goblinwars-landing
 
@@ -40,8 +46,8 @@ pwd
 npm install
 npm run build
 cp -r build ../../../EmagineDeploy/goblinwars-website
-cp goblinwars.net.chained.crt ../../../EmagineDeploy
-cp goblinwars.net.key ../../../EmagineDeploy
+cp goblinwars.net.chained.crt ../../../EmagineDeploy/SSL
+cp goblinwars.net.key ../../../EmagineDeploy/SSL
 
 cd ../../../EmagineDeploy
 pwd
@@ -50,18 +56,46 @@ echo MonexUp - Clean
 echo ----------------------------------------------------------
 
 rm -rf ./monexup
-rm monexup.com.chained.crt
-rm monexup.com.key
+rm ./SSL/monexup.com.chained.crt
+rm ./SSL/monexup.com.key
 
 echo MonexUp - Build and Copy
 echo ----------------------------------------------------------
 
-cd ../MonexUp/Frontend/monexup-app
+cd ../MonexUp
+pwd
+git pull
+cd ./Frontend/monexup-app
+pwd
+npm install --legacy-peer-deps
+npm run build
+cp -r build ../../../EmagineDeploy/monexup
+cp monexup.com.chained.crt ../../../EmagineDeploy/SSL
+cp monexup.com.key ../../../EmagineDeploy/SSL
+cd ../../../EmagineDeploy
+pwd
+
+echo Emagine - Clean
+echo ----------------------------------------------------------
+
+rm -rf ./emagine
+rm ./SSL/emagine.com.br.chained.crt
+rm ./SSL/emagine.com.br.key
+
+echo Emagine - Build and Copy
+echo ----------------------------------------------------------
+
+cd ../EmagineSite
+pwd
+git pull
+cd ./Frontend/emagine-site
 pwd
 npm install
 npm run build
-cp -r build ../../../EmagineDeploy/monexup
-cp monexup.com.chained.crt ../../../EmagineDeploy
-cp monexup.com.key ../../../EmagineDeploy
-cd ../../../EmagineDeploy
+cp -r dist ../../../EmagineDeploy/emagine
+cd ../../SSL
+pwd
+cp emagine.com.br.chained.crt ../../EmagineDeploy/SSL
+cp emagine.com.br.key ../../EmagineDeploy/SSL
+cd ../../EmagineDeploy
 pwd
