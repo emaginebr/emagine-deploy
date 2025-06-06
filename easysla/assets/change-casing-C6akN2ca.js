@@ -1,0 +1,1 @@
+const t=e=>e.charAt(0).toUpperCase()+e.slice(1),r=e=>{if(e<1e3)return e;if(e>=1e3&&e<1e6)return+(e/1e3).toFixed(1)+"K";if(e>=1e6&&e<1e9)return+(e/1e6).toFixed(1)+"M";if(e>=1e9&&e<1e12)return+(e/1e9).toFixed(1)+"B";if(e>=1e12)return+(e/1e12).toFixed(1)+"T"};export{t as a,r as t};

@@ -1,0 +1,1 @@
+import{r as e,G as o}from"./index-DuBvOyxo.js";const n=typeof global<"u"&&global.navigator&&global.navigator.product==="ReactNative",a=typeof document<"u",c=a||n?e.useLayoutEffect:e.useEffect,t=e.createContext(o?window:void 0);t.Provider;function i(){return e.useContext(t)}export{c as a,i as u};
