@@ -4,8 +4,8 @@ echo EasySLA - Clean
 echo ----------------------------------------------------------
 
 rm -rf ./easysla
-rm ./SSL/easysla.com.chained.crt
-rm ./SSL/easysla.com.key
+#rm ./SSL/easysla.com.chained.crt
+#rm ./SSL/easysla.com.key
 
 echo EasySLA - Build and Copy
 echo ----------------------------------------------------------
@@ -20,8 +20,8 @@ npm run build
 cp -r dist ../../../EmagineDeploy/easysla
 cd ../../../EmagineDeploy/SSL
 pwd
-cp easysla.com.chained.crt ../../EmagineDeploy/SSL
-cp easysla.com.key ../../EmagineDeploy/SSL
+#cp easysla.com.chained.crt ../../EmagineDeploy/SSL
+#cp easysla.com.key ../../EmagineDeploy/SSL
 cd ..
 pwd
 mkdir -p ./easysla/.well-known/pki-validation
