@@ -1,0 +1,1 @@
+import{y as r,r as o,j as s,H as c,D as i}from"./index-C5Uwt3_p.js";const T=({title:e})=>{const a=i,{setTitle:t}=r();return o.useEffect(()=>{t(e)},[t]),s.jsx(c,{children:s.jsx("title",{children:e?`${e} | Techmin React- Bootstrap 5 Admin & Dashboard Template`:a})})};export{T as P};

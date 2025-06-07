@@ -24,8 +24,8 @@ COPY ./SSL/emagine.com.br.chained.crt /etc/nginx/ssl
 COPY ./SSL/emagine.com.br.key /etc/nginx/ssl
 
 COPY easysla /var/www/easysla.com/home
-#COPY ./SSL/easysla.com.chained.crt /etc/nginx/ssl
-#COPY ./SSL/easysla.com.key /etc/nginx/ssl
+COPY ./SSL/easysla.com.chained.crt /etc/nginx/ssl
+COPY ./SSL/easysla.com.key /etc/nginx/ssl
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 

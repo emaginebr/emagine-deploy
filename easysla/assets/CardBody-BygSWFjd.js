@@ -1,1 +1,0 @@
-import{r as d,l as e,j as m,m as p}from"./index-DuBvOyxo.js";const c=d.forwardRef(({className:r,bsPrefix:a,as:s="div",...o},t)=>(a=e(a,"card-body"),m.jsx(s,{ref:t,className:p(r,a),...o})));c.displayName="CardBody";export{c as C};
