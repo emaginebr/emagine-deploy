@@ -16,6 +16,7 @@ COPY ./SSL/monexup.com.key /etc/nginx/ssl
 
 COPY goblinwars-landing /var/www/goblinwars.net/home
 COPY goblinwars-website /var/www/goblinwars.net/classic
+COPY goblinwars-reborn /var/www/goblinwars.net/reborn
 COPY ./SSL/goblinwars.net.chained.crt /etc/nginx/ssl
 COPY ./SSL/goblinwars.net.key /etc/nginx/ssl
 
