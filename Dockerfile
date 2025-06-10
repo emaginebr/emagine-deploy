@@ -28,6 +28,10 @@ COPY easysla /var/www/easysla.com/home
 COPY ./SSL/easysla.com.chained.crt /etc/nginx/ssl
 COPY ./SSL/easysla.com.key /etc/nginx/ssl
 
+COPY nochainswap /var/www/nochainswap.org/home
+COPY ./SSL/nochainswap.org.chained.crt /etc/nginx/ssl
+COPY ./SSL/nochainswap.org.key /etc/nginx/ssl
+
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 443
