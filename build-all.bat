@@ -3,4 +3,5 @@
 "C:\Program Files\Git\bin\bash.exe" -c ./build-easysla.sh
 "C:\Program Files\Git\bin\bash.exe" -c ./build-goblinwars.sh
 "C:\Program Files\Git\bin\bash.exe" -c ./build-nochainswap.sh
+"C:\Program Files\Git\bin\bash.exe" -c ./build-pandoravault.sh
 pause
