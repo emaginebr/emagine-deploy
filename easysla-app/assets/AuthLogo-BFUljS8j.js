@@ -1,1 +1,0 @@
-import{j as o,L as s}from"./index-DkGKDAm-.js";import{l as a,a as t}from"./logo-dark-CiHfJXT1.js";const e=()=>o.jsxs("div",{className:"auth-brand p-2 text-center",children:[o.jsx(s,{to:"/",className:"logo-light",children:o.jsx("img",{src:a,alt:"logo",height:48})}),o.jsx(s,{to:"/",className:"logo-dark",children:o.jsx("img",{src:t,alt:"dark logo",height:48})})]});export{e as A};
