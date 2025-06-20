@@ -3,6 +3,7 @@ node -v
 echo EasySLA - Clean
 echo ----------------------------------------------------------
 
+rm -rf ./easysla-site
 rm -rf ./easysla-app
 rm ./SSL/easysla.com.chained.crt
 rm ./SSL/easysla.com.key
