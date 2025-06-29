@@ -37,6 +37,10 @@ COPY pandoravault /var/www/pandoravault.com/home
 COPY ./SSL/pandoravault.com.chained.crt /etc/nginx/ssl
 COPY ./SSL/pandoravault.com.key /etc/nginx/ssl
 
+COPY bazzuca-media /var/www/bazzuca.media/home
+COPY ./SSL/bazzuca.media.chained.crt /etc/nginx/ssl
+COPY ./SSL/bazzuca.media.key /etc/nginx/ssl
+
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 443
