@@ -27129,6 +27129,15 @@ const Facebook = createLucideIcon("Facebook", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
+const Filter = createLucideIcon("Filter", [
+  ["polygon", { points: "22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3", key: "1yg77f" }]
+]);
+/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
 const House = createLucideIcon("House", [
   ["path", { d: "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8", key: "5wwlr5" }],
   [
@@ -27198,6 +27207,17 @@ const LogOut = createLucideIcon("LogOut", [
   ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }],
   ["polyline", { points: "16 17 21 12 16 7", key: "1gabdz" }],
   ["line", { x1: "21", x2: "9", y1: "12", y2: "12", key: "1uyos4" }]
+]);
+/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const Menu$1 = createLucideIcon("Menu", [
+  ["line", { x1: "4", x2: "20", y1: "12", y2: "12", key: "1e0a9i" }],
+  ["line", { x1: "4", x2: "20", y1: "6", y2: "6", key: "1owob3" }],
+  ["line", { x1: "4", x2: "20", y1: "18", y2: "18", key: "yk5zj1" }]
 ]);
 /**
  * @license lucide-react v0.462.0 - ISC
@@ -39172,39 +39192,39 @@ function Header$8(props) {
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(User, { className: "h-5 w-5" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/Header.tsx",
             lineNumber: 40,
-            columnNumber: 19
+            columnNumber: 21
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { children: (_a2 = props.sessionInfo) == null ? void 0 : _a2.name }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/Header.tsx",
             lineNumber: 41,
-            columnNumber: 19
+            columnNumber: 21
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(ChevronDown, { className: "h-4 w-4" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/Header.tsx",
             lineNumber: 42,
-            columnNumber: 19
+            columnNumber: 21
           }, this)
         ] }, void 0, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/Header.tsx",
           lineNumber: 39,
-          columnNumber: 17
+          columnNumber: 19
         }, this) }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/Header.tsx",
           lineNumber: 38,
-          columnNumber: 15
+          columnNumber: 17
         }, this),
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(DropdownMenuContent, { align: "end", children: [
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(DropdownMenuItem, { onClick: () => navigate2("/change-password"), children: [
             /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Lock, { className: "h-4 w-4 mr-2" }, void 0, false, {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/Header.tsx",
               lineNumber: 47,
-              columnNumber: 19
+              columnNumber: 21
             }, this),
             "Change Password"
           ] }, void 0, true, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/Header.tsx",
             lineNumber: 46,
-            columnNumber: 17
+            columnNumber: 19
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(DropdownMenuItem, { onClick: (e) => {
             e.preventDefault();
@@ -39213,30 +39233,30 @@ function Header$8(props) {
             /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(LogOut, { className: "h-4 w-4 mr-2" }, void 0, false, {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/Header.tsx",
               lineNumber: 54,
-              columnNumber: 19
+              columnNumber: 21
             }, this),
             "Logout"
           ] }, void 0, true, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/Header.tsx",
             lineNumber: 50,
-            columnNumber: 17
+            columnNumber: 19
           }, this)
         ] }, void 0, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/Header.tsx",
           lineNumber: 45,
-          columnNumber: 15
+          columnNumber: 17
         }, this)
       ] }, void 0, true, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/Header.tsx",
         lineNumber: 37,
-        columnNumber: 13
+        columnNumber: 15
       }, this)
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/Header.tsx",
       lineNumber: 31,
       columnNumber: 13
     }, this) : /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(jsxDevRuntimeExports.Fragment, { children: [
-      /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: "/login", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "secondary", className: "text-gray-300 hover:text-white transition-colors", children: "Login" }, void 0, false, {
+      /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: "/login", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "default", className: "text-gray-800 hover:text-black hover:bg-brand-gray/50 hover:text-white transition-colors", children: "Login" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/Header.tsx",
         lineNumber: 63,
         columnNumber: 17
@@ -46743,42 +46763,78 @@ function AppSidebar() {
   }, this);
 }
 function Header$6() {
-  return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center justify-between mb-8", children: [
-    /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { children: [
-      /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("h1", { className: "text-3xl font-bold text-white", children: "Dashboard" }, void 0, false, {
+  const sidebar = useSidebar();
+  return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center justify-between mb-8 w-full flex-wrap", children: [
+    /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-start space-x-4", children: [
+      !sidebar.open && /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
+        Button,
+        {
+          variant: "ghost",
+          className: "text-gray-300 hover:bg-secondary",
+          onClick: () => sidebar.toggleSidebar(),
+          children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Menu$1, { className: "w-4 h-4" }, void 0, false, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Dashboard/Header.tsx",
+            lineNumber: 18,
+            columnNumber: 29
+          }, this)
+        },
+        void 0,
+        false,
+        {
+          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Dashboard/Header.tsx",
+          lineNumber: 13,
+          columnNumber: 25
+        },
+        this
+      ) }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Dashboard/Header.tsx",
-        lineNumber: 9,
-        columnNumber: 17
+        lineNumber: 12,
+        columnNumber: 21
       }, this),
-      /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("p", { className: "text-gray-400", children: "Manage your social media presence" }, void 0, false, {
+      /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { children: [
+        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("h1", { className: "text-3xl font-bold text-white", children: "Dashboard" }, void 0, false, {
+          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Dashboard/Header.tsx",
+          lineNumber: 23,
+          columnNumber: 21
+        }, this),
+        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("p", { className: "text-gray-400", children: "Manage your social media presence" }, void 0, false, {
+          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Dashboard/Header.tsx",
+          lineNumber: 24,
+          columnNumber: 21
+        }, this)
+      ] }, void 0, true, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Dashboard/Header.tsx",
-        lineNumber: 10,
+        lineNumber: 22,
         columnNumber: 17
       }, this)
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Dashboard/Header.tsx",
-      lineNumber: 8,
+      lineNumber: 10,
       columnNumber: 13
     }, this),
-    /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: "/new-post", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { className: "btn-gradient", children: [
+    /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: "/new-post", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { className: "btn-gradient", children: [
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Plus, { className: "w-4 h-4 mr-2" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Dashboard/Header.tsx",
-        lineNumber: 14,
-        columnNumber: 21
+        lineNumber: 30,
+        columnNumber: 25
       }, this),
       "New Post"
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Dashboard/Header.tsx",
-      lineNumber: 13,
+      lineNumber: 29,
+      columnNumber: 21
+    }, this) }, void 0, false, {
+      fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Dashboard/Header.tsx",
+      lineNumber: 28,
       columnNumber: 17
     }, this) }, void 0, false, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Dashboard/Header.tsx",
-      lineNumber: 12,
+      lineNumber: 27,
       columnNumber: 13
     }, this)
   ] }, void 0, true, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Dashboard/Header.tsx",
-    lineNumber: 7,
+    lineNumber: 9,
     columnNumber: 9
   }, this);
 }
@@ -48603,7 +48659,7 @@ function getNetworkBadge(network) {
 function getNetworkName(network) {
   switch (network) {
     case SocialNetworkEnum.X:
-      return "X";
+      return "X.com";
     case SocialNetworkEnum.Facebook:
       return "Facebook";
     case SocialNetworkEnum.Instagram:
@@ -48639,43 +48695,43 @@ function getNetworkColor(network) {
 function getNetworkIcon(network) {
   switch (network) {
     case SocialNetworkEnum.X:
-      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(X, { className: "h-4 w-4" }, void 0, false, {
+      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(X, { className: "h-4 w-4 mr-1" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/functions.tsx",
         lineNumber: 83,
         columnNumber: 20
       }, this);
     case SocialNetworkEnum.Facebook:
-      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Facebook, { className: "h-4 w-4" }, void 0, false, {
+      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Facebook, { className: "h-4 w-4 mr-1" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/functions.tsx",
         lineNumber: 85,
         columnNumber: 20
       }, this);
     case SocialNetworkEnum.Instagram:
-      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Instagram, { className: "h-4 w-4" }, void 0, false, {
+      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Instagram, { className: "h-4 w-4 mr-1" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/functions.tsx",
         lineNumber: 87,
         columnNumber: 20
       }, this);
     case SocialNetworkEnum.LinkedIn:
-      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Linkedin, { className: "h-4 w-4" }, void 0, false, {
+      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Linkedin, { className: "h-4 w-4 mr-1" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/functions.tsx",
         lineNumber: 89,
         columnNumber: 20
       }, this);
     case SocialNetworkEnum.TikTok:
-      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Network, { className: "h-4 w-4" }, void 0, false, {
+      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Network, { className: "h-4 w-4 mr-1" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/functions.tsx",
         lineNumber: 91,
         columnNumber: 20
       }, this);
     case SocialNetworkEnum.YouTube:
-      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Youtube, { className: "h-4 w-4" }, void 0, false, {
+      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Youtube, { className: "h-4 w-4 mr-1" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/functions.tsx",
         lineNumber: 93,
         columnNumber: 20
       }, this);
     default:
-      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(CircleMinus, { className: "h-4 w-4" }, void 0, false, {
+      return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(CircleMinus, { className: "h-4 w-4 mr-1" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/functions.tsx",
         lineNumber: 95,
         columnNumber: 20
@@ -52843,6 +52899,37 @@ var PostTypeEnum = /* @__PURE__ */ ((PostTypeEnum2) => {
   PostTypeEnum2[PostTypeEnum2["Reel"] = 3] = "Reel";
   return PostTypeEnum2;
 })(PostTypeEnum || {});
+const ShortLink = ({ url, maxLength = 60, copyOnClick = true }) => {
+  if (!url) return null;
+  const shorten = (str, limit) => {
+    if (str.length <= limit) return str;
+    const half = Math.floor((limit - 3) / 2);
+    return str.slice(0, half) + "..." + str.slice(-half);
+  };
+  const handleClick = () => {
+    if (copyOnClick) {
+      navigator.clipboard.writeText(url);
+      alert("Link copiado!");
+    }
+  };
+  return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
+    "span",
+    {
+      onClick: handleClick,
+      className: "text-blue-500 hover:underline cursor-pointer select-none",
+      title: url,
+      children: shorten(url, maxLength)
+    },
+    void 0,
+    false,
+    {
+      fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/components/ShortLink.tsx",
+      lineNumber: 26,
+      columnNumber: 5
+    },
+    void 0
+  );
+};
 function PostForm(props) {
   var _a2, _b2, _c2, _d2, _e2, _f2, _g2, _h2, _i, _j, _k;
   const clientContext = reactExports.useContext(ClientContext);
@@ -52872,23 +52959,23 @@ function PostForm(props) {
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(CardTitle, { className: "text-white flex items-center", children: [
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Calendar$3, { className: "w-5 h-5 mr-2" }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-          lineNumber: 97,
+          lineNumber: 98,
           columnNumber: 11
         }, this),
         "Post Details"
       ] }, void 0, true, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-        lineNumber: 96,
+        lineNumber: 97,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(CardDescription, { className: "text-gray-400", children: "Fill in the details for your social media post" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-        lineNumber: 100,
+        lineNumber: 101,
         columnNumber: 9
       }, this)
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-      lineNumber: 95,
+      lineNumber: 96,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(CardContent, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("form", { onSubmit: (e) => {
@@ -52905,7 +52992,7 @@ function PostForm(props) {
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { children: [
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Label$1, { htmlFor: "title", className: "text-white", children: "Title *" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-            lineNumber: 118,
+            lineNumber: 119,
             columnNumber: 15
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
@@ -52923,20 +53010,20 @@ function PostForm(props) {
             false,
             {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-              lineNumber: 119,
+              lineNumber: 120,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-          lineNumber: 117,
+          lineNumber: 118,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { children: [
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Label$1, { htmlFor: "clientId", className: "text-white", children: "Client *" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-            lineNumber: 131,
+            lineNumber: 132,
             columnNumber: 15
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
@@ -52957,20 +53044,20 @@ function PostForm(props) {
               children: [
                 /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(SelectTrigger, { className: "bg-brand-gray border-brand-gray/50 text-white", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(SelectValue, { placeholder: "Select a client" }, void 0, false, {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 148,
+                  lineNumber: 149,
                   columnNumber: 19
                 }, this) }, void 0, false, {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 147,
+                  lineNumber: 148,
                   columnNumber: 17
                 }, this),
                 /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(SelectContent, { className: "bg-brand-gray border-brand-gray/50", children: (_d2 = clientContext.clients) == null ? void 0 : _d2.map((client) => /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(SelectItem, { value: client.clientId.toString(), className: "text-white hover:bg-brand-blue/20", children: client.name }, client.clientId, false, {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 152,
+                  lineNumber: 153,
                   columnNumber: 21
                 }, this)) }, void 0, false, {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 150,
+                  lineNumber: 151,
                   columnNumber: 17
                 }, this)
               ]
@@ -52979,20 +53066,20 @@ function PostForm(props) {
             true,
             {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-              lineNumber: 132,
+              lineNumber: 133,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-          lineNumber: 130,
+          lineNumber: 131,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { children: [
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Label$1, { htmlFor: "networkId", className: "text-white", children: "Social Network *" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-            lineNumber: 161,
+            lineNumber: 162,
             columnNumber: 15
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
@@ -53006,20 +53093,20 @@ function PostForm(props) {
               children: [
                 /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(SelectTrigger, { className: "bg-brand-gray border-brand-gray/50 text-white", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(SelectValue, { placeholder: "Select a platform" }, void 0, false, {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 170,
+                  lineNumber: 171,
                   columnNumber: 19
                 }, this) }, void 0, false, {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 169,
+                  lineNumber: 170,
                   columnNumber: 17
                 }, this),
                 /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(SelectContent, { className: "bg-brand-gray border-brand-gray/50", children: networkContext.networks.map((network) => /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(SelectItem, { value: network.networkId.toString(), className: "text-white hover:bg-brand-blue/20", children: getNetworkName(network.network) }, network.networkId, false, {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 174,
+                  lineNumber: 175,
                   columnNumber: 21
                 }, this)) }, void 0, false, {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 172,
+                  lineNumber: 173,
                   columnNumber: 17
                 }, this)
               ]
@@ -53028,20 +53115,20 @@ function PostForm(props) {
             true,
             {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-              lineNumber: 162,
+              lineNumber: 163,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-          lineNumber: 160,
+          lineNumber: 161,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { children: [
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Label$1, { htmlFor: "caption", className: "text-white", children: "Description *" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-            lineNumber: 184,
+            lineNumber: 185,
             columnNumber: 15
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
@@ -53059,7 +53146,7 @@ function PostForm(props) {
             false,
             {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-              lineNumber: 185,
+              lineNumber: 186,
               columnNumber: 15
             },
             this
@@ -53069,18 +53156,18 @@ function PostForm(props) {
             "/280 characters"
           ] }, void 0, true, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-            lineNumber: 194,
+            lineNumber: 195,
             columnNumber: 15
           }, this)
         ] }, void 0, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-          lineNumber: 183,
+          lineNumber: 184,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { children: [
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Label$1, { htmlFor: "scheduleDate", className: "text-white", children: "Schedule Date *" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-            lineNumber: 200,
+            lineNumber: 201,
             columnNumber: 15
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
@@ -53098,14 +53185,14 @@ function PostForm(props) {
             false,
             {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-              lineNumber: 201,
+              lineNumber: 202,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-          lineNumber: 199,
+          lineNumber: 200,
           columnNumber: 13
         }, this),
         ((_k = props.post) == null ? void 0 : _k.status) != PostStatusEnum.Posted && /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex space-x-4 pt-4", children: [
@@ -53125,7 +53212,7 @@ function PostForm(props) {
             false,
             {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-              lineNumber: 213,
+              lineNumber: 214,
               columnNumber: 17
             },
             this
@@ -53146,25 +53233,25 @@ function PostForm(props) {
             false,
             {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-              lineNumber: 224,
+              lineNumber: 225,
               columnNumber: 17
             },
             this
           )
         ] }, void 0, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-          lineNumber: 212,
+          lineNumber: 213,
           columnNumber: 15
         }, this)
       ] }, void 0, true, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-        lineNumber: 115,
+        lineNumber: 116,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "md:w-1/3", children: [
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Label$1, { className: "text-white", children: "Media Upload" }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-          lineNumber: 239,
+          lineNumber: 240,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "mt-2", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
@@ -53174,6 +53261,20 @@ function PostForm(props) {
             className: "relative block w-full aspect-[9/16] overflow-hidden border-2 border-brand-gray/50 border-dashed rounded-lg cursor-pointer bg-brand-gray/20 hover:bg-brand-gray/30 transition-colors",
             children: [
               /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex flex-col items-center justify-center pt-5 pb-6", children: postContext.imageUrl ? /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(jsxDevRuntimeExports.Fragment, { children: [
+                /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("p", { className: "text-xs text-white mt-2 truncate", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(ShortLink, { url: postContext.imageUrl }, void 0, false, {
+                  fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
+                  lineNumber: 250,
+                  columnNumber: 25
+                }, this) }, void 0, false, {
+                  fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
+                  lineNumber: 249,
+                  columnNumber: 23
+                }, this),
+                /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("p", { className: "text-xs text-gray-400", children: "Click to change" }, void 0, false, {
+                  fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
+                  lineNumber: 252,
+                  columnNumber: 23
+                }, this),
                 isImage2(postContext.imageUrl) ? /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
                   "img",
                   {
@@ -53185,7 +53286,7 @@ function PostForm(props) {
                   false,
                   {
                     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                    lineNumber: 249,
+                    lineNumber: 254,
                     columnNumber: 25
                   },
                   this
@@ -53200,56 +53301,46 @@ function PostForm(props) {
                   false,
                   {
                     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                    lineNumber: 255,
+                    lineNumber: 260,
                     columnNumber: 25
                   },
                   this
                 ) : /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Image, { className: "w-8 h-8 mb-2 text-brand-blue" }, void 0, false, {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 261,
-                  columnNumber: 25
-                }, this),
-                /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("p", { className: "text-xs text-white mt-2 truncate", children: postContext.imageUrl }, void 0, false, {
-                  fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 263,
-                  columnNumber: 23
-                }, this),
-                /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("p", { className: "text-xs text-gray-400", children: "Click to change" }, void 0, false, {
-                  fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
                   lineNumber: 266,
-                  columnNumber: 23
+                  columnNumber: 25
                 }, this)
               ] }, void 0, true, {
                 fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                lineNumber: 247,
+                lineNumber: 248,
                 columnNumber: 21
               }, this) : /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(jsxDevRuntimeExports.Fragment, { children: [
                 /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Upload, { className: "w-8 h-8 mb-2 text-gray-400" }, void 0, false, {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 270,
+                  lineNumber: 271,
                   columnNumber: 23
                 }, this),
                 /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("p", { className: "text-sm text-gray-400", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { className: "font-semibold text-brand-blue", children: "Click to upload" }, void 0, false, {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 272,
+                  lineNumber: 273,
                   columnNumber: 25
                 }, this) }, void 0, false, {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 271,
+                  lineNumber: 272,
                   columnNumber: 23
                 }, this),
                 /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("p", { className: "text-xs text-gray-400", children: "PNG, JPG, MP4 up to 50MB" }, void 0, false, {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 276,
+                  lineNumber: 277,
                   columnNumber: 23
                 }, this)
               ] }, void 0, true, {
                 fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                lineNumber: 269,
+                lineNumber: 270,
                 columnNumber: 21
               }, this) }, void 0, false, {
                 fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                lineNumber: 245,
+                lineNumber: 246,
                 columnNumber: 17
               }, this),
               /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
@@ -53276,7 +53367,7 @@ function PostForm(props) {
                 false,
                 {
                   fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-                  lineNumber: 282,
+                  lineNumber: 283,
                   columnNumber: 17
                 },
                 this
@@ -53287,32 +53378,32 @@ function PostForm(props) {
           true,
           {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-            lineNumber: 241,
+            lineNumber: 242,
             columnNumber: 15
           },
           this
         ) }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-          lineNumber: 240,
+          lineNumber: 241,
           columnNumber: 13
         }, this)
       ] }, void 0, true, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-        lineNumber: 238,
+        lineNumber: 239,
         columnNumber: 11
       }, this)
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-      lineNumber: 105,
+      lineNumber: 106,
       columnNumber: 9
     }, this) }, void 0, false, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-      lineNumber: 104,
+      lineNumber: 105,
       columnNumber: 7
     }, this)
   ] }, void 0, true, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/PostForm.tsx",
-    lineNumber: 94,
+    lineNumber: 95,
     columnNumber: 5
   }, this);
 }
@@ -53430,49 +53521,50 @@ function Post() {
   const authContext = reactExports.useContext(AuthContext);
   const networkContext = reactExports.useContext(SocialNetworkContext);
   const postContext = reactExports.useContext(PostContext);
-  reactExports.useEffect(() => {
+  const loadPost = async () => {
     setLoading(true);
-    authContext.loadUserSession().then(async (ret) => {
-      if (!authContext.sessionInfo) {
+    if (!authContext.sessionInfo) {
+      setLoading(false);
+      navigate2("/login");
+      return;
+    }
+    let post = {
+      postId: parseInt(postId || "0"),
+      networkId: 0,
+      clientId: 0,
+      title: "",
+      description: "",
+      mediaUrl: "",
+      scheduleDate: (/* @__PURE__ */ new Date()).toISOString(),
+      postType: PostTypeEnum.Post,
+      status: PostStatusEnum.Draft
+    };
+    postContext.setPost(post);
+    postContext.setImageUrl("");
+    let postIdNum = parseInt(postId || "0");
+    if (postIdNum > 0) {
+      let retPost = await postContext.getById(postIdNum);
+      if (!retPost.sucesso) {
+        Jt.error(retPost.mensagemErro);
         setLoading(false);
-        navigate2("/login");
         return;
       }
-      let post = {
-        postId: parseInt(postId || "0"),
-        networkId: 0,
-        clientId: 0,
-        title: "",
-        description: "",
-        mediaUrl: "",
-        scheduleDate: (/* @__PURE__ */ new Date()).toDateString(),
-        postType: PostTypeEnum.Post,
-        status: PostStatusEnum.Draft
-      };
-      postContext.setPost(post);
-      postContext.setImageUrl("");
-      let postIdNum = parseInt(postId || "0");
-      if (postIdNum > 0) {
-        let retPost = await postContext.getById(postIdNum);
-        if (!retPost.sucesso) {
-          Jt.error(retPost.mensagemErro);
-          setLoading(false);
-          return;
-        }
-        let ret2 = await networkContext.listByClient(retPost.post.clientId);
-        if (!ret2.sucesso) {
-          Jt.error(ret2.mensagemErro);
-          setLoading(false);
-          return;
-        }
+      let ret = await networkContext.listByClient(retPost.post.clientId);
+      if (!ret.sucesso) {
+        Jt.error(ret.mensagemErro);
+        setLoading(false);
+        return;
       }
-      setLoading(false);
-    });
+    }
+    setLoading(false);
+  };
+  reactExports.useEffect(() => {
+    loadPost();
   }, []);
   return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(SidebarProvider, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "min-h-screen flex w-full bg-gradient-dark", children: [
     /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(AppSidebar, {}, void 0, false, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/Index.tsx",
-      lineNumber: 78,
+      lineNumber: 79,
       columnNumber: 9
     }, this),
     /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("main", { className: "flex-1", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "p-6", children: [
@@ -53498,7 +53590,7 @@ function Post() {
         false,
         {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/Index.tsx",
-          lineNumber: 82,
+          lineNumber: 83,
           columnNumber: 13
         },
         this
@@ -53540,27 +53632,27 @@ function Post() {
         false,
         {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/Index.tsx",
-          lineNumber: 98,
+          lineNumber: 99,
           columnNumber: 13
         },
         this
       )
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/Index.tsx",
-      lineNumber: 80,
+      lineNumber: 81,
       columnNumber: 11
     }, this) }, void 0, false, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/Index.tsx",
-      lineNumber: 79,
+      lineNumber: 80,
       columnNumber: 9
     }, this)
   ] }, void 0, true, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/Index.tsx",
-    lineNumber: 77,
+    lineNumber: 78,
     columnNumber: 7
   }, this) }, void 0, false, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Post/Index.tsx",
-    lineNumber: 76,
+    lineNumber: 77,
     columnNumber: 5
   }, this);
 }
@@ -54355,26 +54447,26 @@ function ClientTable(props) {
     /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableHeader, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableRow, { children: [
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableHead, { children: "Name" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-        lineNumber: 21,
+        lineNumber: 23,
         columnNumber: 21
       }, this),
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableHead, { children: "Social Networks" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-        lineNumber: 22,
+        lineNumber: 24,
         columnNumber: 21
       }, this),
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableHead, { className: "text-end", children: "Actions" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-        lineNumber: 23,
+        lineNumber: 25,
         columnNumber: 21
       }, this)
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-      lineNumber: 20,
+      lineNumber: 22,
       columnNumber: 17
     }, this) }, void 0, false, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-      lineNumber: 19,
+      lineNumber: 21,
       columnNumber: 13
     }, this),
     /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableBody, { children: [
@@ -54382,105 +54474,120 @@ function ClientTable(props) {
         return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableRow, { className: "cursor-pointer hover:bg-muted/50", children: [
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center space-x-3", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Skeleton, { className: "h-4 w-[200px] bg-gray-400" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 33,
+            lineNumber: 35,
             columnNumber: 41
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 32,
+            lineNumber: 34,
             columnNumber: 37
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 31,
+            lineNumber: 33,
             columnNumber: 33
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center space-x-2 text-muted-foreground", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Skeleton, { className: "h-4 w-[100px] bg-gray-400" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 38,
+            lineNumber: 40,
             columnNumber: 41
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 37,
+            lineNumber: 39,
             columnNumber: 37
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 36,
+            lineNumber: 38,
             columnNumber: 33
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { align: "right", children: [
             /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "ghost", size: "sm", disabled: true, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Pen, { className: "h-4 w-4" }, void 0, false, {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-              lineNumber: 43,
+              lineNumber: 45,
               columnNumber: 41
             }, this) }, void 0, false, {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-              lineNumber: 42,
+              lineNumber: 44,
               columnNumber: 37
             }, this),
             /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "ghost", size: "sm", disabled: true, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Trash, { className: "h-4 w-4" }, void 0, false, {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-              lineNumber: 46,
+              lineNumber: 48,
               columnNumber: 41
             }, this) }, void 0, false, {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-              lineNumber: 45,
+              lineNumber: 47,
               columnNumber: 37
             }, this)
           ] }, void 0, true, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 41,
+            lineNumber: 43,
             columnNumber: 33
           }, this)
         ] }, index2, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 30,
+          lineNumber: 32,
           columnNumber: 29
         }, this);
       }),
       !props.loading && ((_a2 = props.clients) == null ? void 0 : _a2.length) === 0 && /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableRow, { className: "cursor-pointer hover:bg-muted/50", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { colSpan: 3, className: "text-center", children: "No clients found." }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-        lineNumber: 55,
+        lineNumber: 57,
         columnNumber: 25
       }, this) }, 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-        lineNumber: 54,
+        lineNumber: 56,
         columnNumber: 21
       }, this),
       !props.loading && props.clients.map((client) => /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(jsxDevRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableRow, { className: "cursor-pointer hover:bg-muted/50", children: [
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center space-x-2 text-muted-foreground", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: `/clients/${client.clientId}`, children: [
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(User, { className: "h-4 w-4", style: { display: "inline-block" } }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 66,
+            lineNumber: 68,
             columnNumber: 41
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { children: client.name }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 67,
+            lineNumber: 69,
             columnNumber: 41
           }, this)
         ] }, void 0, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 65,
+          lineNumber: 67,
           columnNumber: 37
         }, this) }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 64,
+          lineNumber: 66,
           columnNumber: 33
         }, this) }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 63,
+          lineNumber: 65,
           columnNumber: 29
         }, this),
-        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { className: "text-muted-foreground", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: `/clients/${client.clientId}`, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { children: client.socialNetworks }, void 0, false, {
+        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { className: "text-muted-foreground", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: `/clients/${client.clientId}`, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { children: client.socialNetworks.map((network) => /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
+          Badge,
+          {
+            variant: "secondary",
+            className: getNetworkBadge(network) + " mr-1",
+            children: getNetworkName(network)
+          },
+          void 0,
+          false,
+          {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
+            lineNumber: 76,
+            columnNumber: 41
+          },
+          this
+        )) }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 73,
+          lineNumber: 75,
           columnNumber: 37
         }, this) }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 72,
+          lineNumber: 74,
           columnNumber: 33
         }, this) }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 71,
+          lineNumber: 73,
           columnNumber: 29
         }, this),
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { className: "text-end", children: [
@@ -54489,11 +54596,11 @@ function ClientTable(props) {
             props.onEdit(client);
           }, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Pen, { className: "h-4 w-4" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 81,
+            lineNumber: 88,
             columnNumber: 37
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 77,
+            lineNumber: 84,
             columnNumber: 33
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "ghost", size: "sm", onClick: async (e) => {
@@ -54501,35 +54608,35 @@ function ClientTable(props) {
             props.onDelete(client);
           }, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Trash, { className: "h-4 w-4" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 87,
+            lineNumber: 94,
             columnNumber: 37
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 83,
+            lineNumber: 90,
             columnNumber: 33
           }, this)
         ] }, void 0, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 76,
+          lineNumber: 83,
           columnNumber: 29
         }, this)
       ] }, client.clientId, true, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-        lineNumber: 62,
+        lineNumber: 64,
         columnNumber: 25
       }, this) }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-        lineNumber: 61,
+        lineNumber: 63,
         columnNumber: 21
       }, this))
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-      lineNumber: 26,
+      lineNumber: 28,
       columnNumber: 13
     }, this)
   ] }, void 0, true, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-    lineNumber: 18,
+    lineNumber: 20,
     columnNumber: 9
   }, this);
 }
@@ -55419,31 +55526,31 @@ function NetworkTable(props) {
     /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableHeader, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableRow, { children: [
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableHead, { children: "Social Network" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-        lineNumber: 22,
+        lineNumber: 23,
         columnNumber: 21
       }, this),
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableHead, { children: "User" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-        lineNumber: 23,
+        lineNumber: 24,
         columnNumber: 21
       }, this),
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableHead, { children: "Url" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-        lineNumber: 24,
+        lineNumber: 25,
         columnNumber: 21
       }, this),
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableHead, { className: "text-end", children: "Actions" }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-        lineNumber: 25,
+        lineNumber: 26,
         columnNumber: 21
       }, this)
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-      lineNumber: 21,
+      lineNumber: 22,
       columnNumber: 17
     }, this) }, void 0, false, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-      lineNumber: 20,
+      lineNumber: 21,
       columnNumber: 13
     }, this),
     /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableBody, { children: [
@@ -55451,137 +55558,145 @@ function NetworkTable(props) {
         return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableRow, { className: "cursor-pointer hover:bg-muted/50", children: [
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center space-x-3", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Skeleton, { className: "h-4 w-[200px] bg-gray-400" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 35,
+            lineNumber: 36,
             columnNumber: 41
+          }, this) }, void 0, false, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
+            lineNumber: 35,
+            columnNumber: 37
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
             lineNumber: 34,
-            columnNumber: 37
-          }, this) }, void 0, false, {
-            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 33,
             columnNumber: 33
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center space-x-2 text-muted-foreground", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Skeleton, { className: "h-4 w-[100px] bg-gray-400" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 40,
+            lineNumber: 41,
             columnNumber: 41
+          }, this) }, void 0, false, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
+            lineNumber: 40,
+            columnNumber: 37
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
             lineNumber: 39,
-            columnNumber: 37
-          }, this) }, void 0, false, {
-            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 38,
             columnNumber: 33
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center space-x-2 text-muted-foreground", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Skeleton, { className: "h-4 w-[100px] bg-gray-400" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 45,
+            lineNumber: 46,
             columnNumber: 41
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 44,
+            lineNumber: 45,
             columnNumber: 37
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 43,
+            lineNumber: 44,
             columnNumber: 33
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { className: "text-end", children: [
             /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "ghost", size: "sm", disabled: true, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Pen, { className: "h-4 w-4" }, void 0, false, {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-              lineNumber: 50,
+              lineNumber: 51,
               columnNumber: 41
             }, this) }, void 0, false, {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-              lineNumber: 49,
+              lineNumber: 50,
               columnNumber: 37
             }, this),
             /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "ghost", size: "sm", disabled: true, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Trash, { className: "h-4 w-4" }, void 0, false, {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-              lineNumber: 53,
+              lineNumber: 54,
               columnNumber: 41
             }, this) }, void 0, false, {
               fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-              lineNumber: 52,
+              lineNumber: 53,
               columnNumber: 37
             }, this)
           ] }, void 0, true, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 48,
+            lineNumber: 49,
             columnNumber: 33
           }, this)
         ] }, index2, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-          lineNumber: 32,
+          lineNumber: 33,
           columnNumber: 29
         }, this);
       }),
       !props.loading && ((_a2 = props.networks) == null ? void 0 : _a2.length) === 0 && /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableRow, { className: "cursor-pointer hover:bg-muted/50", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { colSpan: 4, className: "text-center", children: "No Social Networks found." }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-        lineNumber: 62,
+        lineNumber: 63,
         columnNumber: 25
       }, this) }, 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-        lineNumber: 61,
+        lineNumber: 62,
         columnNumber: 21
       }, this),
       !props.loading && props.networks.map((network) => /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(jsxDevRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableRow, { className: "cursor-pointer hover:bg-muted/50", children: [
-        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center space-x-2 text-muted-foreground", children: [
-          getNetworkIcon(network.network),
-          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { children: getNetworkName(network.network) }, void 0, false, {
+        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center space-x-2 text-muted-foreground", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
+          Badge,
+          {
+            variant: "secondary",
+            className: getNetworkBadge(network.network),
+            children: getNetworkName(network.network)
+          },
+          void 0,
+          false,
+          {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
             lineNumber: 73,
             columnNumber: 37
-          }, this)
-        ] }, void 0, true, {
+          },
+          this
+        ) }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-          lineNumber: 71,
+          lineNumber: 72,
           columnNumber: 33
         }, this) }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-          lineNumber: 70,
+          lineNumber: 71,
           columnNumber: 29
         }, this),
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center space-x-2 text-muted-foreground", children: [
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(User, { className: "h-4 w-4" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 78,
+            lineNumber: 81,
             columnNumber: 37
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { children: network.user }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 79,
+            lineNumber: 82,
             columnNumber: 37
           }, this)
         ] }, void 0, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-          lineNumber: 77,
+          lineNumber: 80,
           columnNumber: 33
         }, this) }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-          lineNumber: 76,
+          lineNumber: 79,
           columnNumber: 29
         }, this),
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center space-x-2 text-muted-foreground", children: [
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Download, { className: "h-4 w-4" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 84,
+            lineNumber: 87,
             columnNumber: 37
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { children: network.url }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 85,
+            lineNumber: 88,
             columnNumber: 37
           }, this)
         ] }, void 0, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-          lineNumber: 83,
+          lineNumber: 86,
           columnNumber: 33
         }, this) }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-          lineNumber: 82,
+          lineNumber: 85,
           columnNumber: 29
         }, this),
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { className: "text-end", children: [
@@ -55590,11 +55705,11 @@ function NetworkTable(props) {
             props.onEdit(network);
           }, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Pen, { className: "h-4 w-4" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 93,
+            lineNumber: 96,
             columnNumber: 37
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 89,
+            lineNumber: 92,
             columnNumber: 33
           }, this),
           /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "ghost", size: "sm", onClick: async (e) => {
@@ -55602,35 +55717,35 @@ function NetworkTable(props) {
             props.onDelete(network);
           }, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Trash, { className: "h-4 w-4" }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 99,
+            lineNumber: 102,
             columnNumber: 37
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-            lineNumber: 95,
+            lineNumber: 98,
             columnNumber: 33
           }, this)
         ] }, void 0, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-          lineNumber: 88,
+          lineNumber: 91,
           columnNumber: 29
         }, this)
       ] }, network.networkId, true, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-        lineNumber: 69,
+        lineNumber: 70,
         columnNumber: 25
       }, this) }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-        lineNumber: 68,
+        lineNumber: 69,
         columnNumber: 21
       }, this))
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-      lineNumber: 28,
+      lineNumber: 29,
       columnNumber: 13
     }, this)
   ] }, void 0, true, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientDetail/NetworkTable.tsx",
-    lineNumber: 19,
+    lineNumber: 20,
     columnNumber: 9
   }, this);
 }
@@ -56493,73 +56608,223 @@ function PostProvider(props) {
     columnNumber: 9
   }, this);
 }
-function Header$2() {
+function Header$2(props) {
   return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(jsxDevRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center justify-between mb-8 w-full flex-wrap", children: [
     /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-start space-x-4", children: [
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: "/dashboard", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "ghost", className: "text-gray-300 hover:bg-secondary", children: [
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(ArrowLeft, { className: "w-4 h-4 mr-2" }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
-          lineNumber: 13,
+          lineNumber: 30,
           columnNumber: 29
         }, this),
         "Back to Dashboard"
       ] }, void 0, true, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
-        lineNumber: 12,
+        lineNumber: 29,
         columnNumber: 25
       }, this) }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
-        lineNumber: 11,
+        lineNumber: 28,
         columnNumber: 21
       }, this),
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { children: [
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("h1", { className: "text-3xl font-bold text-white", children: "Posts List" }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
-          lineNumber: 18,
+          lineNumber: 35,
           columnNumber: 25
         }, this),
         /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("p", { className: "text-gray-400", children: "Schedule your content across social platforms" }, void 0, false, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
-          lineNumber: 19,
+          lineNumber: 36,
           columnNumber: 25
         }, this)
       ] }, void 0, true, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
-        lineNumber: 17,
+        lineNumber: 34,
         columnNumber: 21
       }, this)
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
-      lineNumber: 10,
+      lineNumber: 27,
       columnNumber: 17
     }, this),
-    /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: "/posts/new", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { className: "btn-gradient", children: [
-      /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Plus, { className: "w-4 h-4 mr-2" }, void 0, false, {
+    /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { children: [
+      /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(DropdownMenu, { children: [
+        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "secondary", className: "text-black mr-2", children: [
+          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(User, { className: "h-5 w-5" }, void 0, false, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+            lineNumber: 45,
+            columnNumber: 33
+          }, this),
+          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { children: props.clientName ? props.clientName : "All Clients" }, void 0, false, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+            lineNumber: 46,
+            columnNumber: 33
+          }, this),
+          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(ChevronDown, { className: "h-4 w-4" }, void 0, false, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+            lineNumber: 47,
+            columnNumber: 33
+          }, this)
+        ] }, void 0, true, {
+          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+          lineNumber: 44,
+          columnNumber: 29
+        }, this) }, void 0, false, {
+          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+          lineNumber: 43,
+          columnNumber: 25
+        }, this),
+        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(DropdownMenuContent, { align: "end", children: [
+          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(DropdownMenuItem, { onClick: () => {
+            props.setClientId(null);
+            props.setClientName(null);
+            props.filter(null, props.network);
+          }, children: [
+            /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(User, { className: "h-4 w-4 mr-2" }, void 0, false, {
+              fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+              lineNumber: 56,
+              columnNumber: 33
+            }, this),
+            "All Clients"
+          ] }, void 0, true, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+            lineNumber: 51,
+            columnNumber: 29
+          }, this),
+          props.clients.map((client) => /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(DropdownMenuItem, { onClick: () => {
+            props.setClientId(client.clientId);
+            props.setClientName(client.name);
+            props.filter(client.clientId, props.network);
+          }, children: [
+            /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(User, { className: "h-4 w-4 mr-2" }, void 0, false, {
+              fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+              lineNumber: 65,
+              columnNumber: 37
+            }, this),
+            client.name
+          ] }, void 0, true, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+            lineNumber: 60,
+            columnNumber: 33
+          }, this))
+        ] }, void 0, true, {
+          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+          lineNumber: 50,
+          columnNumber: 25
+        }, this)
+      ] }, void 0, true, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
-        lineNumber: 29,
-        columnNumber: 29
+        lineNumber: 42,
+        columnNumber: 21
       }, this),
-      "New Post"
+      /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(DropdownMenu, { children: [
+        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "secondary", className: "text-black mr-2", children: [
+          props.network ? /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(jsxDevRuntimeExports.Fragment, { children: [
+            getNetworkIcon(props.network),
+            getNetworkName(props.network)
+          ] }, void 0, true, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+            lineNumber: 75,
+            columnNumber: 37
+          }, this) : /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(jsxDevRuntimeExports.Fragment, { children: [
+            /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Filter, { className: "h-5 w-5" }, void 0, false, {
+              fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+              lineNumber: 81,
+              columnNumber: 41
+            }, this),
+            /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { children: "All Networks" }, void 0, false, {
+              fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+              lineNumber: 82,
+              columnNumber: 41
+            }, this)
+          ] }, void 0, true, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+            lineNumber: 80,
+            columnNumber: 37
+          }, this),
+          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(ChevronDown, { className: "h-4 w-4" }, void 0, false, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+            lineNumber: 85,
+            columnNumber: 33
+          }, this)
+        ] }, void 0, true, {
+          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+          lineNumber: 73,
+          columnNumber: 29
+        }, this) }, void 0, false, {
+          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+          lineNumber: 72,
+          columnNumber: 25
+        }, this),
+        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(DropdownMenuContent, { align: "end", children: [
+          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(DropdownMenuItem, { onClick: () => {
+            props.setNetwork(null);
+            props.filter(props.clientId, null);
+          }, children: [
+            /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Filter, { className: "h-4 w-4 mr-2" }, void 0, false, {
+              fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+              lineNumber: 93,
+              columnNumber: 33
+            }, this),
+            "All Networks"
+          ] }, void 0, true, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+            lineNumber: 89,
+            columnNumber: 29
+          }, this),
+          socialNetworks.map((value) => {
+            let network = socialNetworkToEnum(value.value);
+            return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(DropdownMenuItem, { onClick: () => {
+              props.setNetwork(network);
+              props.filter(props.clientId, socialNetworkToEnum(value.value));
+            }, children: [
+              getNetworkIcon(network),
+              getNetworkName(network)
+            ] }, void 0, true, {
+              fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+              lineNumber: 99,
+              columnNumber: 37
+            }, this);
+          })
+        ] }, void 0, true, {
+          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+          lineNumber: 88,
+          columnNumber: 25
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+        lineNumber: 71,
+        columnNumber: 21
+      }, this),
+      /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: "/posts/new", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { className: "btn-gradient", children: [
+        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Plus, { className: "w-4 h-4 mr-2" }, void 0, false, {
+          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+          lineNumber: 112,
+          columnNumber: 29
+        }, this),
+        "New Post"
+      ] }, void 0, true, {
+        fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+        lineNumber: 111,
+        columnNumber: 25
+      }, this) }, void 0, false, {
+        fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
+        lineNumber: 110,
+        columnNumber: 21
+      }, this)
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
-      lineNumber: 28,
-      columnNumber: 25
-    }, this) }, void 0, false, {
-      fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
-      lineNumber: 27,
-      columnNumber: 21
-    }, this) }, void 0, false, {
-      fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
-      lineNumber: 26,
+      lineNumber: 41,
       columnNumber: 17
     }, this)
   ] }, void 0, true, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
-    lineNumber: 8,
+    lineNumber: 25,
     columnNumber: 13
   }, this) }, void 0, false, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Header.tsx",
-    lineNumber: 7,
+    lineNumber: 24,
     columnNumber: 9
   }, this);
 }
@@ -60202,11 +60467,16 @@ function PostTable(props) {
 function PostList() {
   const navigate2 = useNavigate();
   const authContext = reactExports.useContext(AuthContext);
+  const clientContext = reactExports.useContext(ClientContext);
   const postContext = reactExports.useContext(PostContext);
-  const searchPost = async (pageNum) => {
+  const [clientId, setClientId] = reactExports.useState(0);
+  const [clientName, setClientName] = reactExports.useState("");
+  const [network, setNetwork] = reactExports.useState(null);
+  const searchPost = async (pageNum, clientId2, network2) => {
     let param = {
       userId: authContext.sessionInfo.userId,
-      clientId: null,
+      clientId: clientId2,
+      network: network2,
       status: null,
       pageNum
     };
@@ -60222,65 +60492,90 @@ function PostList() {
         navigate2("/login");
         return;
       }
+      let retCli = await clientContext.listByUser();
+      if (!retCli.sucesso) {
+        Jt.error(retCli.mensagemErro);
+        return;
+      }
       await searchPost(1);
     });
   }, []);
   return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(jsxDevRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(SidebarProvider, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "min-h-screen flex w-full bg-gradient-dark", children: [
     /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(AppSidebar, {}, void 0, false, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Index.tsx",
-      lineNumber: 56,
+      lineNumber: 69,
       columnNumber: 21
     }, this),
     /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("main", { className: "flex-1", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "p-6", children: [
-      /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Header$2, {}, void 0, false, {
-        fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Index.tsx",
-        lineNumber: 59,
-        columnNumber: 29
-      }, this),
-      /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Card, { className: "bg-brand-dark border-brand-gray/30", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(CardContent, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
-        PostTable,
+      /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
+        Header$2,
         {
-          loading: postContext.loading,
-          searchResult: postContext.searchResult,
-          changePage: (pageNum) => searchPost(pageNum)
+          clients: clientContext.clients,
+          clientId,
+          clientName,
+          network,
+          setClientId,
+          setClientName,
+          setNetwork,
+          filter: async (clientId2, network2) => {
+            setClientId(clientId2);
+            setNetwork(network2);
+            await searchPost(1, clientId2, network2);
+          }
         },
         void 0,
         false,
         {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Index.tsx",
-          lineNumber: 62,
+          lineNumber: 72,
+          columnNumber: 29
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Card, { className: "bg-brand-dark border-brand-gray/30", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(CardContent, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
+        PostTable,
+        {
+          loading: postContext.loading,
+          searchResult: postContext.searchResult,
+          changePage: (pageNum) => searchPost(pageNum, clientId, network)
+        },
+        void 0,
+        false,
+        {
+          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Index.tsx",
+          lineNumber: 88,
           columnNumber: 37
         },
         this
       ) }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Index.tsx",
-        lineNumber: 61,
+        lineNumber: 87,
         columnNumber: 33
       }, this) }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Index.tsx",
-        lineNumber: 60,
+        lineNumber: 86,
         columnNumber: 29
       }, this)
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Index.tsx",
-      lineNumber: 58,
+      lineNumber: 71,
       columnNumber: 25
     }, this) }, void 0, false, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Index.tsx",
-      lineNumber: 57,
+      lineNumber: 70,
       columnNumber: 21
     }, this)
   ] }, void 0, true, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Index.tsx",
-    lineNumber: 55,
+    lineNumber: 68,
     columnNumber: 17
   }, this) }, void 0, false, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Index.tsx",
-    lineNumber: 54,
+    lineNumber: 67,
     columnNumber: 13
   }, this) }, void 0, false, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/PostList/Index.tsx",
-    lineNumber: 53,
+    lineNumber: 66,
     columnNumber: 9
   }, this);
 }
@@ -72860,7 +73155,11 @@ function CalendarPage() {
   };
   const handleEventDrop = async ({ event, start: start2 }) => {
     const post = event.resource;
-    const updatedPost = { ...post, scheduleDate: start2.toISOString() };
+    const localDate = new Date(start2);
+    const utcDate = new Date(
+      localDate.getTime() - localDate.getTimezoneOffset() * 6e4
+    );
+    const updatedPost = { ...post, scheduleDate: utcDate.toISOString() };
     const result = await postContext.update(updatedPost);
     if (!result.sucesso) {
       Jt.error(result.mensagemErro);
@@ -72877,13 +73176,13 @@ function CalendarPage() {
   return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(jsxDevRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(SidebarProvider, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "min-h-screen flex w-full bg-gradient-dark", children: [
     /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(AppSidebar, {}, void 0, false, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/CalendarPage/Index.tsx",
-      lineNumber: 147,
+      lineNumber: 151,
       columnNumber: 21
     }, this),
     /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("main", { className: "flex-1", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "p-6", children: [
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Header$1, {}, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/CalendarPage/Index.tsx",
-        lineNumber: 150,
+        lineNumber: 154,
         columnNumber: 29
       }, this),
       /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Card, { className: "bg-brand-dark border-brand-gray/30", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(CardContent, { className: "p-6", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { style: { height: "700px" }, children: [
@@ -72907,44 +73206,44 @@ function CalendarPage() {
           false,
           {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/CalendarPage/Index.tsx",
-            lineNumber: 154,
+            lineNumber: 158,
             columnNumber: 41
           },
           this
         )
       ] }, void 0, true, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/CalendarPage/Index.tsx",
-        lineNumber: 153,
+        lineNumber: 157,
         columnNumber: 37
       }, this) }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/CalendarPage/Index.tsx",
-        lineNumber: 152,
+        lineNumber: 156,
         columnNumber: 33
       }, this) }, void 0, false, {
         fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/CalendarPage/Index.tsx",
-        lineNumber: 151,
+        lineNumber: 155,
         columnNumber: 29
       }, this)
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/CalendarPage/Index.tsx",
-      lineNumber: 149,
+      lineNumber: 153,
       columnNumber: 25
     }, this) }, void 0, false, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/CalendarPage/Index.tsx",
-      lineNumber: 148,
+      lineNumber: 152,
       columnNumber: 21
     }, this)
   ] }, void 0, true, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/CalendarPage/Index.tsx",
-    lineNumber: 146,
+    lineNumber: 150,
     columnNumber: 17
   }, this) }, void 0, false, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/CalendarPage/Index.tsx",
-    lineNumber: 145,
+    lineNumber: 149,
     columnNumber: 13
   }, this) }, void 0, false, {
     fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/CalendarPage/Index.tsx",
-    lineNumber: 144,
+    lineNumber: 148,
     columnNumber: 9
   }, this);
 }
@@ -73123,4 +73422,4 @@ createRoot(document.getElementById("root")).render(
     columnNumber: 3
   }, void 0)
 );
-//# sourceMappingURL=index-C3NnZYt2.js.map
+//# sourceMappingURL=index-DNw62pcf.js.map
