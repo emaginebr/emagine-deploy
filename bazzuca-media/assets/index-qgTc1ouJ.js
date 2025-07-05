@@ -54537,98 +54537,101 @@ function ClientTable(props) {
         lineNumber: 56,
         columnNumber: 21
       }, this),
-      !props.loading && props.clients.map((client) => /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(jsxDevRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableRow, { className: "cursor-pointer hover:bg-muted/50", children: [
-        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center space-x-2 text-muted-foreground", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: `/clients/${client.clientId}`, children: [
-          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(User, { className: "h-4 w-4", style: { display: "inline-block" } }, void 0, false, {
+      !props.loading && props.clients.map((client) => {
+        var _a3;
+        return /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(jsxDevRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableRow, { className: "cursor-pointer hover:bg-muted/50", children: [
+          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("div", { className: "flex items-center space-x-2 text-muted-foreground", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: `/clients/${client.clientId}`, children: [
+            /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(User, { className: "h-4 w-4", style: { display: "inline-block" } }, void 0, false, {
+              fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
+              lineNumber: 68,
+              columnNumber: 41
+            }, this),
+            /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { children: client.name }, void 0, false, {
+              fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
+              lineNumber: 69,
+              columnNumber: 41
+            }, this)
+          ] }, void 0, true, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 68,
-            columnNumber: 41
-          }, this),
-          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { children: client.name }, void 0, false, {
-            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 69,
-            columnNumber: 41
-          }, this)
-        ] }, void 0, true, {
-          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 67,
-          columnNumber: 37
-        }, this) }, void 0, false, {
-          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 66,
-          columnNumber: 33
-        }, this) }, void 0, false, {
-          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 65,
-          columnNumber: 29
-        }, this),
-        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { className: "text-muted-foreground", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: `/clients/${client.clientId}`, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { children: client.socialNetworks.map((network) => /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
-          Badge,
-          {
-            variant: "secondary",
-            className: getNetworkBadge(network) + " mr-1",
-            children: getNetworkName(network)
-          },
-          void 0,
-          false,
-          {
-            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 76,
-            columnNumber: 41
-          },
-          this
-        )) }, void 0, false, {
-          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 75,
-          columnNumber: 37
-        }, this) }, void 0, false, {
-          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 74,
-          columnNumber: 33
-        }, this) }, void 0, false, {
-          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 73,
-          columnNumber: 29
-        }, this),
-        /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { className: "text-end", children: [
-          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "ghost", size: "sm", onClick: async (e) => {
-            e.preventDefault();
-            props.onEdit(client);
-          }, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Pen, { className: "h-4 w-4" }, void 0, false, {
-            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 88,
+            lineNumber: 67,
             columnNumber: 37
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 84,
+            lineNumber: 66,
             columnNumber: 33
-          }, this),
-          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "ghost", size: "sm", onClick: async (e) => {
-            e.preventDefault();
-            props.onDelete(client);
-          }, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Trash, { className: "h-4 w-4" }, void 0, false, {
+          }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 94,
+            lineNumber: 65,
+            columnNumber: 29
+          }, this),
+          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { className: "text-muted-foreground", children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Link, { to: `/clients/${client.clientId}`, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV("span", { children: (_a3 = client.socialNetworks) == null ? void 0 : _a3.map((network) => /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
+            Badge,
+            {
+              variant: "secondary",
+              className: getNetworkBadge(network) + " mr-1",
+              children: getNetworkName(network)
+            },
+            void 0,
+            false,
+            {
+              fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
+              lineNumber: 76,
+              columnNumber: 41
+            },
+            this
+          )) }, void 0, false, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
+            lineNumber: 75,
             columnNumber: 37
           }, this) }, void 0, false, {
             fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-            lineNumber: 90,
+            lineNumber: 74,
             columnNumber: 33
+          }, this) }, void 0, false, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
+            lineNumber: 73,
+            columnNumber: 29
+          }, this),
+          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(TableCell, { className: "text-end", children: [
+            /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "ghost", size: "sm", onClick: async (e) => {
+              e.preventDefault();
+              props.onEdit(client);
+            }, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Pen, { className: "h-4 w-4" }, void 0, false, {
+              fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
+              lineNumber: 88,
+              columnNumber: 37
+            }, this) }, void 0, false, {
+              fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
+              lineNumber: 84,
+              columnNumber: 33
+            }, this),
+            /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { variant: "ghost", size: "sm", onClick: async (e) => {
+              e.preventDefault();
+              props.onDelete(client);
+            }, children: /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Trash, { className: "h-4 w-4" }, void 0, false, {
+              fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
+              lineNumber: 94,
+              columnNumber: 37
+            }, this) }, void 0, false, {
+              fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
+              lineNumber: 90,
+              columnNumber: 33
+            }, this)
+          ] }, void 0, true, {
+            fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
+            lineNumber: 83,
+            columnNumber: 29
           }, this)
-        ] }, void 0, true, {
+        ] }, client.clientId, true, {
           fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-          lineNumber: 83,
-          columnNumber: 29
-        }, this)
-      ] }, client.clientId, true, {
-        fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-        lineNumber: 64,
-        columnNumber: 25
-      }, this) }, void 0, false, {
-        fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
-        lineNumber: 63,
-        columnNumber: 21
-      }, this))
+          lineNumber: 64,
+          columnNumber: 25
+        }, this) }, void 0, false, {
+          fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
+          lineNumber: 63,
+          columnNumber: 21
+        }, this);
+      })
     ] }, void 0, true, {
       fileName: "D:/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/ClientList/ClientTable.tsx",
       lineNumber: 28,
@@ -73422,4 +73425,4 @@ createRoot(document.getElementById("root")).render(
     columnNumber: 3
   }, void 0)
 );
-//# sourceMappingURL=index-DNw62pcf.js.map
+//# sourceMappingURL=index-qgTc1ouJ.js.map
