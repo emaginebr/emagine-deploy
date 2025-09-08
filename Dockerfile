@@ -21,6 +21,7 @@ COPY ./SSL/goblinwars.net.chained.crt /etc/nginx/ssl
 COPY ./SSL/goblinwars.net.key /etc/nginx/ssl
 
 COPY emagine /var/www/emagine.com.br/home
+COPY nauth /var/www/emagine.com.br/nauth
 COPY ./SSL/emagine.com.br.chained.crt /etc/nginx/ssl
 COPY ./SSL/emagine.com.br.key /etc/nginx/ssl
 
