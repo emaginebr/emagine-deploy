@@ -40912,25 +40912,7 @@ function FAQ() {
     columnNumber: 9
   }, this);
 }
-const AuthContext = React.createContext(null);
-const LS_KEY = "login-with-metamask:auth";
-const AuthBusiness = {
-  getSession: () => {
-    const ls = window.localStorage.getItem(LS_KEY);
-    return ls && JSON.parse(ls);
-  },
-  setSession: (session) => {
-    console.log("Set Session: ", JSON.stringify(session));
-    localStorage.setItem(LS_KEY, JSON.stringify(session));
-  },
-  cleanSession: () => {
-    localStorage.removeItem(LS_KEY);
-  }
-};
-const authBusinessImpl = AuthBusiness;
-const AuthFactory = {
-  AuthBusiness: authBusinessImpl
-};
+const UserContext = React.createContext(null);
 function bind(fn3, thisArg) {
   return function wrap() {
     return fn3.apply(thisArg, arguments);
@@ -45973,17 +45955,16 @@ const HttpClient = () => {
     }
   };
 };
-const API_URL = "https://emagine.com.br/auth-api";
 let _httpClient$3;
 const UserService = {
-  init: function(htppClient) {
-    _httpClient$3 = htppClient;
+  init: function(httpClient) {
+    _httpClient$3 = httpClient;
   },
   uploadImageUser: async (file, token) => {
     let ret = {};
     const formData = new FormData();
     formData.append("file", file, "cropped.jpg");
-    const request2 = await _httpClient$3.doPostFormDataAuth(API_URL + "/uploadImageUser", formData, token);
+    const request2 = await _httpClient$3.doPostFormDataAuth("/uploadImageUser", formData, token);
     if (request2.success) {
       return request2.data;
     } else {
@@ -45993,8 +45974,7 @@ const UserService = {
   },
   getMe: async (token) => {
     let ret = {};
-    const url = API_URL + "/getMe";
-    const request2 = await _httpClient$3.doGetAuth(url, token);
+    const request2 = await _httpClient$3.doGetAuth("/getMe", token);
     if (request2.success) {
       return request2.data;
     } else {
@@ -46004,8 +45984,7 @@ const UserService = {
   },
   getUserByEmail: async (email) => {
     let ret = {};
-    const url = API_URL + "/getByEmail/" + email;
-    const request2 = await _httpClient$3.doGet(url, {});
+    const request2 = await _httpClient$3.doGet("/getByEmail/" + email, {});
     if (request2.success) {
       return request2.data;
     } else {
@@ -46015,8 +45994,7 @@ const UserService = {
   },
   getBySlug: async (slug) => {
     let ret = {};
-    const url = API_URL + "/getBySlug/" + slug;
-    const request2 = await _httpClient$3.doGet(url, {});
+    const request2 = await _httpClient$3.doGet("/getBySlug/" + slug, {});
     if (request2.success) {
       return request2.data;
     } else {
@@ -46026,7 +46004,7 @@ const UserService = {
   },
   insert: async (user) => {
     let ret = {};
-    const request2 = await _httpClient$3.doPost(API_URL + "/insert", user);
+    const request2 = await _httpClient$3.doPost("/insert", user);
     if (request2.success) {
       return request2.data;
     } else {
@@ -46036,7 +46014,7 @@ const UserService = {
   },
   update: async (user, token) => {
     let ret = {};
-    const request2 = await _httpClient$3.doPostAuth(API_URL + "/update", user, token);
+    const request2 = await _httpClient$3.doPostAuth("/update", user, token);
     if (request2.success) {
       return request2.data;
     } else {
@@ -46046,7 +46024,7 @@ const UserService = {
   },
   loginWithEmail: async (email, password) => {
     let ret = {};
-    const request2 = await _httpClient$3.doPost(API_URL + "/loginWithEmail", {
+    const request2 = await _httpClient$3.doPost("/loginWithEmail", {
       email,
       password
     });
@@ -46059,8 +46037,7 @@ const UserService = {
   },
   hasPassword: async (token) => {
     let ret = {};
-    const url = API_URL + "/hasPassword";
-    const request2 = await _httpClient$3.doGetAuth(url, token);
+    const request2 = await _httpClient$3.doGetAuth("/hasPassword", token);
     if (request2.success) {
       return request2.data;
     } else {
@@ -46070,7 +46047,7 @@ const UserService = {
   },
   changePassword: async (oldPassword, newPassword, token) => {
     let ret = {};
-    const request2 = await _httpClient$3.doPostAuth(API_URL + "/changePassword", {
+    const request2 = await _httpClient$3.doPostAuth("/changePassword", {
       oldPassword,
       newPassword
     }, token);
@@ -46084,8 +46061,7 @@ const UserService = {
   },
   sendRecoveryEmail: async (email) => {
     let ret = {};
-    const url = API_URL + "/sendRecoveryMail/" + email;
-    const request2 = await _httpClient$3.doGet(url, {});
+    const request2 = await _httpClient$3.doGet("/sendRecoveryMail/" + email, {});
     if (request2.success) {
       return request2.data;
     } else {
@@ -46095,7 +46071,7 @@ const UserService = {
   },
   changePasswordUsingHash: async (recoveryHash, newPassword) => {
     let ret = {};
-    const request2 = await _httpClient$3.doPost(API_URL + "/changePasswordUsingHash", {
+    const request2 = await _httpClient$3.doPost("/changePasswordUsingHash", {
       recoveryHash,
       newPassword
     });
@@ -46108,7 +46084,7 @@ const UserService = {
   },
   list: async (take) => {
     let ret = {};
-    const request2 = await _httpClient$3.doGet(API_URL + "/list/" + take, {});
+    const request2 = await _httpClient$3.doGet("/list/" + take, {});
     if (request2.success) {
       return request2.data;
     } else {
@@ -46118,7 +46094,8 @@ const UserService = {
   }
 };
 const httpClientAuth$1 = HttpClient();
-httpClientAuth$1.init("https://bazzuca.media/api");
+console.log("VITE_NAUTH_URL", "https://emagine.com.br/auth-api");
+httpClientAuth$1.init("https://emagine.com.br/auth-api");
 const userServiceImpl = UserService;
 userServiceImpl.init(httpClientAuth$1);
 const ServiceFactory$1 = {
@@ -46128,14 +46105,26 @@ const ServiceFactory$1 = {
   }
 };
 let _userService;
+const LS_KEY = "login-with-metamask:auth";
 const UserBusiness = {
   init: function(userService2) {
     _userService = userService2;
   },
+  getSession: () => {
+    const ls = window.localStorage.getItem(LS_KEY);
+    return ls && JSON.parse(ls);
+  },
+  setSession: (session) => {
+    console.log("Set Session: ", JSON.stringify(session));
+    localStorage.setItem(LS_KEY, JSON.stringify(session));
+  },
+  cleanSession: () => {
+    localStorage.removeItem(LS_KEY);
+  },
   uploadImageUser: async (file) => {
     try {
       const ret = {};
-      const session = AuthFactory.AuthBusiness.getSession();
+      const session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return Object.assign(Object.assign({}, ret), { sucesso: false, mensagem: "Not logged" });
       }
@@ -46152,7 +46141,7 @@ const UserBusiness = {
   getMe: async () => {
     try {
       const ret = {};
-      const session = AuthFactory.AuthBusiness.getSession();
+      const session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return Object.assign(Object.assign({}, ret), { sucesso: false, mensagem: "Not logged" });
       }
@@ -46208,7 +46197,7 @@ const UserBusiness = {
   update: async (user) => {
     try {
       const ret = {};
-      const session = AuthFactory.AuthBusiness.getSession();
+      const session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return Object.assign(Object.assign({}, ret), { sucesso: false, mensagem: "Not logged" });
       }
@@ -46242,7 +46231,7 @@ const UserBusiness = {
   hasPassword: async () => {
     try {
       const ret = {};
-      const session = AuthFactory.AuthBusiness.getSession();
+      const session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return Object.assign(Object.assign({}, ret), { sucesso: false, mensagem: "Not logged" });
       }
@@ -46258,7 +46247,7 @@ const UserBusiness = {
   },
   changePassword: async (oldPassword, newPassword) => {
     const ret = {};
-    const session = AuthFactory.AuthBusiness.getSession();
+    const session = UserFactory.UserBusiness.getSession();
     if (!session) {
       return Object.assign(Object.assign({}, ret), { sucesso: false, mensagem: "Not logged" });
     }
@@ -46355,43 +46344,43 @@ var LanguageEnum;
   LanguageEnum2[LanguageEnum2["Spanish"] = 3] = "Spanish";
   LanguageEnum2[LanguageEnum2["Portuguese"] = 4] = "Portuguese";
 })(LanguageEnum || (LanguageEnum = {}));
-function AuthProvider(props) {
+function UserProvider(props) {
   const [loading, setLoading] = reactExports.useState(false);
+  const [loadingList, setLoadingList] = reactExports.useState(false);
+  const [loadingPassword, setLoadingPassword] = reactExports.useState(false);
+  const [loadingUpdate, setLoadingUpdate] = reactExports.useState(false);
+  const [loadingSearch, setLoadingSearch] = reactExports.useState(false);
   const [language, setLanguage] = reactExports.useState(LanguageEnum.English);
   const [sessionInfo, _setSessionInfo] = reactExports.useState(null);
-  const authProviderValue = {
+  const [userHasPassword, setUserHasPassword] = reactExports.useState(false);
+  const [userImage, setUserImage] = reactExports.useState("");
+  const [user, _setUser] = reactExports.useState(null);
+  const [users, setUsers] = reactExports.useState([]);
+  const userProviderValue = {
     loading,
+    loadingList,
+    loadingPassword,
+    loadingUpdate,
+    loadingSearch,
+    userHasPassword,
+    user,
+    users,
     language,
     sessionInfo,
     setSession: (session) => {
       console.log(JSON.stringify(session));
       _setSessionInfo(session);
-      AuthFactory.AuthBusiness.setSession(session);
+      UserFactory.UserBusiness.setSession(session);
     },
     setLanguage: (value) => {
       setLanguage(value);
     },
-    loginWithEmail: async (email, password) => {
-      const ret = {};
-      setLoading(true);
-      try {
-        const retLog = await UserFactory.UserBusiness.loginWithEmail(email, password);
-        if (retLog.sucesso) {
-          authProviderValue.setSession(Object.assign(Object.assign({}, sessionInfo), { userId: retLog.dataResult.user.userId, hash: retLog.dataResult.user.hash, token: retLog.dataResult.token, isAdmin: retLog.dataResult.user.isAdmin, name: retLog.dataResult.user.name, email: retLog.dataResult.user.email, language }));
-          setLoading(false);
-          return Object.assign(Object.assign({}, ret), { sucesso: true, mensagemSucesso: "User Logged" });
-        } else {
-          setLoading(false);
-          return Object.assign(Object.assign({}, ret), { sucesso: false, mensagemErro: retLog.mensagem });
-        }
-      } catch (err) {
-        setLoading(false);
-        return Object.assign(Object.assign({}, ret), { sucesso: false, mensagemErro: JSON.stringify(err) });
-      }
+    setUser: (user2) => {
+      _setUser(user2);
     },
     logout: function() {
       try {
-        AuthFactory.AuthBusiness.cleanSession();
+        UserFactory.UserBusiness.cleanSession();
         _setSessionInfo(null);
         return {
           sucesso: true,
@@ -46408,39 +46397,12 @@ function AuthProvider(props) {
     },
     loadUserSession: async () => {
       const ret = {};
-      const session = await AuthFactory.AuthBusiness.getSession();
+      const session = await UserFactory.UserBusiness.getSession();
       if (session) {
-        authProviderValue.setSession(session);
+        userProviderValue.setSession(session);
         return Object.assign(Object.assign({}, ret), { sucesso: true });
       }
       return Object.assign(Object.assign({}, ret), { sucesso: false, mensagemErro: "Session not load" });
-    }
-  };
-  return jsxRuntimeExports.jsx(AuthContext.Provider, { value: authProviderValue, children: props.children });
-}
-const UserContext = React.createContext(null);
-function UserProvider(props) {
-  const [loading, setLoading] = reactExports.useState(false);
-  const [loadingList, setLoadingList] = reactExports.useState(false);
-  const [loadingPassword, setLoadingPassword] = reactExports.useState(false);
-  const [loadingUpdate, setLoadingUpdate] = reactExports.useState(false);
-  const [loadingSearch, setLoadingSearch] = reactExports.useState(false);
-  const [userHasPassword, setUserHasPassword] = reactExports.useState(false);
-  const [userImage, setUserImage] = reactExports.useState("");
-  const [user, _setUser] = reactExports.useState(null);
-  const [users, setUsers] = reactExports.useState([]);
-  const userProviderValue = {
-    loading,
-    loadingList,
-    loadingPassword,
-    loadingUpdate,
-    loadingSearch,
-    userHasPassword,
-    user,
-    users,
-    //searchResult: searchResult,
-    setUser: (user2) => {
-      _setUser(user2);
     },
     uploadImageUser: async (file) => {
       const ret = {};
@@ -46549,14 +46511,15 @@ function UserProvider(props) {
       const ret = {};
       setLoading(true);
       try {
-        const brt = await UserFactory.UserBusiness.update(user);
-        if (brt.sucesso) {
+        const bsRet = await UserFactory.UserBusiness.loginWithEmail(email, password);
+        if (bsRet.sucesso) {
           setLoading(false);
-          _setUser(brt.dataResult);
-          return Object.assign(Object.assign({}, ret), { sucesso: true, mensagemSucesso: "User updated" });
+          _setUser(bsRet.dataResult.user);
+          userProviderValue.setSession(Object.assign(Object.assign({}, sessionInfo), { userId: bsRet.dataResult.user.userId, hash: bsRet.dataResult.user.hash, token: bsRet.dataResult.token, isAdmin: bsRet.dataResult.user.isAdmin, name: bsRet.dataResult.user.name, email: bsRet.dataResult.user.email, language }));
+          return Object.assign(Object.assign({}, ret), { sucesso: true, mensagemSucesso: "User successfully logged" });
         } else {
           setLoading(false);
-          return Object.assign(Object.assign({}, ret), { sucesso: false, mensagemErro: brt.mensagem });
+          return Object.assign(Object.assign({}, ret), { sucesso: false, mensagemErro: bsRet.mensagem });
         }
       } catch (err) {
         setLoading(false);
@@ -46653,31 +46616,6 @@ function UserProvider(props) {
         return Object.assign(Object.assign({}, ret), { sucesso: false, mensagemErro: JSON.stringify(err) });
       }
     }
-    /*,
-        search: async (networkId: number, keyword: string, pageNum: number, profileId?: number) => {
-            let ret = {} as Promise<ProviderResult>;
-            setLoadingSearch(true);
-            setSearchResult(null);
-                let brt = await UserFactory.UserBusiness.search(networkId, keyword, pageNum, profileId);
-                if (brt.sucesso) {
-                    setLoadingSearch(false);
-                    setSearchResult(brt.dataResult);
-                    return {
-                        ...ret,
-                        sucesso: true,
-                        mensagemSucesso: "Search executed"
-                    };
-                }
-                else {
-                    setLoadingSearch(false);
-                    return {
-                        ...ret,
-                        sucesso: false,
-                        mensagemErro: brt.mensagem
-                    };
-                }
-        }
-                */
   };
   return jsxRuntimeExports.jsx(UserContext.Provider, { value: userProviderValue, children: props.children });
 }
@@ -46695,9 +46633,9 @@ var MessageToastEnum;
 })(MessageToastEnum || (MessageToastEnum = {}));
 function HomePage() {
   const navigate2 = useNavigate();
-  const authContext = reactExports.useContext(AuthContext);
+  const userContext = reactExports.useContext(UserContext);
   reactExports.useEffect(() => {
-    authContext.loadUserSession().then((ret) => {
+    userContext.loadUserSession().then((ret) => {
       if (!ret.sucesso) {
         Jt.error(ret.mensagemErro);
         return;
@@ -46708,9 +46646,9 @@ function HomePage() {
     /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(
       Header$8,
       {
-        sessionInfo: authContext.sessionInfo,
+        sessionInfo: userContext.sessionInfo,
         logout: () => {
-          authContext.logout();
+          userContext.logout();
           navigate2("/");
         }
       },
@@ -46822,10 +46760,10 @@ function Login() {
   const [email, setEmail] = reactExports.useState("");
   const [password, setPassword] = reactExports.useState("");
   const navigate2 = useNavigate();
-  const authContext = reactExports.useContext(AuthContext);
+  const userContext = reactExports.useContext(UserContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let ret = await authContext.loginWithEmail(email, password);
+    let ret = await userContext.loginWithEmail(email, password);
     if (!ret.sucesso) {
       Jt.error(ret.mensagemErro);
       return;
@@ -46944,7 +46882,7 @@ function Login() {
             lineNumber: 82,
             columnNumber: 15
           }, this),
-          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { type: "submit", className: "w-full btn-gradient", disabled: authContext.loading, children: authContext.loading ? "Signing in..." : "Sign In" }, void 0, false, {
+          /* @__PURE__ */ jsxDevRuntimeExports.jsxDEV(Button, { type: "submit", className: "w-full btn-gradient", disabled: userContext.loading, children: userContext.loading ? "Signing in..." : "Sign In" }, void 0, false, {
             fileName: "C:/Git/Projetos/BazzucaMedia/Frontend/bazzuca-app/src/pages/Login.tsx",
             lineNumber: 87,
             columnNumber: 15
@@ -49324,10 +49262,10 @@ function RecentPosts() {
 }
 function Dashboard() {
   const navigate2 = useNavigate();
-  const authContext = reactExports.useContext(AuthContext);
+  const userContext = reactExports.useContext(UserContext);
   reactExports.useEffect(() => {
-    authContext.loadUserSession().then((ret) => {
-      if (!authContext.sessionInfo) {
+    userContext.loadUserSession().then((ret) => {
+      if (!userContext.sessionInfo) {
         navigate2("/login");
         return;
       }
@@ -55677,12 +55615,12 @@ function Post() {
   const navigate2 = useNavigate();
   const [loading, setLoading] = reactExports.useState(false);
   const { postId } = useParams();
-  const authContext = reactExports.useContext(AuthContext);
+  const userContext = reactExports.useContext(UserContext);
   const networkContext = reactExports.useContext(SocialNetworkContext);
   const postContext = reactExports.useContext(PostContext);
   const loadPost = async () => {
     setLoading(true);
-    if (!authContext.sessionInfo) {
+    if (!userContext.sessionInfo) {
       setLoading(false);
       navigate2("/login");
       return;
@@ -55857,7 +55795,7 @@ const ClientBusiness = {
   listByUser: async () => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -55886,7 +55824,7 @@ const ClientBusiness = {
   getById: async (id) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -55915,7 +55853,7 @@ const ClientBusiness = {
   insert: async (client) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -55944,7 +55882,7 @@ const ClientBusiness = {
   update: async (client) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -55973,7 +55911,7 @@ const ClientBusiness = {
   delete: async (id) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -57122,11 +57060,11 @@ function ClientList() {
   const [isConfirmOpen, setIsConfirmOpen] = reactExports.useState(false);
   const [isClientInsertMode, setIsClientInsertMode] = reactExports.useState(false);
   const navigate2 = useNavigate();
-  const authContext = reactExports.useContext(AuthContext);
+  const userContext = reactExports.useContext(UserContext);
   const clientContext = reactExports.useContext(ClientContext);
   reactExports.useEffect(() => {
-    authContext.loadUserSession().then((ret) => {
-      if (!authContext.sessionInfo) {
+    userContext.loadUserSession().then((ret) => {
+      if (!userContext.sessionInfo) {
         navigate2("/login");
         return;
       }
@@ -57289,7 +57227,7 @@ const SocialNetworkBusiness = {
   listByClient: async (clientId) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -57318,7 +57256,7 @@ const SocialNetworkBusiness = {
   getById: async (id) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -57347,7 +57285,7 @@ const SocialNetworkBusiness = {
   insert: async (SocialNetwork) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -57376,7 +57314,7 @@ const SocialNetworkBusiness = {
   update: async (SocialNetwork) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -57405,7 +57343,7 @@ const SocialNetworkBusiness = {
   delete: async (id) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -58113,13 +58051,13 @@ function ClientDetail() {
   const [isNetworkInsertMode, setIsNetworkInsertMode] = reactExports.useState(false);
   const navigate2 = useNavigate();
   const { clientId } = useParams();
-  const authContext = reactExports.useContext(AuthContext);
+  const userContext = reactExports.useContext(UserContext);
   const clientContext = reactExports.useContext(ClientContext);
   const networkContext = reactExports.useContext(SocialNetworkContext);
   reactExports.useEffect(() => {
     networkContext.setNetworks([]);
-    authContext.loadUserSession().then((ret) => {
-      if (!authContext.sessionInfo) {
+    userContext.loadUserSession().then((ret) => {
+      if (!userContext.sessionInfo) {
         navigate2("/login");
         return;
       }
@@ -58304,7 +58242,7 @@ const PostBusiness = {
   listByUser: async (month2, year2) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -58333,7 +58271,7 @@ const PostBusiness = {
   search: async (param) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -58367,7 +58305,7 @@ const PostBusiness = {
   getById: async (id) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -58396,7 +58334,7 @@ const PostBusiness = {
   insert: async (Post2) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -58425,7 +58363,7 @@ const PostBusiness = {
   update: async (Post2) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -58454,7 +58392,7 @@ const PostBusiness = {
   publish: async (postId) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -58495,7 +58433,7 @@ const ImageBusiness = {
   uploadImage: async (file, filename) => {
     try {
       let ret;
-      let session = AuthFactory.AuthBusiness.getSession();
+      let session = UserFactory.UserBusiness.getSession();
       if (!session) {
         return {
           ...ret,
@@ -62628,7 +62566,7 @@ function PostTable(props) {
 }
 function PostList() {
   const navigate2 = useNavigate();
-  const authContext = reactExports.useContext(AuthContext);
+  const userContext = reactExports.useContext(UserContext);
   const clientContext = reactExports.useContext(ClientContext);
   const postContext = reactExports.useContext(PostContext);
   const [clientId, setClientId] = reactExports.useState(0);
@@ -62636,7 +62574,7 @@ function PostList() {
   const [network, setNetwork] = reactExports.useState(null);
   const searchPost = async (pageNum, clientId2, network2) => {
     let param = {
-      userId: authContext.sessionInfo.userId,
+      userId: userContext.sessionInfo.userId,
       clientId: clientId2,
       network: network2,
       status: null,
@@ -62649,8 +62587,8 @@ function PostList() {
     }
   };
   reactExports.useEffect(() => {
-    authContext.loadUserSession().then(async (ret) => {
-      if (!authContext.sessionInfo) {
+    userContext.loadUserSession().then(async (ret) => {
+      if (!userContext.sessionInfo) {
         navigate2("/login");
         return;
       }
@@ -75244,7 +75182,7 @@ var _withDragAndDrop = _interopRequireDefault(withDragAndDrop$1);
 default_1 = dragAndDrop.default = _withDragAndDrop.default;
 function CalendarPage() {
   const navigate2 = useNavigate();
-  const authContext = reactExports.useContext(AuthContext);
+  const userContext = reactExports.useContext(UserContext);
   const postContext = reactExports.useContext(PostContext);
   const [events, setEvents] = reactExports.useState([]);
   const locales = {
@@ -75269,8 +75207,8 @@ function CalendarPage() {
     });
   };
   reactExports.useEffect(() => {
-    authContext.loadUserSession().then(async (ret) => {
-      if (!authContext.sessionInfo) {
+    userContext.loadUserSession().then(async (ret) => {
+      if (!userContext.sessionInfo) {
         navigate2("/login");
         return;
       }
@@ -75412,7 +75350,6 @@ function CalendarPage() {
 const queryClient = new QueryClient();
 function App() {
   const ContextContainer = ContextBuilder([
-    AuthProvider,
     UserProvider,
     ClientProvider,
     SocialNetworkProvider,
@@ -75584,4 +75521,4 @@ createRoot(document.getElementById("root")).render(
     columnNumber: 3
   }, void 0)
 );
-//# sourceMappingURL=index-DZ2glE2m.js.map
+//# sourceMappingURL=index-WnBJI2n1.js.map
