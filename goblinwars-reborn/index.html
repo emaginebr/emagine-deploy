@@ -1,140 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="img/favicon.png" type="image/png">
-  <title>Goblin Wars - Reborn</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      background-color: black;
-      color: white;
-    }
-
-    .bg-slideshow {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -2;
-    }
-
-    .bg-image {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 2s ease-in-out;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      z-index: -1;
-    }
-
-    .main-content {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .available-box {
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 3rem;
-      border-radius: 1rem;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-    }
-
-    .available-box img {
-      width: 200px;
-      height: auto;
-      margin-bottom: 1rem;
-    }
-
-    .available-title {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #ffc107;
-      margin-bottom: 1rem;
-      text-shadow: 1px 1px 5px black;
-    }
-
-    .available-text {
-      font-size: 1.2rem;
-      color: #ffffffd9;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: white;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="bg-slideshow">
-    <div class="bg-image bg1"></div>
-    <div class="bg-image bg2"></div>
-  </div>
-
-  <div class="main-content">
-    <div class="available-box">
-      <img src="img/GoblinWars_Reborn.png" alt="Goblin Wars - Reborn Logo" />
-      <div class="available-title">Available in 2026</div>
-      <div class="available-text">The new phase of Goblins is coming. <br>Prepare for war.</div>
-    </div>
-  </div>
-
-  <footer>
-    Copyright © <span class="text-warning"><b>Goblin Wars - Reborn</b></span> All Rights Reserved
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const images = ['img/bg_01.jpg'];
-    let current = 0;
-    let next = 0;
-
-    const bg1 = document.querySelector('.bg1');
-    const bg2 = document.querySelector('.bg2');
-
-    bg1.style.backgroundImage = `url('${images[current]}')`;
-    bg1.style.opacity = 1;
-
-    setInterval(() => {
-      const nextImage = images[next];
-
-      bg2.style.backgroundImage = `url('${nextImage}')`;
-      bg2.style.opacity = 1;
-
-      setTimeout(() => {
-        bg1.style.backgroundImage = `url('${nextImage}')`;
-        bg2.style.opacity = 0;
-      }, 2000);
-
-      current = next;
-      next = (next + 1) % images.length;
-    }, 8000);
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/token-32x32.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goblin Wars: Reborn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Yeon+Sung&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="module" crossorigin src="/assets/index-DXEXTFXw.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DetD6DE2.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
