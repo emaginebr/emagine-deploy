@@ -1,6 +1,5 @@
 FROM nginx:alpine 
 
-COPY builds/slaproyale /var/www/slaproyale.com/home
 COPY builds/monexup /var/www/monexup.com/home
 COPY builds/goblinwars-reborn /var/www/goblinwars.net/home
 COPY builds/emagine /var/www/emagine.com.br/home

@@ -5,7 +5,6 @@ Write-Host "=========================================================" -Foregrou
 Write-Host "  Build All Projects" -ForegroundColor Yellow
 Write-Host "=========================================================" -ForegroundColor Yellow
 
-& "$ScriptDir/build-slaproyale.ps1"
 & "$ScriptDir/build-monexup.ps1"
 & "$ScriptDir/build-easysla.ps1"
 & "$ScriptDir/build-goblinwars.ps1"
