@@ -11,6 +11,7 @@ Write-Host "----------------------------------------------------------"
 
 Push-Location "$Root/../NAuth/nauth-react"
 git pull
+npm run build
 Push-Location "example-app"
 npm install
 npm run build

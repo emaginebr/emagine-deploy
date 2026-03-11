@@ -1,4 +1,4 @@
-# EmagineDeploy - Multi-Site Docker Deployment System
+# emagine-deploy - Multi-Site Docker Deployment System
 
 ![Nginx](https://img.shields.io/badge/Nginx-Alpine-009639)
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED)
@@ -7,9 +7,11 @@
 
 ## Overview
 
-**EmagineDeploy** is a Docker-based multi-site deployment system that serves 8+ web applications through a single Nginx Alpine container with SSL termination and virtual hosting. Each site has its own domain, SSL certificate, and build pipeline. Built using **Nginx**, **Docker**, and **PowerShell** build scripts.
+**emagine-deploy** is a Docker-based multi-site deployment system that serves 8+ web applications through a single Nginx Alpine container with SSL termination and virtual hosting. Each site has its own domain, SSL certificate, and build pipeline. Built using **Nginx**, **Docker**, and **PowerShell** build scripts.
 
 The only project with source code in this repository is **emagine-site** (the main Emagine portfolio). All other projects (EasySLA, NAuth, NoChainSwap, etc.) live in sibling repositories — the build scripts pull, build, and copy their outputs into the `builds/` directory.
+
+SSL certificates are stored externally in a separate `emagine-secrets` repository and mounted as a Docker volume — they are **not** included in this repository.
 
 ---
 
@@ -22,7 +24,8 @@ The only project with source code in this repository is **emagine-site** (the ma
 - 📦 **SPA Routing** - All server blocks use `try_files` for single-page application support
 - 🔀 **Reverse Proxy** - API routing for NAuth and other backend services
 - 🏷️ **Semantic Versioning** - GitVersion-based automatic tagging and release creation
-- 🚀 **One-Click Deployment** - GitHub Actions workflow for SSH-based production deploys
+- 🚀 **Auto Deployment** - GitHub Actions deploys automatically on push to `main`
+- 💻 **Local Development** - Dedicated `docker-compose-local.yml` with no SSL dependency
 
 ---
 
@@ -50,7 +53,7 @@ The only project with source code in this repository is **emagine-site** (the ma
 ## 📁 Project Structure
 
 ```
-EmagineDeploy/
+emagine-deploy/
 ├── builds/                  # Built outputs for each project
 │   ├── bazzuca-media/       # bazzuca.media
 │   ├── easysla-app/         # easysla.com/app
@@ -70,12 +73,13 @@ EmagineDeploy/
 │       ├── hooks/           # Custom React hooks
 │       └── lib/             # Utility functions
 ├── scripts/                 # PowerShell build scripts (.ps1)
-├── ssl/                     # SSL certificates and keys for all domains
 ├── assets/                  # Brand images and logos
 ├── .github/workflows/       # CI/CD workflows
 ├── Dockerfile               # Nginx Alpine container definition
-├── docker-compose.yml       # Service orchestration
-├── nginx.conf               # Virtual host config for all domains
+├── docker-compose.yml       # Production orchestration (SSL from /root/emagine-secrets/SSL)
+├── docker-compose-local.yml # Local development (no SSL, HTTP only)
+├── nginx.conf               # Production virtual host config (multi-domain, SSL)
+├── nginx-local.conf         # Local config (all sites on localhost via subpaths)
 ├── GitVersion.yml           # Semantic versioning configuration
 └── README.md                # This file
 ```
@@ -115,7 +119,9 @@ All projects except emagine-site live in sibling repositories:
 
 ## 🐳 Docker Setup
 
-### Quick Start with Docker Compose
+### Production
+
+Production uses `docker-compose.yml` which mounts SSL certificates from `/root/emagine-secrets/SSL` on the server.
 
 #### 1. Prerequisites
 
@@ -134,27 +140,47 @@ docker network create emagine-network
 #### 3. Build and Start Container
 
 ```bash
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 #### 4. Verify Deployment
 
 ```bash
-docker-compose ps
-docker-compose logs -f
+docker compose ps
+docker compose logs -f
 ```
+
+### Local Development
+
+Local uses `docker-compose-local.yml` + `nginx-local.conf` — **no SSL required**. All sites are served on `http://localhost` via subpaths.
+
+```bash
+docker compose -f docker-compose-local.yml up -d --build
+```
+
+| Site | Local URL |
+|------|-----------|
+| **Emagine** | http://localhost/ |
+| **NAuth** | http://localhost/nauth/ |
+| **Goblin Wars** | http://localhost/goblinwars/ |
+| **MonexUp** | http://localhost/monexup/ |
+| **EasySLA Site** | http://localhost/easysla/ |
+| **EasySLA App** | http://localhost/easysla-app/ |
+| **NoChainSwap** | http://localhost/nochainswap/ |
+| **PandoraVault** | http://localhost/pandoravault/ |
+| **Bazzuca Media** | http://localhost/bazzuca/ |
 
 ### Docker Compose Commands
 
 | Action | Command |
 |--------|---------|
-| Start services | `docker-compose up -d` |
-| Start with rebuild | `docker-compose up -d --build` |
-| Stop services | `docker-compose stop` |
-| Full rebuild | `docker-compose up -d --build --force-recreate` |
-| View status | `docker-compose ps` |
-| View logs | `docker-compose logs -f` |
-| Remove containers | `docker-compose down` |
+| Start services | `docker compose up -d` |
+| Start with rebuild | `docker compose up -d --build` |
+| Stop services | `docker compose stop` |
+| Full rebuild | `docker compose up -d --build --force-recreate` |
+| View status | `docker compose ps` |
+| View logs | `docker compose logs -f` |
+| Remove containers | `docker compose down` |
 
 ---
 
@@ -211,6 +237,7 @@ Build outputs are always placed in the `builds/` directory.
 
 ### SSL/TLS
 - **Per-domain certificates** - Each domain has its own SSL certificate and key
+- **External secrets** - SSL certificates stored in a separate `emagine-secrets` repository, never committed to this repo
 - **HTTP to HTTPS redirect** - All HTTP traffic is automatically redirected to HTTPS
 - **www redirect** - `www.` subdomains redirect to the apex domain
 
@@ -237,7 +264,8 @@ Three workflows automate versioning and deployment:
 - Auto-generates release notes from commits
 
 **3. Deploy Production** (`deploy-prod.yml`)
-- **Triggers:** Manual dispatch only
+- **Triggers:** Push to `main`, manual dispatch
+- Verifies SSL directory exists on the server (`/root/emagine-secrets/SSL`)
 - Connects via SSH to the production server
 - Pulls latest code and runs `docker compose up --build -d`
 
@@ -263,19 +291,19 @@ Commit message prefixes: `major:` / `breaking:` for major, `feat:` / `feature:` 
 
 **Check:**
 ```bash
-docker-compose logs emagine-app
+docker compose logs emagine-app
 ```
 
 **Common causes:**
 - Missing build outputs in `builds/` — run `./scripts/build-all.ps1` first
-- Missing SSL certificates in `ssl/`
+- Missing SSL certificates (production only) — ensure `/root/emagine-secrets/SSL` exists on the server
 - Docker network `emagine-network` not created
 
 **Solution:**
 ```bash
 docker network create emagine-network
 ./scripts/build-all.ps1
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 #### Site returns 404
@@ -300,19 +328,15 @@ cd emagine-site
 npm run dev
 ```
 
-### Production Environment
+### Local Docker (all sites)
 
 ```bash
-# Build all projects
-./scripts/build-all.ps1
-
-# Deploy
-docker-compose up -d --build
+docker compose -f docker-compose-local.yml up -d --build
 ```
 
-### Production Server (via GitHub Actions)
+### Production (via GitHub Actions)
 
-Trigger the **Deploy Production** workflow manually from the GitHub Actions tab. The workflow SSHs into the server, pulls the latest code, and rebuilds the container.
+Production deploys automatically on every push to `main`. You can also trigger it manually from the GitHub Actions tab. The workflow SSHs into the server, verifies the SSL directory, pulls the latest code, and rebuilds the container.
 
 ---
 
@@ -332,7 +356,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ### Key Conventions
 
 - Build outputs always go to `builds/` (never the repo root)
-- SSL certs stored in `ssl/` (lowercase)
+- SSL certs stored externally in `../emagine-secrets/SSL/` (mounted as volume)
 - `nginx.conf` is mounted as a read-only volume
 - SPA routing: all nginx server blocks use `try_files $uri $uri/ /index.html`
 - NAuth is served as a subpath under `emagine.com.br/nauth/`
@@ -354,7 +378,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/landim32/EmagineDeploy/issues)
+- **Issues**: [GitHub Issues](https://github.com/emaginebr/emagine-deploy/issues)
 
 ---
 
