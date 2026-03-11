@@ -1,14 +1,16 @@
 name: Deploy Production
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Version and Tag"]
+    types:
+      - completed
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:
     - name: Deploy via SSH
