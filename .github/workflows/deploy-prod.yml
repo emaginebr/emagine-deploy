@@ -35,6 +35,12 @@ jobs:
             cd "$DEPLOY_DIR"
           fi
 
+          # Verify SSL certificates exist
+          if [ ! -d "/root/emagine-secrets/SSL" ]; then
+            echo "ERROR: SSL directory /root/emagine-secrets/SSL not found"
+            exit 1
+          fi
+
           # Create external network if it doesn't exist
           docker network inspect emagine-network >/dev/null 2>&1 || docker network create emagine-network
 
