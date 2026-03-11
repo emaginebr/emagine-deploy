@@ -1,0 +1,105 @@
+{
+  "header": {
+    "home": "Início",
+    "about": "Sobre",
+    "services": "Serviços",
+    "projects": "Projetos",
+    "cta": "Nosso Projetos"
+  },
+  "hero": {
+    "title": "Tornamos realidade",
+    "titleHighlight": "sua ideia de Software",
+    "subtitle": "Criamos seu SaaS ou dApp do zero e caminhamos ao seu lado como sócios de tecnologia. Você sonha. A Emagine constrói.",
+    "viewProjects": "Ver Projetos",
+    "feature1Title": "Dev SaaS & Web3",
+    "feature1Desc": "Código sólido, modular e seguro",
+    "feature2Title": "Parceria Estratégica",
+    "feature2Desc": "Aceleramos sua startup como sócios técnicos",
+    "feature3Title": "Lançamento e Escala",
+    "feature3Desc": "Do MVP ao crescimento exponencial"
+  },
+  "about": {
+    "heading": "Sobre a Emagine",
+    "description1": "A Emagine nasceu com um propósito ousado: transformar ideias em startups reais. Somos mais do que uma empresa de software — somos sócios na construção do seu SaaS, dApp ou plataforma Web3. Do zero ao lançamento, caminhamos juntos.",
+    "description2": "Cada projeto é único e carrega um sonho. Por isso, desenvolvemos soluções sob medida, com as tecnologias mais modernas e com uma filosofia de parceria verdadeira — onde nosso sucesso depende diretamente do seu.",
+    "missionTitle": "Nossa Missão",
+    "missionDescription": "Construir, junto aos nossos clientes, produtos digitais inovadores que nascem de ideias e crescem com tecnologia, parceria e propósito.",
+    "stats": {
+      "clients": "Clientes Satisfeitos",
+      "projects": "Projetos Concluídos",
+      "years": "Anos de Experiência",
+      "success": "Taxa de Sucesso"
+    }
+  },
+  "servicesSection": {
+    "heading": "Nossos Serviços",
+    "subheading": "Oferecemos soluções completas para transformar sua visão em realidade digital",
+    "webdev": {
+      "title": "Desenvolvimento Web",
+      "description": "Aplicações web modernas e responsivas usando React, Next, .NET Core e outras tecnologias de ponta.",
+      "features": ["Marketing Places", "E-commerce", "Dashboards", "APIs REST"]
+    },
+    "mobile": {
+      "title": "Aplicativos Mobile",
+      "description": "Apps nativos e híbridos para iOS e Android com foco na experiência do usuário.",
+      "features": ["React Native", ".NET Maui", "Xamarin", "App Store Deploy"]
+    },
+    "blockchain": {
+      "title": "Blockchain & Criptoativos",
+      "description": "Construímos soluções robustas com contratos inteligentes, tokens e integração com redes descentralizadas.",
+      "features": ["Smart Contracts", "Tokenização (ERC-20/721/1155)", "Integração Web3", "Segurança Criptográfica"]
+    },
+    "backend": {
+      "title": "Backend & Cloud",
+      "description": "Arquiteturas escaláveis e seguras na nuvem com as melhores práticas de DevOps.",
+      "features": ["Microserviços", "AWS", "Docker", "CI/CD"]
+    },
+    "design": {
+      "title": "UI/UX Design",
+      "description": "Interfaces intuitivas e atrativas que proporcionam uma experiência excepcional.",
+      "features": ["Prototipagem", "Design System", "Testes de Usabilidade", "Figma/Adobe"]
+    },
+    "security": {
+      "title": "Segurança",
+      "description": "Implementação de medidas de segurança robustas para proteger dados e sistemas.",
+      "features": ["Autenticação", "Criptografia", "Compliance", "Auditoria"]
+    }
+  },
+  "projectsSection": {
+    "heading": "Nossos Projetos",
+    "subheading": "Conheça alguns dos projetos que desenvolvemos com excelência e inovação",
+    "seeMore": "Ver Mais",
+    "status": {
+      "completed": "Concluído",
+      "deploying": "Em Implantação",
+      "development": "Em Desenvolvimento",
+      "migration": "Em Migração",
+      "discontinued": "Descontinuado"
+    },
+    "descriptions": {
+      "nauth": "Microserviço de autenticação e autorização com foco em segurança, escalabilidade e facilidade de integração para aplicações web e móveis",
+      "pandoraVault": "Um cofre para senhas e arquivos com zero-knowledge pelo site usando criptografia AES-256",
+      "easySLA": "Sistema de quadro Kanbam com uso de SLA e interação do cliente",
+      "viralt": "Plataforma de campanhas virais com gamificação, sorteios e integração com redes sociais.",
+      "monexUp": "Marketing place baseado em marketing de rede e multinível, uma rede social para captar vendedores.",
+      "goblinWarsReborn": "Nova versão de GoblinWars com visual retrô e engine moderna. Combina estratégia tática e nostalgia pixelada.",
+      "slapRoyale": "Jogo web de batalhas de tapas com NFTs, atributos, animações e sistema de combate baseado em React.",
+      "noChainSwap": "Exchange descentralizada inspirada no Bisq, focada em transações seguras com Bitcoin usando .NET.",
+      "kryptoDrive": "Aplicativo para gravar arquivos criptografados em drives externos, acessíveis apenas com senha. Está sendo unificado com o Pandora Vault",
+      "gehr": "Prontuário eletrônico distribuído em blockchain, voltado para gestão médica acessível e segura.",
+      "wb3": "Sistema de Tokenização de ativos na bolsa de valores B3.",
+      "goblinWarsClassic": "Versão original do jogo de estratégia tática por turnos em ambiente medieval fantástico, com goblins, guerreiros e magia.",
+      "ladinoBot": "Bot inteligente para operações na bolsa de valores, desenvolvido em MQL5, com alto grau de customização, estratégias configuráveis e foco em automação de trades."
+    }
+  },
+  "footer": {
+    "quickLinks": "Links Rápidos",
+    "services": "Serviços",
+    "contact": "Contato",
+    "rights": "Todos os direitos reservados."
+  },
+  "notFound": {
+    "message": "Oops! Página não encontrada",
+    "returnHome": "Voltar para o Início"
+  }
+}

@@ -1,0 +1,16 @@
+services:
+  emagine-app:
+    build: .
+    container_name: emagine-app1
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - emagine-network
+
+networks:
+  emagine-network:
+    external: true

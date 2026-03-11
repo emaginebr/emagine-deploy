@@ -1,0 +1,105 @@
+{
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "cta": "Our Projects"
+  },
+  "hero": {
+    "title": "We turn your Software idea into",
+    "titleHighlight": "reality",
+    "subtitle": "We create your SaaS or dApp from scratch and walk beside you as technology partners. You dream. Emagine builds.",
+    "viewProjects": "View Projects",
+    "feature1Title": "SaaS & Web3 Development",
+    "feature1Desc": "Solid, modular and secure code",
+    "feature2Title": "Strategic Partnership",
+    "feature2Desc": "We accelerate your startup as technical partners",
+    "feature3Title": "Launch and Scale",
+    "feature3Desc": "From MVP to exponential growth"
+  },
+  "about": {
+    "heading": "About Emagine",
+    "description1": "Emagine was born with a daring purpose: transform ideas into real startups. We are more than a software company — we are partners in building your SaaS, dApp or Web3 platform. From zero to launch, we walk together.",
+    "description2": "Each project is unique and carries a dream. That's why we develop tailor-made solutions with the most modern technologies and a philosophy of true partnership — where our success depends directly on yours.",
+    "missionTitle": "Our Mission",
+    "missionDescription": "Build, together with our clients, innovative digital products that arise from ideas and grow with technology, partnership and purpose.",
+    "stats": {
+      "clients": "Satisfied Clients",
+      "projects": "Completed Projects",
+      "years": "Years of Experience",
+      "success": "Success Rate"
+    }
+  },
+  "servicesSection": {
+    "heading": "Our Services",
+    "subheading": "We offer complete solutions to transform your vision into digital reality",
+    "webdev": {
+      "title": "Web Development",
+      "description": "Modern and responsive web applications using React, Next, .NET Core and other cutting-edge technologies.",
+      "features": ["Marketing Places", "E-commerce", "Dashboards", "REST APIs"]
+    },
+    "mobile": {
+      "title": "Mobile Apps",
+      "description": "Native and hybrid apps for iOS and Android focused on user experience.",
+      "features": ["React Native", ".NET Maui", "Xamarin", "App Store Deploy"]
+    },
+    "blockchain": {
+      "title": "Blockchain & Cryptoassets",
+      "description": "We build robust solutions with smart contracts, tokens and integration with decentralized networks.",
+      "features": ["Smart Contracts", "Tokenization (ERC-20/721/1155)", "Web3 Integration", "Cryptographic Security"]
+    },
+    "backend": {
+      "title": "Backend & Cloud",
+      "description": "Scalable and secure cloud architectures with DevOps best practices.",
+      "features": ["Microservices", "AWS", "Docker", "CI/CD"]
+    },
+    "design": {
+      "title": "UI/UX Design",
+      "description": "Intuitive and attractive interfaces that provide an exceptional experience.",
+      "features": ["Prototyping", "Design System", "Usability Testing", "Figma/Adobe"]
+    },
+    "security": {
+      "title": "Security",
+      "description": "Implementation of robust security measures to protect data and systems.",
+      "features": ["Authentication", "Encryption", "Compliance", "Auditing"]
+    }
+  },
+  "projectsSection": {
+    "heading": "Our Projects",
+    "subheading": "Discover some of the projects we developed with excellence and innovation",
+    "seeMore": "View More",
+    "status": {
+      "completed": "Completed",
+      "deploying": "Deploying",
+      "development": "In Development",
+      "migration": "Migrating",
+      "discontinued": "Discontinued"
+    },
+    "descriptions": {
+      "nauth": "Authentication and authorization microservice focused on security, scalability and ease of integration for web and mobile applications",
+      "pandoraVault": "A vault for passwords and files with zero-knowledge through the site using AES-256 encryption",
+      "easySLA": "Kanban board system with SLA usage and client interaction",
+      "viralt": "Campaign platform with gamification, raffles and social network integration.",
+      "monexUp": "Marketplace based on network marketing and multi-level, a social network to recruit vendors.",
+      "goblinWarsReborn": "New version of GoblinWars with retro visuals and modern engine. Combines tactical strategy and pixelated nostalgia.",
+      "slapRoyale": "Web game of slap battles with NFTs, attributes, animations and combat system built with React.",
+      "noChainSwap": "Decentralized exchange inspired by Bisq, focused on secure transactions with Bitcoin using .NET.",
+      "kryptoDrive": "Application to record encrypted files on external drives, accessible only with a password. Being unified with the Pandora Vault",
+      "gehr": "Distributed electronic health record on blockchain aimed at accessible and secure medical management.",
+      "wb3": "Asset tokenization system on the B3 stock exchange.",
+      "goblinWarsClassic": "Original version of the turn-based tactical strategy game in a medieval fantasy setting with goblins, warriors and magic.",
+      "ladinoBot": "Intelligent bot for stock trading operations developed in MQL5, highly customizable with configurable strategies and automation focus."
+    }
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "rights": "All rights reserved."
+  },
+  "notFound": {
+    "message": "Oops! Page not found",
+    "returnHome": "Return to Home"
+  }
+}
