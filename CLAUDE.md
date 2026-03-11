@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-EmagineDeploy is a Docker-based multi-site deployment system. It serves 8+ web applications through a single Nginx Alpine container with SSL and virtual hosting. Each site has its own domain, SSL certificate, and build pipeline.
+emagine-deploy is a Docker-based multi-site deployment system. It serves 8+ web applications through a single Nginx Alpine container with SSL and virtual hosting. Each site has its own domain, SSL certificate, and build pipeline.
 
 ## Architecture
 
 ```
-EmagineDeploy/
+emagine-deploy/
 ├── builds/          # Built outputs for each project (copied here by build scripts)
 ├── emagine-site/    # React/TypeScript source (only project with source in this repo)
 ├── scripts/         # PowerShell build scripts (.ps1)
@@ -68,7 +68,7 @@ docker-compose up -d --build --force-recreate  # Full rebuild
 ## Key Conventions
 
 - Build outputs always go to `builds/` (never the repo root)
-- SSL certs stored in `ssl/` (lowercase)
+- SSL certs stored externally in `../emagine-secrets/ssl/` (mounted as volume)
 - nginx.conf is mounted as read-only volume in docker-compose
 - SPA routing: all nginx server blocks use `try_files $uri $uri/ /index.html`
 - Network name: `emagine-network` (external Docker network)
