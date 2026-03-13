@@ -9,19 +9,11 @@ Remove-Item -Recurse -Force "$Root/builds/bazzuca-media" -ErrorAction SilentlyCo
 Write-Host "Bazzuca Media - Build and Copy" -ForegroundColor Cyan
 Write-Host "----------------------------------------------------------"
 
-Push-Location "$Root/../BazzucaMedia"
+Push-Location "$Root/../Bazzuca/bazzuca-react/frontend"
 git pull
-Push-Location "Frontend/bazzuca-app"
-npm install
+npm install --legacy-peer-deps
 npm run build
 Copy-Item -Recurse -Force "dist" "$Root/builds/bazzuca-media"
-Pop-Location
-
-Write-Host "Bazzuca Media SSL - Copy" -ForegroundColor Cyan
-Write-Host "----------------------------------------------------------"
-
-Copy-Item -Force "SSL/bazzuca.media.chained.crt" "$Root/ssl/"
-Copy-Item -Force "SSL/bazzuca.media.key" "$Root/ssl/"
 Pop-Location
 
 Write-Host "Bazzuca Media - Done!" -ForegroundColor Green
