@@ -11,7 +11,7 @@ Write-Host "----------------------------------------------------------"
 
 Push-Location "$Root/../devblog"
 git pull
-npm install
+npm install --legacy-peer-deps
 npm run build
 Copy-Item -Recurse -Force "dist" "$Root/builds/devblog"
 Pop-Location
