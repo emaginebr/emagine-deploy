@@ -14,6 +14,13 @@ scrape_configs:
         labels:
           app: "nnews-api"
 
+  - job_name: "bazzuca-api"
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["bazzuca-api:80"]
+        labels:
+          app: "bazzuca-api"
+
   - job_name: "node-exporter"
     static_configs:
       - targets: ["node-exporter:9100"]
