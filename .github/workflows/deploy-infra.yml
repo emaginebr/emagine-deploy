@@ -1,0 +1,167 @@
+name: Deploy Infrastructure
+
+on:
+  workflow_dispatch:
+
+env:
+  DEPLOY_DIR: /opt/emagine-deploy
+  COMPOSE_FILE: docker-compose-infra.yml
+
+jobs:
+  setup:
+    name: Setup Repository & Network
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare server
+        uses: appleboy/ssh-action@v1
+        env:
+          RABBITMQ_USER: ${{ secrets.RABBITMQ_USER }}
+          RABBITMQ_PASSWORD: ${{ secrets.RABBITMQ_PASSWORD }}
+          GRAFANA_USER: ${{ secrets.GRAFANA_USER }}
+          GRAFANA_PASSWORD: ${{ secrets.GRAFANA_PASSWORD }}
+        with:
+          host: ${{ secrets.PROD_SSH_HOST }}
+          username: ${{ secrets.PROD_SSH_USER }}
+          password: ${{ secrets.PROD_SSH_PASSWORD }}
+          port: ${{ secrets.PROD_SSH_PORT || 22 }}
+          envs: RABBITMQ_USER,RABBITMQ_PASSWORD,GRAFANA_USER,GRAFANA_PASSWORD
+          script: |
+            set -e
+
+            DEPLOY_DIR="/opt/emagine-deploy"
+            REPO_URL="https://github.com/${{ github.repository }}.git"
+            BRANCH="main"
+
+            if [ -d "$DEPLOY_DIR" ]; then
+              echo "Updating existing repository..."
+              cd "$DEPLOY_DIR"
+              git fetch origin
+              git reset --hard "origin/$BRANCH"
+              git clean -fd
+            else
+              echo "Cloning repository..."
+              git clone --branch "$BRANCH" --single-branch "$REPO_URL" "$DEPLOY_DIR"
+            fi
+
+            docker network inspect emagine-network >/dev/null 2>&1 || docker network create emagine-network
+
+            # Create .env with production secrets
+            {
+              echo "RABBITMQ_USER=$RABBITMQ_USER"
+              echo "RABBITMQ_PASSWORD=$RABBITMQ_PASSWORD"
+              echo "GRAFANA_USER=$GRAFANA_USER"
+              echo "GRAFANA_PASSWORD=$GRAFANA_PASSWORD"
+            } > "$DEPLOY_DIR/.env"
+
+  deploy-rabbitmq:
+    name: Deploy RabbitMQ
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy RabbitMQ
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.PROD_SSH_HOST }}
+          username: ${{ secrets.PROD_SSH_USER }}
+          password: ${{ secrets.PROD_SSH_PASSWORD }}
+          port: ${{ secrets.PROD_SSH_PORT || 22 }}
+          envs: DEPLOY_DIR,COMPOSE_FILE
+          script: |
+            set -e
+            cd /opt/emagine-deploy
+            docker compose -f docker-compose-infra.yml up -d --force-recreate rabbitmq
+            echo "Waiting for RabbitMQ health check..."
+            timeout 60 bash -c 'until docker inspect --format="{{.State.Health.Status}}" emagine-rabbitmq 2>/dev/null | grep -q healthy; do sleep 2; done'
+            echo "RabbitMQ is healthy."
+
+  deploy-node-exporter:
+    name: Deploy Node Exporter
+    needs: [deploy-rabbitmq]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Node Exporter
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.PROD_SSH_HOST }}
+          username: ${{ secrets.PROD_SSH_USER }}
+          password: ${{ secrets.PROD_SSH_PASSWORD }}
+          port: ${{ secrets.PROD_SSH_PORT || 22 }}
+          script: |
+            set -e
+            cd /opt/emagine-deploy
+            docker compose -f docker-compose-infra.yml up -d --force-recreate node-exporter
+            echo "Node Exporter is running."
+
+  deploy-prometheus:
+    name: Deploy Prometheus
+    needs: [deploy-node-exporter]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Prometheus
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.PROD_SSH_HOST }}
+          username: ${{ secrets.PROD_SSH_USER }}
+          password: ${{ secrets.PROD_SSH_PASSWORD }}
+          port: ${{ secrets.PROD_SSH_PORT || 22 }}
+          script: |
+            set -e
+            cd /opt/emagine-deploy
+            docker compose -f docker-compose-infra.yml up -d --force-recreate prometheus
+            echo "Prometheus is running."
+
+  deploy-grafana:
+    name: Deploy Grafana
+    needs: [deploy-prometheus]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Grafana
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.PROD_SSH_HOST }}
+          username: ${{ secrets.PROD_SSH_USER }}
+          password: ${{ secrets.PROD_SSH_PASSWORD }}
+          port: ${{ secrets.PROD_SSH_PORT || 22 }}
+          script: |
+            set -e
+            cd /opt/emagine-deploy
+            docker compose -f docker-compose-infra.yml up -d --force-recreate grafana
+            echo "Grafana is running."
+
+  verify:
+    name: Verify All Services
+    needs: [deploy-grafana]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify services
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.PROD_SSH_HOST }}
+          username: ${{ secrets.PROD_SSH_USER }}
+          password: ${{ secrets.PROD_SSH_PASSWORD }}
+          port: ${{ secrets.PROD_SSH_PORT || 22 }}
+          script: |
+            set -e
+            cd /opt/emagine-deploy
+            echo "=== Infrastructure Services Status ==="
+            docker compose -f docker-compose-infra.yml ps
+            echo ""
+            echo "=== Container Health ==="
+            for container in emagine-rabbitmq prometheus grafana node-exporter; do
+              status=$(docker inspect --format='{{.State.Status}}' "$container" 2>/dev/null || echo "not found")
+              echo "$container: $status"
+            done
+
+      - name: Summary
+        run: |
+          echo "## Infrastructure Deployment" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Service | Port |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|------|" >> $GITHUB_STEP_SUMMARY
+          echo "| RabbitMQ | 5672 (AMQP) / 15672 (Management) |" >> $GITHUB_STEP_SUMMARY
+          echo "| Prometheus | 9090 |" >> $GITHUB_STEP_SUMMARY
+          echo "| Grafana | 3000 |" >> $GITHUB_STEP_SUMMARY
+          echo "| Node Exporter | 9100 |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Server: \`${{ secrets.PROD_SSH_HOST }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- Triggered by: \`${{ github.actor }}\`" >> $GITHUB_STEP_SUMMARY

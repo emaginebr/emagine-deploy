@@ -13,6 +13,7 @@ Write-Host "=========================================================" -Foregrou
 & "$ScriptDir/build-emagine.ps1"
 & "$ScriptDir/build-nauth.ps1"
 & "$ScriptDir/build-bazzucamedia.ps1"
+& "$ScriptDir/build-devblog.ps1"
 
 Write-Host "=========================================================" -ForegroundColor Green
 Write-Host "  All builds completed!" -ForegroundColor Green

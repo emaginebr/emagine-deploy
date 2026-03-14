@@ -9,7 +9,9 @@
 
 **emagine-deploy** is a Docker-based multi-site deployment system that serves 8+ web applications through a single Nginx Alpine container with SSL termination and virtual hosting. Each site has its own domain, SSL certificate, and build pipeline. Built using **Nginx**, **Docker**, and **PowerShell** build scripts.
 
-The only project with source code in this repository is **emagine-site** (the main Emagine portfolio). All other projects (EasySLA, NAuth, NoChainSwap, etc.) live in sibling repositories — the build scripts pull, build, and copy their outputs into the `builds/` directory.
+The only project with source code in this repository is **emagine-site** (the main Emagine portfolio). All other projects (EasySLA, NAuth, NoChainSwap, DevBlog, etc.) live in sibling repositories — the build scripts pull, build, and copy their outputs into the `builds/` directory.
+
+Infrastructure services (Prometheus, Grafana, Node Exporter, RabbitMQ) are managed through a separate `docker-compose-infra.yml` and deployed via a dedicated GitHub Actions workflow.
 
 SSL certificates are stored externally in a separate `emagine-secrets` repository and mounted as a Docker volume — they are **not** included in this repository.
 
@@ -22,10 +24,13 @@ SSL certificates are stored externally in a separate `emagine-secrets` repositor
 - 🐳 **Single-Container Deployment** - All sites bundled into one lightweight Nginx Alpine image
 - 🔄 **Automated Build Pipelines** - PowerShell scripts to build each project independently or all at once
 - 📦 **SPA Routing** - All server blocks use `try_files` for single-page application support
-- 🔀 **Reverse Proxy** - API routing for NAuth and other backend services
+- 🔀 **Reverse Proxy** - API routing for NAuth, NNews, and Bazzuca backend services
 - 🏷️ **Semantic Versioning** - GitVersion-based automatic tagging and release creation
 - 🚀 **Auto Deployment** - GitHub Actions deploys automatically on push to `main`
 - 💻 **Local Development** - Dedicated `docker-compose-local.yml` with no SSL dependency
+- 📊 **Monitoring** - Prometheus + Grafana + Node Exporter for metrics and dashboards
+- 🐇 **Message Broker** - Centralized RabbitMQ shared across projects
+- 📝 **DevBlog** - Developer blog served at `emagine.com.br/rodrigolandim/`
 
 ---
 
@@ -34,6 +39,15 @@ SSL certificates are stored externally in a separate `emagine-secrets` repositor
 ### Infrastructure
 - **Nginx Alpine** - Lightweight web server and reverse proxy
 - **Docker / Docker Compose** - Containerization and orchestration
+
+### Monitoring & Observability
+- **Prometheus** - Metrics collection and storage (30-day retention)
+- **Grafana** - Dashboards and visualization
+- **Node Exporter** - Linux server metrics (CPU, memory, disk, network)
+- **prometheus-net** - .NET application metrics (scraped from NNews API)
+
+### Message Broker
+- **RabbitMQ** - Centralized AMQP message broker with management UI
 
 ### emagine-site (Portfolio)
 - **React 18** + **TypeScript** + **Vite** (SWC) - Frontend framework
@@ -45,7 +59,7 @@ SSL certificates are stored externally in a separate `emagine-secrets` repositor
 
 ### Build & CI/CD
 - **PowerShell** - Build scripts for all projects
-- **GitHub Actions** - Version tagging, release creation, production deployment
+- **GitHub Actions** - Version tagging, release creation, production and infrastructure deployment
 - **GitVersion** - Semantic version management
 
 ---
@@ -56,6 +70,7 @@ SSL certificates are stored externally in a separate `emagine-secrets` repositor
 emagine-deploy/
 ├── builds/                  # Built outputs for each project
 │   ├── bazzuca-media/       # bazzuca.media
+│   ├── devblog/             # emagine.com.br/rodrigolandim
 │   ├── easysla-app/         # easysla.com/app
 │   ├── easysla-site/        # easysla.com
 │   ├── emagine/             # emagine.com.br
@@ -72,14 +87,26 @@ emagine-deploy/
 │       ├── locales/         # i18n translation files
 │       ├── hooks/           # Custom React hooks
 │       └── lib/             # Utility functions
+├── monitoring/              # Prometheus & Grafana configuration
+│   ├── prometheus.yml       # Scrape configs (nnews-api, node-exporter)
+│   └── grafana/
+│       ├── dashboards/      # Pre-configured JSON dashboards
+│       │   ├── nnews-api.json
+│       │   └── node-exporter.json
+│       └── provisioning/    # Grafana auto-provisioning
+│           ├── datasources/
+│           └── dashboards/
 ├── scripts/                 # PowerShell build scripts (.ps1)
+├── docs/                    # System design diagrams
 ├── assets/                  # Brand images and logos
 ├── .github/workflows/       # CI/CD workflows
 ├── Dockerfile               # Nginx Alpine container definition
-├── docker-compose.yml       # Production orchestration (SSL from /root/emagine-secrets/SSL)
+├── docker-compose.yml       # Production web server
+├── docker-compose-infra.yml # Infrastructure (Prometheus, Grafana, RabbitMQ, Node Exporter)
 ├── docker-compose-local.yml # Local development (no SSL, HTTP only)
 ├── nginx.conf               # Production virtual host config (multi-domain, SSL)
 ├── nginx-local.conf         # Local config (all sites on localhost via subpaths)
+├── .env.example             # Environment variables template
 ├── GitVersion.yml           # Semantic versioning configuration
 └── README.md                # This file
 ```
@@ -90,6 +117,7 @@ emagine-deploy/
 |--------|---------|------|
 | **emagine.com.br** | Emagine Portfolio | `/` |
 | **emagine.com.br/nauth/** | NAuth | Subpath |
+| **emagine.com.br/rodrigolandim/** | DevBlog | Subpath |
 | **easysla.com** | EasySLA Site | `/` |
 | **easysla.com/app** | EasySLA App | Subpath |
 | **goblinwars.net** | Goblin Wars Reborn | `/` |
@@ -114,12 +142,58 @@ All projects except emagine-site live in sibling repositories:
 | **Bazzuca Media** | `../BazzucaMedia` | `build-bazzucamedia.ps1` |
 | **Slap Royale** | `../SlapRoyale` | `build-slaproyale.ps1` |
 | **MonexUp** | `../MonexUp` | `build-monexup.ps1` |
+| **DevBlog** | `../devblog` | `build-devblog.ps1` |
+
+---
+
+## 🏗️ System Design
+
+The following diagram illustrates the high-level architecture of **emagine-deploy**:
+
+![System Design](docs/system-design.png)
+
+The system is composed of three layers:
+
+- **Web Server** — A single Nginx Alpine container serves all static sites and proxies API requests to backend containers (`nauth-api`, `nnews-api`, `bazzuca-api`) on the shared `emagine-network`.
+- **Infrastructure Services** — Managed via `docker-compose-infra.yml`: Prometheus scrapes metrics from NNews API (prometheus-net) and Node Exporter; Grafana provides dashboards; RabbitMQ serves as a centralized message broker.
+- **External** — SSL certificates are stored outside the repository and mounted as a read-only volume.
+
+> 📄 **Source:** The editable Mermaid source is available at [`docs/system-design.mmd`](docs/system-design.mmd).
+
+---
+
+## ⚙️ Environment Configuration
+
+Before running the infrastructure services, configure the environment variables:
+
+### 1. Copy the environment template
+
+```bash
+cp .env.example .env
+```
+
+### 2. Edit the `.env` file
+
+```bash
+# RabbitMQ
+RABBITMQ_USER=guest
+RABBITMQ_PASSWORD=your_secure_rabbitmq_password_here
+
+# Grafana
+GRAFANA_USER=admin
+GRAFANA_PASSWORD=your_secure_grafana_password_here
+```
+
+⚠️ **IMPORTANT**:
+- Never commit the `.env` file with real credentials
+- Only the `.env.example` should be version controlled
+- Change all default passwords and secrets before deployment
 
 ---
 
 ## 🐳 Docker Setup
 
-### Production
+### Production (Web Server)
 
 Production uses `docker-compose.yml` which mounts SSL certificates from `/root/emagine-secrets/SSL` on the server.
 
@@ -150,6 +224,28 @@ docker compose ps
 docker compose logs -f
 ```
 
+### Infrastructure (Monitoring & RabbitMQ)
+
+Infrastructure uses `docker-compose-infra.yml` for Prometheus, Grafana, Node Exporter, and RabbitMQ.
+
+```bash
+docker compose -f docker-compose-infra.yml up -d
+```
+
+| Service | URL | Description |
+|---------|-----|-------------|
+| **Grafana** | http://localhost:3000 | Dashboards and visualization |
+| **Prometheus** | http://localhost:9090 | Metrics query interface |
+| **RabbitMQ Management** | http://localhost:15672 | Message broker management UI |
+| **Node Exporter** | http://localhost:9100 | Linux server metrics |
+
+#### Pre-configured Grafana Dashboards
+
+| Dashboard | Metrics |
+|-----------|---------|
+| **NNews API** | Request rate, duration (p50/p95/p99), HTTP status codes, error rate, .NET GC, thread pool, process CPU/memory |
+| **Linux Server** | CPU usage, memory, swap, disk usage/IO, network traffic, system load, uptime |
+
 ### Local Development
 
 Local uses `docker-compose-local.yml` + `nginx-local.conf` — **no SSL required**. All sites are served on `http://localhost` via subpaths.
@@ -162,6 +258,7 @@ docker compose -f docker-compose-local.yml up -d --build
 |------|-----------|
 | **Emagine** | http://localhost/ |
 | **NAuth** | http://localhost/nauth/ |
+| **DevBlog** | http://localhost/rodrigolandim/ |
 | **Goblin Wars** | http://localhost/goblinwars/ |
 | **MonexUp** | http://localhost/monexup/ |
 | **EasySLA Site** | http://localhost/easysla/ |
@@ -174,8 +271,9 @@ docker compose -f docker-compose-local.yml up -d --build
 
 | Action | Command |
 |--------|---------|
-| Start services | `docker compose up -d` |
+| Start web server | `docker compose up -d` |
 | Start with rebuild | `docker compose up -d --build` |
+| Start infrastructure | `docker compose -f docker-compose-infra.yml up -d` |
 | Stop services | `docker compose stop` |
 | Full rebuild | `docker compose up -d --build --force-recreate` |
 | View status | `docker compose ps` |
@@ -224,6 +322,7 @@ Build individual projects or all at once using PowerShell:
 ./scripts/build-bazzucamedia.ps1  # Pulls from ../BazzucaMedia
 ./scripts/build-slaproyale.ps1    # Pulls from ../SlapRoyale
 ./scripts/build-monexup.ps1       # Pulls from ../MonexUp
+./scripts/build-devblog.ps1       # Pulls from ../devblog
 
 # Build everything
 ./scripts/build-all.ps1
@@ -244,6 +343,7 @@ Build outputs are always placed in the `builds/` directory.
 ### Nginx
 - **Read-only config** - `nginx.conf` is mounted as a read-only volume
 - **SPA fallback** - All routes fall back to `index.html` for client-side routing
+- **CORS headers** - Configured for API proxy locations with preflight support
 
 ---
 
@@ -251,7 +351,7 @@ Build outputs are always placed in the `builds/` directory.
 
 ### GitHub Actions
 
-Three workflows automate versioning and deployment:
+Four workflows automate versioning, deployment, and infrastructure:
 
 **1. Version and Tag** (`version-tag.yml`)
 - **Triggers:** Push to `main`, manual dispatch
@@ -264,10 +364,16 @@ Three workflows automate versioning and deployment:
 - Auto-generates release notes from commits
 
 **3. Deploy Production** (`deploy-prod.yml`)
-- **Triggers:** Push to `main`, manual dispatch
+- **Triggers:** After "Version and Tag" completes, manual dispatch
 - Verifies SSL directory exists on the server (`/root/emagine-secrets/SSL`)
 - Connects via SSH to the production server
 - Pulls latest code and runs `docker compose up --build -d`
+
+**4. Deploy Infrastructure** (`deploy-infra.yml`)
+- **Triggers:** Manual dispatch only (`workflow_dispatch`)
+- Sequential jobs: Setup → RabbitMQ → Node Exporter → Prometheus → Grafana → Verify
+- Creates `.env` on server from GitHub Secrets
+- Deploys all infrastructure services via `docker-compose-infra.yml`
 
 ### Version Convention (GitVersion)
 
@@ -317,6 +423,20 @@ docker compose up -d --build
 docker exec emagine-app1 ls /var/www/
 ```
 
+#### Infrastructure services not connecting
+
+**Common causes:**
+- Docker network `emagine-network` doesn't exist
+- `.env` file missing or misconfigured
+- Services started in wrong order
+
+**Solution:**
+```bash
+docker network create emagine-network
+cp .env.example .env  # Edit with real credentials
+docker compose -f docker-compose-infra.yml up -d
+```
+
 ---
 
 ## 🚀 Deployment
@@ -337,6 +457,10 @@ docker compose -f docker-compose-local.yml up -d --build
 ### Production (via GitHub Actions)
 
 Production deploys automatically on every push to `main`. You can also trigger it manually from the GitHub Actions tab. The workflow SSHs into the server, verifies the SSL directory, pulls the latest code, and rebuilds the container.
+
+### Infrastructure (via GitHub Actions)
+
+Infrastructure is deployed manually via the "Deploy Infrastructure" workflow in GitHub Actions. It deploys RabbitMQ, Node Exporter, Prometheus, and Grafana sequentially.
 
 ---
 
@@ -360,6 +484,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - `nginx.conf` is mounted as a read-only volume
 - SPA routing: all nginx server blocks use `try_files $uri $uri/ /index.html`
 - NAuth is served as a subpath under `emagine.com.br/nauth/`
+- DevBlog is served as a subpath under `emagine.com.br/rodrigolandim/`
 - EasySLA has two builds: site (root) and app (`/app` subpath)
 
 ---

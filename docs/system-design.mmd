@@ -1,0 +1,72 @@
+flowchart TD
+    subgraph Internet["🌐 Internet"]
+        Users["Users / Browsers"]
+    end
+
+    subgraph Docker["Docker Host — emagine-network"]
+
+        subgraph WebServer["Web Server"]
+            Nginx["🔷 Nginx Alpine\n(emagine-app)\nPorts: 80 / 443"]
+        end
+
+        subgraph Sites["Static Sites (8 domains)"]
+            Emagine["emagine.com.br"]
+            EasySLA["easysla.com"]
+            GoblinWars["goblinwars.net"]
+            MonexUp["monexup.com"]
+            NoChainSwap["nochainswap.org"]
+            PandoraVault["pandoravault.com"]
+            Bazzuca["bazzuca.media"]
+            SlapRoyale["slaproyale.com"]
+        end
+
+        subgraph Subpaths["Subpaths (emagine.com.br)"]
+            NAuth["/nauth/\nNAuth"]
+            DevBlog["/rodrigolandim/\nDevBlog"]
+        end
+
+        subgraph APIs["Backend APIs"]
+            NAuthAPI["🔐 NAuth API\n(nauth-api)"]
+            NNewsAPI["📰 NNews API\n(nnews-api)"]
+            BazzucaAPI["🎯 Bazzuca API\n(bazzuca-api)"]
+        end
+
+        subgraph Infra["Infrastructure Services\n(docker-compose-infra.yml)"]
+            Prometheus["📊 Prometheus\nPort: 9090"]
+            Grafana["📈 Grafana\nPort: 3000"]
+            NodeExporter["🖥️ Node Exporter\nPort: 9100"]
+            RabbitMQ["🐇 RabbitMQ\n(emagine-rabbitmq)\nPorts: 5672 / 15672"]
+        end
+    end
+
+    subgraph External["External"]
+        SSL["🔒 SSL Certificates\n/root/emagine-secrets/SSL"]
+    end
+
+    Users -->|HTTPS| Nginx
+    Nginx --> Sites
+    Nginx --> Subpaths
+    Nginx -->|/auth-api/| NAuthAPI
+    Nginx -->|/news-api/| NNewsAPI
+    Nginx -->|/bazzuca-api/| BazzucaAPI
+    SSL -.->|volume mount| Nginx
+
+    Prometheus -->|scrape /metrics| NNewsAPI
+    Prometheus -->|scrape :9100| NodeExporter
+    Grafana -->|query| Prometheus
+
+    BazzucaAPI -->|publish/consume| RabbitMQ
+
+    classDef nginx fill:#2563eb,stroke:#1d4ed8,color:#fff
+    classDef site fill:#f1f5f9,stroke:#94a3b8,color:#334155
+    classDef subpath fill:#e0f2fe,stroke:#38bdf8,color:#0c4a6e
+    classDef api fill:#7c3aed,stroke:#6d28d9,color:#fff
+    classDef infra fill:#059669,stroke:#047857,color:#fff
+    classDef external fill:#f59e0b,stroke:#d97706,color:#fff
+
+    class Nginx nginx
+    class Emagine,EasySLA,GoblinWars,MonexUp,NoChainSwap,PandoraVault,Bazzuca,SlapRoyale site
+    class NAuth,DevBlog subpath
+    class NAuthAPI,NNewsAPI,BazzucaAPI api
+    class Prometheus,Grafana,NodeExporter,RabbitMQ infra
+    class SSL external
