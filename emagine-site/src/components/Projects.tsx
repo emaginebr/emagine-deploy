@@ -1,8 +1,6 @@
 
 import { ExternalLink, Github, Calendar } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { useTranslation } from 'react-i18next';
 import monexUpImg from '../assets/images/monexup.jpg';
 import goblinWarsRebornImg from '../assets/images/goblinwars-reborn.jpg';
@@ -159,108 +157,143 @@ const Projects = () => {
     }
   ];
 
-  const getStatusColor = (status: string) => {
+  const getStatusStyle = (status: string) => {
     switch (status) {
       case 'completed':
-        return 'bg-green-100 text-green-800';
+        return { bg: 'bg-[#00E87B]/10', text: 'text-[#00E87B]', dot: 'bg-[#00E87B]' };
       case 'deploying':
-        return 'bg-yellow-100 text-yellow-800';
+        return { bg: 'bg-[#FFBD2E]/10', text: 'text-[#FFBD2E]', dot: 'bg-[#FFBD2E]' };
       case 'development':
-        return 'bg-blue-100 text-blue-800';
+        return { bg: 'bg-[#6C63FF]/10', text: 'text-[#6C63FF]', dot: 'bg-[#6C63FF]' };
+      case 'migration':
+        return { bg: 'bg-[#00C9A7]/10', text: 'text-[#00C9A7]', dot: 'bg-[#00C9A7]' };
+      case 'discontinued':
+        return { bg: 'bg-white/5', text: 'text-white/30', dot: 'bg-white/30' };
       default:
-        return 'bg-gray-100 text-gray-800';
+        return { bg: 'bg-white/5', text: 'text-white/40', dot: 'bg-white/40' };
     }
   };
 
   return (
-    <section id="projects" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            {t('projectsSection.heading').split(' ')[0]}{' '}
-            <span className="gradient-text">{t('projectsSection.heading').split(' ')[1]}</span>
+    <section id="projects" className="py-24 lg:py-32 relative noise-overlay">
+      {/* Top border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[30%] left-[60%] w-[500px] h-[500px] rounded-full bg-[#6C63FF]/[0.02] blur-[120px]" />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section header */}
+        <div className="flex items-center gap-4 mb-6">
+          <div className="h-px flex-1 max-w-[60px] bg-[#00E87B]/40" />
+          <span className="text-[#00E87B] text-xs font-semibold tracking-[0.2em] uppercase">{t('header.projects')}</span>
+        </div>
+
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white/95 leading-[1.1] tracking-tight max-w-xl">
+            {t('projectsSection.heading')}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-white/35 max-w-md font-light leading-relaxed">
             {t('projectsSection.subheading')}
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <Card
-              key={index}
-              className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden border-0 shadow-lg"
-            >
-              <div className="relative">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="absolute top-4 right-4">
-                  <Badge className={getStatusColor(project.status)}>
-                    {t(`projectsSection.status.${project.status}`)}
-                  </Badge>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {projects.map((project, index) => {
+            const statusStyle = getStatusStyle(project.status);
+            return (
+              <div
+                key={index}
+                className="glass-effect rounded-xl overflow-hidden group hover:border-white/10 transition-all duration-500"
+              >
+                {/* Image */}
+                <div className="relative overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {/* Overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[hsl(240,18%,6%)] via-transparent to-transparent opacity-60" />
+
+                  {/* Status badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${statusStyle.bg} ${statusStyle.text} backdrop-blur-sm`}>
+                      <div className={`w-1.5 h-1.5 rounded-full ${statusStyle.dot}`} />
+                      {t(`projectsSection.status.${project.status}`)}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-white/25 text-xs font-medium tracking-wide uppercase">
+                      {project.category}
+                    </span>
+                    <div className="flex items-center text-white/20 text-xs">
+                      <Calendar className="h-3 w-3 mr-1" />
+                      {project.year}
+                    </div>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-white/90 mb-3 group-hover:text-[#00E87B] transition-colors duration-300">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-white/35 text-sm mb-5 leading-relaxed line-clamp-2">
+                    {project.description}
+                  </p>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-2.5 py-1 rounded-md bg-white/[0.04] text-white/40 text-xs border border-white/[0.04]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.technologies.length > 4 && (
+                      <span className="px-2.5 py-1 rounded-md bg-white/[0.04] text-white/25 text-xs border border-white/[0.04]">
+                        +{project.technologies.length - 4}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex gap-2">
+                    <Button
+                      size="sm"
+                      className="flex-1 bg-white/[0.04] text-white/60 hover:text-white hover:bg-white/[0.08] border border-white/[0.06] hover:border-white/10 transition-all duration-300 text-xs"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.open(project.url, '_blank');
+                      }}
+                    >
+                      <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
+                      {t('projectsSection.seeMore')}
+                    </Button>
+                    {project.urlGitHub &&
+                      <Button
+                        size="sm"
+                        className="bg-white/[0.04] text-white/40 hover:text-white hover:bg-white/[0.08] border border-white/[0.06] hover:border-white/10 transition-all duration-300"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.open(project.urlGitHub, '_blank');
+                        }}
+                      >
+                        <Github className="h-3.5 w-3.5" />
+                      </Button>
+                    }
+                  </div>
                 </div>
               </div>
-
-              <CardHeader>
-                <div className="flex items-center justify-between mb-2">
-                  <Badge variant="outline" className="text-xs">
-                    {project.category}
-                  </Badge>
-                  <div className="flex items-center text-sm text-gray-500">
-                    <Calendar className="h-4 w-4 mr-1" />
-                    {project.year}
-                  </div>
-                </div>
-                <CardTitle className="text-xl text-gray-900">{project.title}</CardTitle>
-              </CardHeader>
-
-              <CardContent>
-                <CardDescription className="text-gray-600 mb-4">
-                  {project.description}
-                </CardDescription>
-
-                <div className="mb-4">
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex gap-2">
-                  <Button size="sm" variant="outline" className="flex-1" onClick={(e) => {
-                    e.preventDefault();
-                    window.open(project.url, '_blank');
-                  }}>
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    {t('projectsSection.seeMore')}
-                  </Button>
-                  {project.urlGitHub && 
-                  <Button size="sm" variant="ghost" onClick={(e) => {
-                    e.preventDefault();
-                    window.open(project.urlGitHub, '_blank');
-                  }}>
-                    <Github className="h-4 w-4" />
-                  </Button>
-      }
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+            );
+          })}
         </div>
-
-        {/*
-        <div className="text-center mt-12">
-          <Button size="lg" className="gradient-blue text-white">
-            Ver Todos os Projetos
-          </Button>
-        </div>
-        */}
       </div>
     </section>
   );
