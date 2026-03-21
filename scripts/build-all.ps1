@@ -12,6 +12,7 @@ Write-Host "=========================================================" -Foregrou
 & "$ScriptDir/build-pandoravault.ps1"
 & "$ScriptDir/build-emagine.ps1"
 & "$ScriptDir/build-nauth.ps1"
+& "$ScriptDir/build-lofn.ps1"
 & "$ScriptDir/build-bazzucamedia.ps1"
 & "$ScriptDir/build-devblog.ps1"
 

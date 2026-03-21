@@ -4,6 +4,7 @@ COPY builds/monexup /var/www/monexup.com/home
 COPY builds/goblinwars-reborn /var/www/goblinwars.net/home
 COPY builds/emagine /var/www/emagine.com.br/home
 COPY builds/nauth /var/www/emagine.com.br/nauth
+COPY builds/lofn /var/www/emagine.com.br/lofn
 COPY builds/easysla-site /var/www/easysla.com/home
 COPY builds/easysla-app /var/www/easysla.com/app
 COPY builds/nochainswap /var/www/nochainswap.org/home
