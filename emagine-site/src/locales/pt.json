@@ -21,7 +21,6 @@
   "about": {
     "heading": "Sobre a Emagine",
     "description1": "A Emagine nasceu com um propósito ousado: transformar ideias em startups reais. Somos mais do que uma empresa de software — somos sócios na construção do seu SaaS, dApp ou plataforma Web3. Do zero ao lançamento, caminhamos juntos.",
-    "description2": "Cada projeto é único e carrega um sonho. Por isso, desenvolvemos soluções sob medida, com as tecnologias mais modernas e com uma filosofia de parceria verdadeira — onde nosso sucesso depende diretamente do seu.",
     "missionTitle": "Nossa Missão",
     "missionDescription": "Construir, junto aos nossos clientes, produtos digitais inovadores que nascem de ideias e crescem com tecnologia, parceria e propósito.",
     "stats": {
@@ -74,22 +73,31 @@
       "deploying": "Em Implantação",
       "development": "Em Desenvolvimento",
       "migration": "Em Migração",
+      "outdated": "Desatualizado",
       "discontinued": "Descontinuado"
     },
     "descriptions": {
-      "nauth": "Microserviço de autenticação e autorização com foco em segurança, escalabilidade e facilidade de integração para aplicações web e móveis",
-      "pandoraVault": "Um cofre para senhas e arquivos com zero-knowledge pelo site usando criptografia AES-256",
-      "easySLA": "Sistema de quadro Kanbam com uso de SLA e interação do cliente",
-      "viralt": "Plataforma de campanhas virais com gamificação, sorteios e integração com redes sociais.",
-      "monexUp": "Marketing place baseado em marketing de rede e multinível, uma rede social para captar vendedores.",
+      "nauth": "Microserviço de autenticação multi-tenant com JWT e gerenciamento de usuários. Inclui pacote React com componentes de login, registro, perfil e roles.",
+      "pandoraVault": "Um cofre para senhas e arquivos com zero-knowledge pelo site usando criptografia AES-256.",
+      "easySLA": "Sistema de quadro Kanban com uso de SLA e interação do cliente.",
+      "viralt": "Plataforma SaaS de campanhas virais com gamificação, sorteios e integração com redes sociais.",
+      "monexUp": "Gerenciador financeiro de marketing multinível com suporte a criptomoedas.",
+      "zTools": "Microserviço de utilitários compartilhados. Fornece ChatGPT, DALL-E, email, upload S3, validação de documentos e geração de slugs.",
+      "nnews": "Microserviço de CMS para notícias e blogs com geração de conteúdo via IA (ChatGPT + DALL-E 3). Inclui pacote React com editor rich-text, artigos, categorias e tags.",
+      "lofn": "Microserviço de produtos, lojas e pedidos de vendas com GraphQL. Inclui pacote React com vitrine, carrinho de compras e administração de lojas.",
+      "bazzucaMedia": "Ferramenta de publicação em redes sociais (X/Twitter, LinkedIn) com worker assíncrono via RabbitMQ. Inclui pacote React com gerenciamento de posts e redes sociais.",
+      "devblog": "Blog pessoal de desenvolvedor. Frontend React que consome NAuth e NNews APIs.",
+      "abipesca": "Aplicativo completo da Abipesca. Monorepo com NAuth, NNews e BazzucaMedia integrados.",
       "goblinWarsReborn": "Nova versão de GoblinWars com visual retrô e engine moderna. Combina estratégia tática e nostalgia pixelada.",
-      "slapRoyale": "Jogo web de batalhas de tapas com NFTs, atributos, animações e sistema de combate baseado em React.",
       "noChainSwap": "Exchange descentralizada inspirada no Bisq, focada em transações seguras com Bitcoin usando .NET.",
-      "kryptoDrive": "Aplicativo para gravar arquivos criptografados em drives externos, acessíveis apenas com senha. Está sendo unificado com o Pandora Vault",
-      "gehr": "Prontuário eletrônico distribuído em blockchain, voltado para gestão médica acessível e segura.",
+      "kryptoDrive": "App mobile para criptografia AES-256 de arquivos em drives externos com passphrase por arquivo.",
       "wb3": "Sistema de Tokenização de ativos na bolsa de valores B3.",
-      "goblinWarsClassic": "Versão original do jogo de estratégia tática por turnos em ambiente medieval fantástico, com goblins, guerreiros e magia.",
-      "ladinoBot": "Bot inteligente para operações na bolsa de valores, desenvolvido em MQL5, com alto grau de customização, estratégias configuráveis e foco em automação de trades."
+      "ladinoBot": "Robô open source para MetaTrader 5, com estratégias configuráveis e foco em automação de trades.",
+      "gitNews": "Gerador automático de artigos de blog a partir de repositórios GitHub usando IA (GPT-4).",
+      "germanium": "Ferramenta CLI para gerar imagens PNG bonitas de código-fonte, inspirado em Carbon/Silicon.",
+      "voxMeet": "Assistente de entrevista com IA em tempo real. Transcrição via Whisper e respostas via GPT-4o.",
+      "linkedinBot": "Automação de candidaturas no LinkedIn com IA para análise de compatibilidade.",
+      "devNote": "App Android de notas inteligentes por voz para desenvolvedores com transcrição via Whisper."
     }
   },
   "footer": {

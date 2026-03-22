@@ -1,160 +1,221 @@
 
-import { ExternalLink, Github, Calendar } from 'lucide-react';
+import { ExternalLink, Github, Calendar, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
-import monexUpImg from '../assets/images/monexup.jpg';
-import goblinWarsRebornImg from '../assets/images/goblinwars-reborn.jpg';
-import goblinWarsClassicImg from '../assets/images/goblinwars-classic.jpg';
-import slapRoyaleImg from '../assets/images/slaproyale.png';
-import ladinoBotImg from '../assets/images/ladinobot.png';
-import noChainSwapImg from '../assets/images/nochainswap.png';
-import kryptoDriveImg from '../assets/images/kryptodrive.jpg';
-import gehrImg from '../assets/images/gehr.png';
-import viraltImg from '../assets/images/viralt.jpg';
-import pandoraImg from '../assets/images/pandoravault.jpg';
-import easyslaImg from '../assets/images/easysla.jpg';
-import wb3Img from '../assets/images/wb3.jpg';
-import nauthImg from '../assets/images/nauth.png';
-
 
 const Projects = () => {
   const { t } = useTranslation();
 
   const projects = [
+    // ── Microserviços & Pacotes (emaginebr) ──
     {
       title: 'NAuth',
       description: t('projectsSection.descriptions.nauth'),
-      image: nauthImg,
-      technologies: [ 'React', 'Bootstrap', '.NET Core', 'PostgreSQL', 'GitHub Actions'],
-      category: 'Open Source',
+      technologies: ['.NET 8', 'React', 'PostgreSQL', 'JWT', 'Stripe', 'Radix UI'],
+      category: 'Auth / Microserviço',
       year: '2025',
       status: 'completed',
       url: 'https://emagine.com.br/nauth',
-      urlGitHub: 'https://github.com/landim32/nauth'
+      urlGitHub: 'https://github.com/emaginebr/NAuth',
+      urlNuGet: 'https://www.nuget.org/packages/NAuth/',
+      urlNpm: 'https://www.npmjs.com/package/nauth-react',
     },
+    {
+      title: 'zTools',
+      description: t('projectsSection.descriptions.zTools'),
+      technologies: ['.NET 8', 'OpenAI', 'AWS S3', 'MailerSend', 'Docker'],
+      category: 'Utilities / Microserviço',
+      year: '2025',
+      status: 'completed',
+      urlGitHub: 'https://github.com/emaginebr/zTools',
+      urlNuGet: 'https://www.nuget.org/packages/zTools/',
+    },
+    {
+      title: 'NNews',
+      description: t('projectsSection.descriptions.nnews'),
+      technologies: ['.NET 8', 'React', 'PostgreSQL', 'ChatGPT', 'DALL-E 3', 'Quill'],
+      category: 'CMS / Microserviço',
+      year: '2025',
+      status: 'completed',
+      urlGitHub: 'https://github.com/emaginebr/NNews',
+      urlNuGet: 'https://www.nuget.org/packages/NNews/',
+      urlNpm: 'https://www.npmjs.com/package/nnews-react',
+    },
+    {
+      title: 'Lofn',
+      description: t('projectsSection.descriptions.lofn'),
+      technologies: ['.NET 8', 'React', 'GraphQL', 'HotChocolate', 'PostgreSQL', 'Stripe'],
+      category: 'E-commerce / Microserviço',
+      year: '2025',
+      status: 'completed',
+      url: 'https://emagine.com.br/lofn',
+      urlGitHub: 'https://github.com/emaginebr/Lofn',
+      urlNuGet: 'https://www.nuget.org/packages/Lofn/',
+      urlNpm: 'https://www.npmjs.com/package/lofn-react',
+    },
+    {
+      title: 'BazzucaMedia',
+      description: t('projectsSection.descriptions.bazzucaMedia'),
+      technologies: ['.NET 8', 'React', 'RabbitMQ', 'Playwright', 'Twitter API', 'Docker'],
+      category: 'Social Media / Microserviço',
+      year: '2025',
+      status: 'deploying',
+      url: 'https://bazzuca.media',
+      urlGitHub: 'https://github.com/emaginebr/BazzucaMedia',
+      urlNuGet: 'https://www.nuget.org/packages/BazzucaMedia/',
+      urlNpm: 'https://www.npmjs.com/package/bazzuca-react',
+    },
+    {
+      title: 'DevNote',
+      description: t('projectsSection.descriptions.devNote'),
+      technologies: ['.NET MAUI', 'Whisper', 'GPT-4o', 'SQLite'],
+      category: 'Mobile / IA',
+      year: '2025',
+      status: 'completed',
+      urlGitHub: 'https://github.com/landim32/DevNote',
+    },
+    // ── Aplicações Web (emaginebr) ──
     {
       title: 'Pandora Vault',
       description: t('projectsSection.descriptions.pandoraVault'),
-      image: pandoraImg,
-      technologies: [ 'React', 'Bootstrap', '.NET Core', 'PostgreSQL', 'AWS', 'Docker', 'GitHub Actions'],
+      technologies: ['React', '.NET Core', 'PostgreSQL', 'AES-256', 'Docker'],
       category: 'Segurança da Informação',
       year: '2025',
-      status: 'completed',
-      url: 'https://pandoravault.com'
+      status: 'outdated',
+      url: 'https://pandoravault.com',
     },
     {
       title: 'Easy SLA',
       description: t('projectsSection.descriptions.easySLA'),
-      image: easyslaImg,
-      technologies: [ 'React', 'Bootstrap', '.NET Core', 'PostgreSQL', 'AWS', 'Docker', 'GitHub Actions'],
-      category: 'Agile / Dev / Web App',
+      technologies: ['React', '.NET Core', 'PostgreSQL', 'Docker', 'AWS'],
+      category: 'Agile / Web App',
       year: '2025',
       status: 'deploying',
-      url: 'https://easysla.com'
+      url: 'https://easysla.com',
     },
     {
       title: 'Viralt',
       description: t('projectsSection.descriptions.viralt'),
-      image: viraltImg,
-      technologies: [ 'React', 'Bootstrap', '.NET Core', 'PostgreSQL', 'AWS', 'Docker', 'GitHub Actions'],
-      category: 'Marketing / Web App',
+      technologies: ['React', '.NET 8', 'PostgreSQL', 'Docker', 'AWS'],
+      category: 'Marketing / SaaS',
       year: '2025',
       status: 'development',
-      url: 'https://viralt.net'
+      url: 'https://viralt.net',
+      urlGitHub: 'https://github.com/emaginebr/Viralt',
     },
     {
       title: 'MonexUp',
       description: t('projectsSection.descriptions.monexUp'),
-      image: monexUpImg,
-      technologies: [ 'React', 'Bootstrap', '.NET Core', 'PostgreSQL', 'AWS', 'Docker', 'GitHub Actions'],
-      category: 'Web Application',
+      technologies: ['React', '.NET 8', 'PostgreSQL', 'Web3', 'Capacitor'],
+      category: 'FinTech / Web App',
       year: '2025',
       status: 'deploying',
-      url: 'https://monexup.com'
+      url: 'https://monexup.com',
+      urlGitHub: 'https://github.com/emaginebr/MonexUp',
     },
+    {
+      title: 'DevBlog',
+      description: t('projectsSection.descriptions.devblog'),
+      technologies: ['React 19', 'TypeScript', 'nauth-react', 'nnews-react'],
+      category: 'Blog / Frontend',
+      year: '2025',
+      status: 'completed',
+      url: 'https://emagine.com.br/rodrigolandim',
+      urlGitHub: 'https://github.com/emaginebr/devblog',
+    },
+    {
+      title: 'Abipesca',
+      description: t('projectsSection.descriptions.abipesca'),
+      technologies: ['React 19', 'nauth-react', 'nnews-react', 'bazzuca-react'],
+      category: 'Monorepo / Web App',
+      year: '2025',
+      status: 'deploying',
+      urlGitHub: 'https://github.com/emaginebr/Abipesca',
+    },
+    // ── Games & Blockchain ──
     {
       title: 'GoblinWars Reborn',
       description: t('projectsSection.descriptions.goblinWarsReborn'),
-      image: goblinWarsRebornImg,
-      technologies: ['Unity', 'Modelagem 3D', 'PixiJS', 'React', 'TypeScript', '.NET Core', 'Solidity', 'Docker', 'AWS', 'ERC-721'],
+      technologies: ['Unity', '3D', 'PixiJS', 'React', '.NET Core', 'Solidity'],
       category: 'Game / NFT / Web3',
       year: '2026',
       status: 'development',
-      url: 'https://goblinwars.net'
+      url: 'https://goblinwars.net',
     },
-    {
-      title: 'Slap Royale',
-      description: t('projectsSection.descriptions.slapRoyale'),
-      image: slapRoyaleImg,
-      technologies: ['React', '.NET Core', 'Solidity', 'PostgreSQL', 'Docker', 'AWS', 'ERC-20', 'ERC-721', 'ERC-1155'],
-      category: 'Game / Blockchain',
-      year: '2025',
-      status: 'completed',
-      url: 'https://slaproyale.com'
-    },
-    {
+{
       title: 'NoChainSwap',
       description: t('projectsSection.descriptions.noChainSwap'),
-      image: noChainSwapImg,
-      technologies: ['.NET Core', 'Bitcoin', 'Ethereum', 'Solidity', 'Stack', 'Tor', 'P2P Network'],
+      technologies: ['.NET Core', 'Bitcoin', 'Ethereum', 'Solidity', 'Tor'],
       category: 'DeFi / Blockchain',
       year: '2024',
       status: 'deploying',
       url: 'https://nochainswap.org',
-      urlGitHub: 'https://github.com/landim32/nochainswap'
+      urlGitHub: 'https://github.com/landim32/nochainswap',
     },
-    {
-      title: 'KryptoDrive',
-      description: t('projectsSection.descriptions.kryptoDrive'),
-      image: kryptoDriveImg,
-      technologies: ['.NET Core', '.NET MAUI', 'C#', 'Criptografia'],
-      category: 'Security Tool',
-      year: '2024',
-      status: 'migration',
-      url: 'https://pandoravault.com'
-    },
-    {
-      title: 'GEHR - Global Electronic Health Record',
-      description: t('projectsSection.descriptions.gehr'),
-      image: gehrImg,
-      technologies: ['React', 'Bootstrap', 'Blockchain', 'IPFS'],
-      category: 'HealthTech / Blockchain',
-      year: '2025',
-      status: 'deploying',
-      url: 'https://emagine.com.br/gehr',
-      urlGitHub: 'https://github.com/landim32/gehr'
-    },
-    {
+{
       title: 'WB3',
       description: t('projectsSection.descriptions.wb3'),
-      image: wb3Img,
-      technologies: ['React', 'Bootstrap', 'Blockchain', 'IPFS'],
-      category: 'Game / Browser',
+      technologies: ['React', 'Blockchain', 'IPFS'],
+      category: 'FinTech / Blockchain',
       year: '2023',
       status: 'discontinued',
-      url: 'https://emagine.com.br/wibov'
+      url: 'https://emagine.com.br/wibov',
+    },
+// ── Tools & Open Source (landim32) ──
+    {
+      title: 'GitNews',
+      description: t('projectsSection.descriptions.gitNews'),
+      technologies: ['.NET 8', 'Octokit', 'OpenAI', 'pgvector', 'PostgreSQL'],
+      category: 'DevTool / IA',
+      year: '2025',
+      status: 'completed',
+      urlGitHub: 'https://github.com/landim32/GitNews',
     },
     {
-      title: 'GoblinWars Classic',
-      description: t('projectsSection.descriptions.goblinWarsClassic'),
-      image: goblinWarsClassicImg,
-      technologies: ['JavaScript', 'HTML5 Canvas', 'CSS'],
-      category: 'Game / Browser',
-      year: '2021',
+      title: 'Germanium',
+      description: t('projectsSection.descriptions.germanium'),
+      technologies: ['.NET 9', 'SkiaSharp', 'CLI'],
+      category: 'DevTool / CLI',
+      year: '2025',
       status: 'completed',
-      url: 'https://goblinwars.net/classic'
+      urlGitHub: 'https://github.com/landim32/germanium',
+    },
+    {
+      title: 'VoxMeet',
+      description: t('projectsSection.descriptions.voxMeet'),
+      technologies: ['.NET 8', 'WPF', 'NAudio', 'Whisper', 'GPT-4o'],
+      category: 'IA / Desktop',
+      year: '2025',
+      status: 'completed',
+      urlGitHub: 'https://github.com/landim32/VoxMeet',
+    },
+    {
+      title: 'LinkedinBot',
+      description: t('projectsSection.descriptions.linkedinBot'),
+      technologies: ['.NET 8', 'Playwright', 'OpenAI', 'PostgreSQL'],
+      category: 'Automação / IA',
+      year: '2025',
+      status: 'completed',
+      urlGitHub: 'https://github.com/landim32/LinkedinBot',
+    },
+{
+      title: 'KryptoDrive',
+      description: t('projectsSection.descriptions.kryptoDrive'),
+      technologies: ['.NET MAUI', 'AES-256', 'Google Drive', 'PBKDF2'],
+      category: 'Security / Mobile',
+      year: '2024',
+      status: 'migration',
+      urlGitHub: 'https://github.com/landim32/KryptoDrive',
     },
     {
       title: 'LadinoBot',
       description: t('projectsSection.descriptions.ladinoBot'),
-      image: ladinoBotImg,
-      technologies: ['MQL5', 'MetaTrader 5', 'Trading Automation'],
-      category: 'FinTech / Automação de Trades',
+      technologies: ['MQL5', 'MetaTrader 5'],
+      category: 'FinTech / Trading',
       year: '2011',
       status: 'completed',
-      url: 'https://github.com/landim32/ladinobot',
-      urlGitHub: 'https://github.com/landim32/ladinobot'
-    }
+      urlGitHub: 'https://github.com/landim32/LadinoBot',
+    },
   ];
 
   const getStatusStyle = (status: string) => {
@@ -167,6 +228,8 @@ const Projects = () => {
         return { bg: 'bg-[#6C63FF]/10', text: 'text-[#6C63FF]', dot: 'bg-[#6C63FF]' };
       case 'migration':
         return { bg: 'bg-[#00C9A7]/10', text: 'text-[#00C9A7]', dot: 'bg-[#00C9A7]' };
+      case 'outdated':
+        return { bg: 'bg-[#FF6B6B]/10', text: 'text-[#FF6B6B]', dot: 'bg-[#FF6B6B]' };
       case 'discontinued':
         return { bg: 'bg-white/5', text: 'text-white/30', dot: 'bg-white/30' };
       default:
@@ -205,30 +268,18 @@ const Projects = () => {
             return (
               <div
                 key={index}
-                className="glass-effect rounded-xl overflow-hidden group hover:border-white/10 transition-all duration-500"
+                className="glass-effect rounded-xl overflow-hidden group hover:border-white/10 transition-all duration-500 relative"
               >
-                {/* Image */}
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[hsl(240,18%,6%)] via-transparent to-transparent opacity-60" />
-
-                  {/* Status badge */}
-                  <div className="absolute top-4 right-4">
-                    <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${statusStyle.bg} ${statusStyle.text} backdrop-blur-sm`}>
-                      <div className={`w-1.5 h-1.5 rounded-full ${statusStyle.dot}`} />
-                      {t(`projectsSection.status.${project.status}`)}
-                    </div>
+                {/* Status badge - top right */}
+                <div className="absolute top-4 right-4 z-10">
+                  <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${statusStyle.bg} ${statusStyle.text}`}>
+                    <div className={`w-1.5 h-1.5 rounded-full ${statusStyle.dot}`} />
+                    {t(`projectsSection.status.${project.status}`)}
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3 mb-3">
                     <span className="text-white/25 text-xs font-medium tracking-wide uppercase">
                       {project.category}
                     </span>
@@ -265,29 +316,46 @@ const Projects = () => {
 
                   {/* Actions */}
                   <div className="flex gap-2">
-                    <Button
-                      size="sm"
-                      className="flex-1 bg-white/[0.04] text-white/60 hover:text-white hover:bg-white/[0.08] border border-white/[0.06] hover:border-white/10 transition-all duration-300 text-xs"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.open(project.url, '_blank');
-                      }}
-                    >
-                      <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
-                      {t('projectsSection.seeMore')}
-                    </Button>
-                    {project.urlGitHub &&
+                    {project.url && (
+                      <Button
+                        size="sm"
+                        className="flex-1 bg-white/[0.04] text-white/60 hover:text-white hover:bg-white/[0.08] border border-white/[0.06] hover:border-white/10 transition-all duration-300 text-xs"
+                        onClick={() => window.open(project.url, '_blank')}
+                      >
+                        <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
+                        {t('projectsSection.seeMore')}
+                      </Button>
+                    )}
+                    {project.urlGitHub && (
                       <Button
                         size="sm"
                         className="bg-white/[0.04] text-white/40 hover:text-white hover:bg-white/[0.08] border border-white/[0.06] hover:border-white/10 transition-all duration-300"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          window.open(project.urlGitHub, '_blank');
-                        }}
+                        onClick={() => window.open(project.urlGitHub, '_blank')}
+                        title="GitHub"
                       >
                         <Github className="h-3.5 w-3.5" />
                       </Button>
-                    }
+                    )}
+                    {project.urlNuGet && (
+                      <Button
+                        size="sm"
+                        className="bg-[#004880]/20 text-[#6C63FF]/70 hover:text-[#6C63FF] hover:bg-[#004880]/30 border border-[#6C63FF]/10 hover:border-[#6C63FF]/30 transition-all duration-300"
+                        onClick={() => window.open(project.urlNuGet, '_blank')}
+                        title="NuGet"
+                      >
+                        <Package className="h-3.5 w-3.5" />
+                      </Button>
+                    )}
+                    {project.urlNpm && (
+                      <Button
+                        size="sm"
+                        className="bg-[#CB3837]/10 text-[#CB3837]/70 hover:text-[#CB3837] hover:bg-[#CB3837]/20 border border-[#CB3837]/10 hover:border-[#CB3837]/30 transition-all duration-300"
+                        onClick={() => window.open(project.urlNpm, '_blank')}
+                        title="NPM"
+                      >
+                        <Package className="h-3.5 w-3.5" />
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>

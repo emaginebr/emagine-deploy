@@ -1,5 +1,5 @@
 
-import { Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react';
+import { MapPin, Linkedin, Github } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import logo from '../assets/images/logo.png';
 
@@ -24,7 +24,8 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: Linkedin, href: 'https://www.linkedin.com/company/emagine-brasil', label: 'LinkedIn' },
-    { icon: Github, href: 'https://github.com/landim32', label: 'GitHub' }
+    { icon: Github, href: 'https://github.com/emaginebr', label: 'GitHub Emagine' },
+    { icon: Github, href: 'https://github.com/landim32', label: 'GitHub Landim' }
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -108,22 +109,6 @@ const Footer = () => {
           <div>
             <h3 className="text-sm font-bold text-white/70 mb-6 tracking-wide uppercase">{t('footer.contact')}</h3>
             <div className="space-y-4">
-              <a
-                href="mailto:contato@emagine.com.br"
-                className="flex items-center gap-3 text-white/30 hover:text-[#00E87B] transition-colors duration-300 group"
-              >
-                <Mail className="h-4 w-4 text-[#00E87B]/50 group-hover:text-[#00E87B] transition-colors" />
-                <span className="text-sm font-light">contato@emagine.com.br</span>
-              </a>
-              <a
-                href="https://wa.me/5561998752588"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-white/30 hover:text-[#00E87B] transition-colors duration-300 group"
-              >
-                <Phone className="h-4 w-4 text-[#00E87B]/50 group-hover:text-[#00E87B] transition-colors" />
-                <span className="text-sm font-light">+55 (61) 9 9875 2588</span>
-              </a>
               <div className="flex items-center gap-3 text-white/30">
                 <MapPin className="h-4 w-4 text-[#00E87B]/50" />
                 <span className="text-sm font-light">Brasília, DF - Brasil</span>

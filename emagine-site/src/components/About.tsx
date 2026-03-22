@@ -36,9 +36,6 @@ const About = () => {
             <p className="text-lg text-white/40 mb-6 leading-relaxed font-light">
               {t('about.description1')}
             </p>
-            <p className="text-lg text-white/40 mb-10 leading-relaxed font-light">
-              {t('about.description2')}
-            </p>
 
             {/* Mission */}
             <div className="relative rounded-xl p-6 glass-effect group hover:border-[#00E87B]/20 transition-all duration-500">

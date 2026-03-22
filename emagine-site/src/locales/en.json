@@ -21,7 +21,6 @@
   "about": {
     "heading": "About Emagine",
     "description1": "Emagine was born with a daring purpose: transform ideas into real startups. We are more than a software company — we are partners in building your SaaS, dApp or Web3 platform. From zero to launch, we walk together.",
-    "description2": "Each project is unique and carries a dream. That's why we develop tailor-made solutions with the most modern technologies and a philosophy of true partnership — where our success depends directly on yours.",
     "missionTitle": "Our Mission",
     "missionDescription": "Build, together with our clients, innovative digital products that arise from ideas and grow with technology, partnership and purpose.",
     "stats": {
@@ -74,22 +73,31 @@
       "deploying": "Deploying",
       "development": "In Development",
       "migration": "Migrating",
+      "outdated": "Outdated",
       "discontinued": "Discontinued"
     },
     "descriptions": {
-      "nauth": "Authentication and authorization microservice focused on security, scalability and ease of integration for web and mobile applications",
-      "pandoraVault": "A vault for passwords and files with zero-knowledge through the site using AES-256 encryption",
-      "easySLA": "Kanban board system with SLA usage and client interaction",
-      "viralt": "Campaign platform with gamification, raffles and social network integration.",
-      "monexUp": "Marketplace based on network marketing and multi-level, a social network to recruit vendors.",
+      "nauth": "Multi-tenant authentication microservice with JWT, user and role management. Includes React package with login, registration, profile and role components.",
+      "pandoraVault": "A vault for passwords and files with zero-knowledge through the site using AES-256 encryption.",
+      "easySLA": "Kanban board system with SLA usage and client interaction.",
+      "viralt": "SaaS platform for viral campaigns with gamification, raffles and social network integration.",
+      "monexUp": "Multi-level marketing financial manager with cryptocurrency support.",
+      "zTools": "Shared utility microservice. Provides ChatGPT, DALL-E, email, S3 upload, document validation and slug generation.",
+      "nnews": "CMS microservice for news and blogs with AI-powered content generation (ChatGPT + DALL-E 3). Includes React package with rich-text editor, articles, categories and tags.",
+      "lofn": "Products, stores and sales orders microservice with GraphQL. Includes React package with storefront, shopping cart and store administration.",
+      "bazzucaMedia": "Social media publishing tool (X/Twitter, LinkedIn) with async worker via RabbitMQ. Includes React package with post and social network management.",
+      "devblog": "Personal developer blog. React frontend consuming NAuth and NNews APIs.",
+      "abipesca": "Complete Abipesca application. Monorepo with NAuth, NNews and BazzucaMedia integrated.",
       "goblinWarsReborn": "New version of GoblinWars with retro visuals and modern engine. Combines tactical strategy and pixelated nostalgia.",
-      "slapRoyale": "Web game of slap battles with NFTs, attributes, animations and combat system built with React.",
       "noChainSwap": "Decentralized exchange inspired by Bisq, focused on secure transactions with Bitcoin using .NET.",
-      "kryptoDrive": "Application to record encrypted files on external drives, accessible only with a password. Being unified with the Pandora Vault",
-      "gehr": "Distributed electronic health record on blockchain aimed at accessible and secure medical management.",
+      "kryptoDrive": "Mobile app for AES-256 file encryption on external drives with per-file passphrase.",
       "wb3": "Asset tokenization system on the B3 stock exchange.",
-      "goblinWarsClassic": "Original version of the turn-based tactical strategy game in a medieval fantasy setting with goblins, warriors and magic.",
-      "ladinoBot": "Intelligent bot for stock trading operations developed in MQL5, highly customizable with configurable strategies and automation focus."
+      "ladinoBot": "Open source robot for MetaTrader 5, with configurable strategies and trading automation focus.",
+      "gitNews": "Automatic blog article generator from GitHub repositories using AI (GPT-4).",
+      "germanium": "CLI tool to generate beautiful PNG images from source code, inspired by Carbon/Silicon.",
+      "voxMeet": "Real-time AI interview assistant. Transcription via Whisper and responses via GPT-4o.",
+      "linkedinBot": "LinkedIn job application automation with AI-powered compatibility analysis.",
+      "devNote": "Android voice-powered smart notes app for developers with Whisper transcription."
     }
   },
   "footer": {

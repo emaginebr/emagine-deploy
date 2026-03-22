@@ -1,0 +1,159 @@
+graph TB
+    subgraph Internet["Internet (HTTPS)"]
+        U((Usuários))
+    end
+
+    subgraph Nginx["emagine-app (Nginx Alpine)"]
+        direction TB
+        SSL[SSL/TLS Termination]
+        RP[Reverse Proxy]
+    end
+
+    subgraph StaticSites["Sites Estáticos (builds/)"]
+        EMAGINE["emagine.com.br<br/>emagine-site (React)"]
+        NAUTH_UI["emagine.com.br/nauth<br/>nauth-react example-app"]
+        LOFN_UI["emagine.com.br/lofn<br/>lofn-react example-app"]
+        DEVBLOG["emagine.com.br/rodrigolandim<br/>devblog (React)"]
+        EASYSLA["easysla.com<br/>EasySLA (site + /app)"]
+        GOBLIN["goblinwars.net<br/>Goblin Wars Reborn"]
+        MONEXUP_UI["monexup.com<br/>MonexUp (React)"]
+        NOCHAIN["nochainswap.org<br/>NoChainSwap"]
+        PANDORA["pandoravault.com<br/>PandoraVault"]
+        BAZZUCA_UI["bazzuca.media<br/>Bazzuca Media (React)"]
+    end
+
+    subgraph APIs["Microserviços (.NET 8)"]
+        ZTOOLS["ztools-api<br/>:8080<br/>ChatGPT, Email, S3, Utils"]
+        NAUTH_API["nauth-api<br/>:80<br/>Auth, Users, Roles"]
+        NNEWS_API["nnews-api<br/>:80<br/>Articles, Categories, Tags"]
+        LOFN_API["lofn-api<br/>:80<br/>Products, Stores, Orders<br/>+ GraphQL"]
+        BAZZUCA_API["bazzuca-api<br/>:80<br/>Posts, Social Networks"]
+        BAZZUCA_WORKER["bazzuca-worker<br/>LinkedIn Publisher"]
+    end
+
+    subgraph DataStores["Armazenamento"]
+        PG[(PostgreSQL<br/>Multi-Tenant)]
+        RMQ[/RabbitMQ<br/>Message Broker/]
+        S3[(AWS S3 /<br/>DigitalOcean Spaces)]
+    end
+
+    subgraph ExternalAPIs["APIs Externas"]
+        OPENAI["OpenAI<br/>ChatGPT / DALL-E / Whisper"]
+        MAILER["MailerSend<br/>Email"]
+        STRIPE["Stripe<br/>Pagamentos"]
+        TWITTER["X / Twitter<br/>OAuth + API"]
+        LINKEDIN["LinkedIn<br/>Playwright"]
+    end
+
+    subgraph Monitoring["Monitoramento"]
+        GRAFANA["Grafana<br/>:3000"]
+        PROMETHEUS["Prometheus<br/>:9090"]
+    end
+
+    subgraph NPMPackages["Pacotes NPM (React)"]
+        NAUTH_PKG["nauth-react"]
+        NNEWS_PKG["nnews-react"]
+        LOFN_PKG["lofn-react"]
+        BAZZUCA_PKG["bazzuca-react"]
+    end
+
+    subgraph NuGetPackages["Pacotes NuGet (.NET)"]
+        NAUTH_NUGET["NAuth (NuGet)"]
+        NNEWS_NUGET["NNews (NuGet)"]
+        ZTOOLS_NUGET["zTools (NuGet)"]
+    end
+
+    %% User connections
+    U -->|HTTPS 443| SSL
+    SSL --> RP
+
+    %% Nginx to static sites
+    RP --> EMAGINE
+    RP --> NAUTH_UI
+    RP --> LOFN_UI
+    RP --> DEVBLOG
+    RP --> EASYSLA
+    RP --> GOBLIN
+    RP --> MONEXUP_UI
+    RP --> NOCHAIN
+    RP --> PANDORA
+    RP --> BAZZUCA_UI
+
+    %% Nginx proxy to APIs
+    RP -->|/auth-api/| NAUTH_API
+    RP -->|/lofn-api/| LOFN_API
+    RP -->|/news-api/| NNEWS_API
+    RP -->|/bazzuca-api/| BAZZUCA_API
+    RP -->|/grafana/| GRAFANA
+    RP -->|/rabbitmq/| RMQ
+
+    %% API dependencies on other APIs
+    NAUTH_API -->|HTTP| ZTOOLS
+    NNEWS_API -->|HTTP| ZTOOLS
+    NNEWS_API -.->|NuGet: NAuth| NAUTH_API
+    LOFN_API -.->|NuGet: NAuth| NAUTH_API
+    BAZZUCA_API -->|HTTP| ZTOOLS
+    BAZZUCA_API -.->|NuGet: NAuth| NAUTH_API
+    BAZZUCA_API -->|Publish| RMQ
+    BAZZUCA_WORKER -->|Consume| RMQ
+
+    %% Data stores
+    NAUTH_API --> PG
+    NNEWS_API --> PG
+    LOFN_API --> PG
+    BAZZUCA_API --> PG
+    BAZZUCA_WORKER --> PG
+
+    %% External APIs
+    ZTOOLS --> OPENAI
+    ZTOOLS --> MAILER
+    ZTOOLS --> S3
+    NAUTH_API --> S3
+    LOFN_API --> S3
+    BAZZUCA_API --> S3
+    BAZZUCA_API --> TWITTER
+    BAZZUCA_WORKER --> LINKEDIN
+    LOFN_API --> STRIPE
+    NAUTH_API --> STRIPE
+
+    %% Monitoring
+    PROMETHEUS --> BAZZUCA_API
+    PROMETHEUS --> NNEWS_API
+    GRAFANA --> PROMETHEUS
+
+    %% NPM package dependencies
+    NNEWS_PKG -.->|peer dep| NAUTH_PKG
+    LOFN_PKG -.->|peer dep| NAUTH_PKG
+
+    %% Frontend usage of NPM packages
+    NAUTH_UI -.->|uses| NAUTH_PKG
+    LOFN_UI -.->|uses| LOFN_PKG
+    DEVBLOG -.->|uses| NAUTH_PKG
+    DEVBLOG -.->|uses| NNEWS_PKG
+    BAZZUCA_UI -.->|uses| BAZZUCA_PKG
+    MONEXUP_UI -.->|uses| NAUTH_PKG
+
+    %% NuGet dependencies
+    NAUTH_API -.->|uses| ZTOOLS_NUGET
+    NNEWS_API -.->|uses| NAUTH_NUGET
+    NNEWS_API -.->|uses| ZTOOLS_NUGET
+    LOFN_API -.->|uses| NAUTH_NUGET
+    BAZZUCA_API -.->|uses| NAUTH_NUGET
+    BAZZUCA_API -.->|uses| ZTOOLS_NUGET
+
+    %% Styling
+    classDef nginx fill:#2563eb,stroke:#1d4ed8,color:#fff
+    classDef api fill:#7c3aed,stroke:#6d28d9,color:#fff
+    classDef static fill:#059669,stroke:#047857,color:#fff
+    classDef data fill:#d97706,stroke:#b45309,color:#fff
+    classDef external fill:#dc2626,stroke:#b91c1c,color:#fff
+    classDef monitoring fill:#0891b2,stroke:#0e7490,color:#fff
+    classDef pkg fill:#6b7280,stroke:#4b5563,color:#fff
+
+    class SSL,RP nginx
+    class ZTOOLS,NAUTH_API,NNEWS_API,LOFN_API,BAZZUCA_API,BAZZUCA_WORKER api
+    class EMAGINE,NAUTH_UI,LOFN_UI,DEVBLOG,EASYSLA,GOBLIN,MONEXUP_UI,NOCHAIN,PANDORA,BAZZUCA_UI static
+    class PG,RMQ,S3 data
+    class OPENAI,MAILER,STRIPE,TWITTER,LINKEDIN external
+    class GRAFANA,PROMETHEUS monitoring
+    class NAUTH_PKG,NNEWS_PKG,LOFN_PKG,BAZZUCA_PKG,NAUTH_NUGET,NNEWS_NUGET,ZTOOLS_NUGET pkg

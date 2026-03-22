@@ -75,12 +75,6 @@ const Header = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            <Button
-              onClick={() => scrollToSection('projects')}
-              className="bg-[#00E87B] text-[#07070E] hover:bg-[#00D06E] font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,232,123,0.3)]"
-            >
-              {t('header.cta')}
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -108,12 +102,6 @@ const Header = () => {
                 </button>
               ))}
               <div className="border-t border-white/[0.06] mt-3 pt-4 flex flex-col gap-3">
-                <Button
-                  onClick={() => scrollToSection('projects')}
-                  className="bg-[#00E87B] text-[#07070E] hover:bg-[#00D06E] font-semibold w-full"
-                >
-                  {t('header.cta')}
-                </Button>
                 <div className="flex gap-2 justify-center">
                   <button
                     onClick={() => i18n.changeLanguage("en")}

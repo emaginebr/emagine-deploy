@@ -99,14 +99,14 @@ const Hero = () => {
                       <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
                       <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
                       <div className="w-3 h-3 rounded-full bg-[#27CA40]" />
-                      <span className="ml-3 text-white/20 text-xs font-mono">emagine.tsx</span>
+                      <span className="ml-3 text-white/20 text-xs font-mono">EmagineService.cs</span>
                     </div>
 
                     {/* Code lines */}
                     <div className="space-y-3 font-mono text-sm">
                       <div className="flex gap-2">
                         <span className="text-white/15 select-none">01</span>
-                        <span className="text-[#6C63FF]">const</span>
+                        <span className="text-[#6C63FF]">var</span>
                         <span className="text-[#00E87B]"> project</span>
                         <span className="text-white/40"> = </span>
                         <span className="text-[#FFBD2E]">await</span>
@@ -115,32 +115,38 @@ const Hero = () => {
                       <div className="flex gap-2">
                         <span className="text-white/15 select-none">02</span>
                         <span className="text-white/40">  .</span>
-                        <span className="text-[#00C9A7]">create</span>
-                        <span className="text-white/40">({"{"}</span>
+                        <span className="text-[#00C9A7]">CreateAsync</span>
+                        <span className="text-white/40">(</span>
+                        <span className="text-[#6C63FF]">new</span>
+                        <span className="text-[#00C9A7]"> Project</span>
                       </div>
                       <div className="flex gap-2">
                         <span className="text-white/15 select-none">03</span>
-                        <span className="text-[#00E87B]">    idea</span>
-                        <span className="text-white/40">: </span>
+                        <span className="text-white/40">{"{"}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="text-white/15 select-none">04</span>
+                        <span className="text-[#00E87B]">    Idea</span>
+                        <span className="text-white/40"> = </span>
                         <span className="text-[#FFBD2E]">"yours"</span>
                         <span className="text-white/40">,</span>
                       </div>
                       <div className="flex gap-2">
-                        <span className="text-white/15 select-none">04</span>
-                        <span className="text-[#00E87B]">    tech</span>
-                        <span className="text-white/40">: </span>
+                        <span className="text-white/15 select-none">05</span>
+                        <span className="text-[#00E87B]">    Tech</span>
+                        <span className="text-white/40"> = </span>
                         <span className="text-[#FFBD2E]">"cutting-edge"</span>
                         <span className="text-white/40">,</span>
                       </div>
                       <div className="flex gap-2">
-                        <span className="text-white/15 select-none">05</span>
-                        <span className="text-[#00E87B]">    result</span>
-                        <span className="text-white/40">: </span>
+                        <span className="text-white/15 select-none">06</span>
+                        <span className="text-[#00E87B]">    Result</span>
+                        <span className="text-white/40"> = </span>
                         <span className="text-[#FFBD2E]">"reality"</span>
                       </div>
                       <div className="flex gap-2">
-                        <span className="text-white/15 select-none">06</span>
-                        <span className="text-white/40">  {"}"});</span>
+                        <span className="text-white/15 select-none">07</span>
+                        <span className="text-white/40">{"}"});</span>
                       </div>
                     </div>
 

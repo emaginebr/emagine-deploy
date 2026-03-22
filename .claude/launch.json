@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "emagine-site",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["node_modules/vite/bin/vite.js", "--port", "8080"],
+      "cwd": "emagine-site",
+      "port": 8080
+    }
+  ]
+}

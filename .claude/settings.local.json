@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npm run:*)",
-      "Bash(git remote:*)"
+      "Bash(git remote:*)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }
