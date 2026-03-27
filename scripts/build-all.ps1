@@ -14,6 +14,7 @@ Write-Host "=========================================================" -Foregrou
 & "$ScriptDir/build-nauth.ps1"
 & "$ScriptDir/build-lofn.ps1"
 & "$ScriptDir/build-bazzucamedia.ps1"
+& "$ScriptDir/build-proxypay.ps1"
 & "$ScriptDir/build-devblog.ps1"
 
 Write-Host "=========================================================" -ForegroundColor Green
