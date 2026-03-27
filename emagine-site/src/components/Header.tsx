@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
+import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 import usFlag from '@/assets/flags/us.svg';
 import brFlag from '@/assets/flags/br.svg';
@@ -12,20 +13,42 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
     setIsMenuOpen(false);
+  };
+
+  const handleNavClick = (item: { section: string; route?: string }) => {
+    if (item.route) {
+      navigate(item.route);
+      setIsMenuOpen(false);
+    } else {
+      scrollToSection(item.section);
+    }
   };
 
   const navItems = [
     { label: t('header.home'), section: 'home' },
     { label: t('header.about'), section: 'about' },
     { label: t('header.services'), section: 'services' },
-    { label: t('header.projects'), section: 'projects' },
+    { label: t('header.projects'), section: 'projects', route: '/projects' },
+    { label: t('header.diagrams'), section: 'diagram', route: '/diagram' },
   ];
 
   return (
@@ -46,7 +69,7 @@ const Header = () => {
             {navItems.map((item) => (
               <button
                 key={item.section}
-                onClick={() => scrollToSection(item.section)}
+                onClick={() => handleNavClick(item)}
                 className="relative px-4 py-2 text-sm font-medium text-white/60 hover:text-[#00E87B] transition-colors duration-300 group"
               >
                 {item.label}
@@ -95,7 +118,7 @@ const Header = () => {
               {navItems.map((item) => (
                 <button
                   key={item.section}
-                  onClick={() => scrollToSection(item.section)}
+                  onClick={() => handleNavClick(item)}
                   className="text-white/60 hover:text-[#00E87B] transition-colors text-left py-3 px-3 rounded-lg hover:bg-white/[0.03] font-medium"
                 >
                   {item.label}

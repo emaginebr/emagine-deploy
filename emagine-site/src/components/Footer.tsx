@@ -1,17 +1,20 @@
 
 import { MapPin, Linkedin, Github } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 
 const Footer = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
     { name: t('header.home'), href: '#home' },
     { name: t('header.about'), href: '#about' },
     { name: t('header.services'), href: '#services' },
-    { name: t('header.projects'), href: '#projects' }
+    { name: t('header.projects'), route: '/projects' }
   ];
 
   const services = [
@@ -28,10 +31,25 @@ const Footer = () => {
     { icon: Github, href: 'https://github.com/landim32', label: 'GitHub Landim' }
   ];
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId.replace('#', ''));
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleLinkClick = (link: { href?: string; route?: string }) => {
+    if (link.route) {
+      navigate(link.route);
+    } else if (link.href) {
+      const sectionId = link.href.replace('#', '');
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      } else {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     }
   };
 
@@ -81,7 +99,7 @@ const Footer = () => {
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <button
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={() => handleLinkClick(link)}
                     className="text-white/30 hover:text-[#00E87B] transition-colors duration-300 text-sm font-light"
                   >
                     {link.name}

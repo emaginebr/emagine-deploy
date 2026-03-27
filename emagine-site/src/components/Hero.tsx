@@ -2,9 +2,11 @@
 import { ArrowRight, Code, Lightbulb, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -50,7 +52,7 @@ const Hero = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 mb-16">
               <Button
-                onClick={() => scrollToSection('projects')}
+                onClick={() => navigate('/projects')}
                 size="lg"
                 className="bg-[#00E87B] text-[#07070E] hover:bg-[#00D06E] font-bold text-base px-8 py-6 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,232,123,0.3)] group"
               >
