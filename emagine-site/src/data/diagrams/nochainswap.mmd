@@ -1,0 +1,48 @@
+graph TD
+    subgraph Frontend
+        FrontendApp["Frontend"]
+    end
+    subgraph API["API Layer"]
+        APIServer["NoChainSwap API (.NET Core)"]
+        SwapEngine["Swap Engine"]
+    end
+    subgraph Blockchain["Blockchain Services"]
+        BTCSvc["₿ Bitcoin Service"]
+        ETHSvc["⟠ Ethereum Service"]
+        Solidity["Solidity Contracts"]
+    end
+    subgraph Privacy
+        Tor["Tor Network"]
+    end
+
+    FrontendApp -->|"REST"| APIServer
+    APIServer --> SwapEngine
+    SwapEngine --> BTCSvc
+    SwapEngine --> ETHSvc
+    ETHSvc -->|"Contracts"| Solidity
+    BTCSvc -->|"Transactions"| Blockchain
+    ETHSvc -->|"Transactions"| Blockchain
+    APIServer -->|"Privacy"| Tor
+
+    click FrontendApp mermaidCallback "Frontend"
+    click APIServer mermaidCallback "API"
+    click SwapEngine mermaidCallback "SwapEngine"
+    click BTCSvc mermaidCallback "BTCSvc"
+    click ETHSvc mermaidCallback "ETHSvc"
+    click Solidity mermaidCallback "Solidity"
+    click Tor mermaidCallback "Tor"
+
+    style FrontendApp fill:#61DAFB,stroke:#21a1c9,color:#000
+    style APIServer fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style SwapEngine fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style BTCSvc fill:#f7931a,stroke:#c77415,color:#fff
+    style ETHSvc fill:#627EEA,stroke:#4a64c0,color:#fff
+    style Solidity fill:#363636,stroke:#1a1a1a,color:#fff
+    style Tor fill:#7D4698,stroke:#5f3573,color:#fff
+
+    style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style API fill:#ede7f6,stroke:#512BD4,color:#000
+    style Blockchain fill:#fff8e1,stroke:#f7b731,color:#000
+    style Privacy fill:#e8d5f5,stroke:#7D4698,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

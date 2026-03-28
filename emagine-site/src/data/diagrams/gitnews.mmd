@@ -1,0 +1,40 @@
+graph TD
+    subgraph App
+        CLI["GitNews CLI (.NET 8)"]
+        ArticleGen["Article Generator"]
+    end
+    subgraph External["External Services"]
+        Octokit["Octokit (GitHub API)"]
+        GPT["OpenAI GPT-4"]
+    end
+    subgraph Data
+        Embeddings["pgvector Embeddings"]
+    end
+    DB[(" PostgreSQL + pgvector")]
+
+    CLI -->|"Fetch Repos"| Octokit
+    Octokit -->|"Repo Data"| ArticleGen
+    ArticleGen -->|"Generate"| GPT
+    ArticleGen -->|"Embed"| Embeddings
+    Embeddings -->|"Store"| DB
+    ArticleGen -->|"Store"| DB
+
+    click CLI mermaidCallback "CLI"
+    click ArticleGen mermaidCallback "ArticleGen"
+    click Octokit mermaidCallback "Octokit"
+    click GPT mermaidCallback "GPT"
+    click Embeddings mermaidCallback "Embeddings"
+    click DB mermaidCallback "DB"
+
+    style CLI fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style ArticleGen fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style Octokit fill:#24292e,stroke:#1a1e22,color:#fff
+    style GPT fill:#10a37f,stroke:#0d8a6a,color:#fff
+    style Embeddings fill:#f7b731,stroke:#d4991a,color:#000
+    style DB fill:#336791,stroke:#264d6e,color:#fff
+
+    style App fill:#ede7f6,stroke:#512BD4,color:#000
+    style External fill:#d4edda,stroke:#28a745,color:#000
+    style Data fill:#fff8e1,stroke:#f7b731,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

@@ -1,0 +1,38 @@
+graph TD
+    subgraph Platform
+        MT5["MetaTrader 5"]
+    end
+    subgraph Bot["LadinoBot (MQL5)"]
+        StrategyEngine["Strategy Engine"]
+        SignalAnalyzer["Signal Analyzer"]
+        OrderManager["Order Manager"]
+    end
+    subgraph Data
+        Market["Market Data"]
+    end
+
+    MT5 --> StrategyEngine
+    MT5 --> SignalAnalyzer
+    MT5 --> OrderManager
+    Market -->|"Ticks/Candles"| SignalAnalyzer
+    SignalAnalyzer -->|"Signals"| StrategyEngine
+    StrategyEngine -->|"Execute"| OrderManager
+    OrderManager -->|"Orders"| MT5
+
+    click MT5 mermaidCallback "MT5"
+    click StrategyEngine mermaidCallback "StrategyEngine"
+    click SignalAnalyzer mermaidCallback "SignalAnalyzer"
+    click OrderManager mermaidCallback "OrderManager"
+    click Market mermaidCallback "Market"
+
+    style MT5 fill:#2196F3,stroke:#1976D2,color:#fff
+    style StrategyEngine fill:#f7b731,stroke:#d4991a,color:#000
+    style SignalAnalyzer fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style OrderManager fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style Market fill:#28a745,stroke:#1e7e34,color:#fff
+
+    style Platform fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style Bot fill:#ede7f6,stroke:#512BD4,color:#000
+    style Data fill:#d4edda,stroke:#28a745,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

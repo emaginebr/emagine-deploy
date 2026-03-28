@@ -1,0 +1,87 @@
+graph TD
+    subgraph Frontend
+        LofnApp["Lofn App (React)"]
+        LofnReact["lofn-react (NPM Package)"]
+    end
+    subgraph API["API"]
+        GraphQL["GraphQL API (HotChocolate)"]
+        ProductCtrl["Product Controller"]
+        CategoryCtrl["Category Controller"]
+        StoreCtrl["Store Controller"]
+        CartCtrl["ShopCart Controller"]
+        StoreUserCtrl["StoreUser Controller"]
+        ImageCtrl["Image Controller"]
+        ProductSvc["Product Service"]
+        CategorySvc["Category Service"]
+        StoreSvc["Store Service"]
+        CartSvc["ShopCart Service"]
+        StoreUserSvc["StoreUser Service"]
+        ProductImageSvc["ProductImage Service"]
+    end
+    subgraph External["External Services"]
+        NAuth["NAuth"]
+        zTools["zTools"]
+        Stripe["Stripe"]
+    end
+    DB[("PostgreSQL")]
+
+    LofnApp --> LofnReact
+    LofnReact -->|"GraphQL"| GraphQL
+    LofnReact -->|"REST"| ProductCtrl
+    LofnReact -->|"REST"| CategoryCtrl
+    LofnReact -->|"REST"| StoreCtrl
+    LofnReact -->|"REST"| CartCtrl
+    LofnReact -->|"REST"| StoreUserCtrl
+    LofnReact -->|"Upload"| ImageCtrl
+
+    GraphQL --> ProductSvc
+    GraphQL --> CategorySvc
+    GraphQL --> StoreSvc
+
+    ProductCtrl --> ProductSvc
+    CategoryCtrl --> CategorySvc
+    StoreCtrl --> StoreSvc
+    CartCtrl --> CartSvc
+    StoreUserCtrl --> StoreUserSvc
+    ImageCtrl --> ProductImageSvc
+
+    ProductSvc -->|"CRUD"| DB
+    CategorySvc -->|"CRUD"| DB
+    StoreSvc -->|"CRUD"| DB
+    CartSvc -->|"CRUD"| DB
+    StoreUserSvc -->|"CRUD"| DB
+    ProductImageSvc -->|"CRUD"| DB
+
+    GraphQL -->|"Auth"| NAuth
+    ImageCtrl -->|"S3"| zTools
+    ProductSvc -->|"Slug & IA"| zTools
+    ProductSvc -->|"Payment"| Stripe
+
+    click NAuth mermaidCallback "NAuth"
+    click zTools mermaidCallback "zTools"
+
+    style LofnApp fill:#2980b9,stroke:#1a5276,color:#fff
+    style LofnReact fill:#c0392b,stroke:#96281B,color:#fff
+    style GraphQL fill:#E10098,stroke:#b3007a,color:#fff
+    style ProductCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style CategoryCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style StoreCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style CartCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style StoreUserCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style ImageCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style ProductSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style CategorySvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style StoreSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style CartSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style StoreUserSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style ProductImageSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style NAuth fill:#28a745,stroke:#1e7e34,color:#fff
+    style zTools fill:#28a745,stroke:#1e7e34,color:#fff
+    style Stripe fill:#dc3545,stroke:#c0392b,color:#fff
+    style DB fill:#336791,stroke:#264d6e,color:#fff
+
+    style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style API fill:#ede7f6,stroke:#512BD4,color:#000
+    style External fill:#f8d7da,stroke:#dc3545,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

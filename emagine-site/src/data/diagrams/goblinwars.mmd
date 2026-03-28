@@ -1,0 +1,46 @@
+graph TD
+    subgraph Engine["Game Engine"]
+        Unity["Unity 3D Engine"]
+        PixiJS["PixiJS Renderer"]
+    end
+    subgraph Frontend
+        FrontendApp["Frontend React"]
+    end
+    subgraph API["API Layer"]
+        APIServer["Game API (.NET Core)"]
+        GameLogic["Game Logic"]
+    end
+    subgraph Blockchain["Blockchain Layer"]
+        NFTSvc["NFT Service"]
+        Solidity["Solidity Contracts"]
+    end
+
+    Unity -->|"3D Render"| PixiJS
+    FrontendApp -->|"REST"| APIServer
+    APIServer --> GameLogic
+    APIServer --> NFTSvc
+    NFTSvc -->|"Smart Contracts"| Solidity
+    GameLogic -->|"State"| APIServer
+
+    click Unity mermaidCallback "Unity"
+    click PixiJS mermaidCallback "PixiJS"
+    click FrontendApp mermaidCallback "Frontend"
+    click APIServer mermaidCallback "API"
+    click GameLogic mermaidCallback "GameLogic"
+    click NFTSvc mermaidCallback "NFTSvc"
+    click Solidity mermaidCallback "Solidity"
+
+    style Unity fill:#000000,stroke:#333,color:#fff
+    style PixiJS fill:#e91e63,stroke:#c2185b,color:#fff
+    style FrontendApp fill:#61DAFB,stroke:#21a1c9,color:#000
+    style APIServer fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style GameLogic fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style NFTSvc fill:#f7931a,stroke:#c77415,color:#fff
+    style Solidity fill:#363636,stroke:#1a1a1a,color:#fff
+
+    style Engine fill:#f8d7da,stroke:#dc3545,color:#000
+    style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style API fill:#ede7f6,stroke:#512BD4,color:#000
+    style Blockchain fill:#fff8e1,stroke:#f7b731,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

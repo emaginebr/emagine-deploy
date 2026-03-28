@@ -1,0 +1,1876 @@
+[
+  {
+    "title": "Visão Geral",
+    "slug": "main",
+    "diagramNodes": [
+      {
+        "id": "NAuth",
+        "navigateTo": "nauth"
+      },
+      {
+        "id": "NNews",
+        "navigateTo": "nnews"
+      },
+      {
+        "id": "zTools",
+        "navigateTo": "ztools"
+      },
+      {
+        "id": "BazzucaMedia",
+        "navigateTo": "bazzucamedia"
+      },
+      {
+        "id": "Lofn",
+        "navigateTo": "lofn"
+      },
+      {
+        "id": "ProxyPay",
+        "navigateTo": "proxypay"
+      },
+      {
+        "id": "DevNote",
+        "navigateTo": "devnote"
+      },
+      {
+        "id": "PandoraVault",
+        "navigateTo": "pandoravault"
+      },
+      {
+        "id": "EasySLA",
+        "navigateTo": "easysla"
+      },
+      {
+        "id": "Viralt",
+        "navigateTo": "viralt"
+      },
+      {
+        "id": "MonexUp",
+        "navigateTo": "monexup"
+      },
+      {
+        "id": "DevBlog",
+        "navigateTo": "devblog"
+      },
+      {
+        "id": "Abipesca",
+        "navigateTo": "abipesca"
+      },
+      {
+        "id": "GoblinWars",
+        "navigateTo": "goblinwars"
+      },
+      {
+        "id": "NoChainSwap",
+        "navigateTo": "nochainswap"
+      },
+      {
+        "id": "WB3",
+        "navigateTo": "wb3"
+      },
+      {
+        "id": "GitNews",
+        "navigateTo": "gitnews"
+      },
+      {
+        "id": "Germanium",
+        "navigateTo": "germanium"
+      },
+      {
+        "id": "VoxMeet",
+        "navigateTo": "voxmeet"
+      },
+      {
+        "id": "LinkedinBot",
+        "navigateTo": "linkedinbot"
+      },
+      {
+        "id": "KryptoDrive",
+        "navigateTo": "kryptodrive"
+      },
+      {
+        "id": "LadinoBot",
+        "navigateTo": "ladinobot"
+      }
+    ]
+  },
+  {
+    "title": "NAuth",
+    "description": "Multi-tenant authentication microservice with JWT, user and role management. Includes React package with login, registration, profile and role components.",
+    "technologies": [
+      ".NET 8",
+      "React",
+      "PostgreSQL",
+      "JWT",
+      "Stripe",
+      "Radix UI"
+    ],
+    "category": "Auth / Microserviço",
+    "lastUpdate": "2026-03-18",
+    "status": "completed",
+    "url": "https://emagine.com.br/nauth",
+    "urlGitHub": "https://github.com/emaginebr/NAuth",
+    "urlGitHubReact": "https://github.com/emaginebr/nauth-react",
+    "urlNuGet": "https://www.nuget.org/packages/NAuth/",
+    "urlNpm": "https://www.npmjs.com/package/nauth-react",
+    "slug": "nauth",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "Frontend",
+        "label": "Frontend React",
+        "description": "Interface de login, registro, gerenciamento de perfil e planos de assinatura.",
+        "technologies": [
+          "React",
+          "TypeScript",
+          "Tailwind CSS"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "API",
+        "label": "NAuth API",
+        "description": "API REST em .NET 8 que expõe endpoints de autenticação, usuários e planos.",
+        "technologies": [
+          ".NET 8",
+          "ASP.NET Core",
+          "Swagger"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "AuthController",
+        "label": "Auth Controller",
+        "description": "Gerencia login, registro, refresh token e recuperação de senha.",
+        "technologies": [
+          ".NET 8",
+          "JWT",
+          "BCrypt"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "UserController",
+        "label": "User Controller",
+        "description": "CRUD de usuários, atualização de perfil e gerenciamento de permissões.",
+        "technologies": [
+          ".NET 8",
+          "Entity Framework"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "PlanController",
+        "label": "Plan Controller",
+        "description": "Gerenciamento de planos de assinatura e integração com Stripe para cobranças.",
+        "technologies": [
+          ".NET 8",
+          "Stripe API"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "JWT",
+        "label": "JWT Provider",
+        "description": "Geração e validação de tokens JWT para autenticação stateless.",
+        "technologies": [
+          "JWT",
+          "RSA",
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Stripe",
+        "label": "Stripe Integration",
+        "description": "Integração com Stripe para gerenciar assinaturas, pagamentos e webhooks.",
+        "technologies": [
+          "Stripe API",
+          "Webhooks"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL",
+        "description": "Banco de dados com tabelas de usuários, tokens, planos e permissões.",
+        "technologies": [
+          "PostgreSQL",
+          "Entity Framework"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "zTools",
+        "label": "zTools",
+        "description": "Pacote utilitário compartilhado usado para envio de emails e helpers.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active",
+        "navigateTo": "ztools"
+      },
+      {
+        "id": "MailerSend",
+        "label": "MailerSend",
+        "description": "Envio de emails transacionais: confirmação de conta, recuperação de senha.",
+        "technologies": [
+          "MailerSend API"
+        ],
+        "status": "active"
+      }
+    ]
+  },
+  {
+    "title": "zTools",
+    "description": "Shared utility microservice. Provides ChatGPT, DALL-E, email, S3 upload, document validation and slug generation.",
+    "technologies": [
+      ".NET 8",
+      "OpenAI",
+      "AWS S3",
+      "MailerSend",
+      "Docker"
+    ],
+    "category": "Utilities / Microserviço",
+    "lastUpdate": "2026-03-18",
+    "status": "completed",
+    "urlGitHub": "https://github.com/emaginebr/zTools",
+    "urlNuGet": "https://www.nuget.org/packages/zTools/",
+    "slug": "ztools",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "Package",
+        "label": "zTools NuGet",
+        "description": "Pacote NuGet compartilhado entre todos os microserviços da Emagine.",
+        "technologies": [
+          ".NET 8",
+          "NuGet"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "OpenAI",
+        "label": "OpenAI Integration",
+        "description": "Wrapper para chamadas à API da OpenAI com retry, rate limiting e streaming.",
+        "technologies": [
+          "OpenAI API",
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "S3",
+        "label": "AWS S3 Storage",
+        "description": "Upload, download e gerenciamento de arquivos no AWS S3.",
+        "technologies": [
+          "AWS S3",
+          "AWS SDK .NET"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Email",
+        "label": "MailerSend Email",
+        "description": "Envio de emails transacionais com templates e variáveis dinâmicas.",
+        "technologies": [
+          "MailerSend API",
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Crypto",
+        "label": "Crypto Utils",
+        "description": "Funções de hash, criptografia e geração de tokens seguros.",
+        "technologies": [
+          ".NET 8",
+          "AES",
+          "SHA256"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "StringUtils",
+        "label": "String Helpers",
+        "description": "Utilitários de manipulação de strings: slug, truncate, sanitize, masks.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "DateUtils",
+        "label": "Date Helpers",
+        "description": "Helpers para formatação, timezone e cálculos com datas.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "HttpClient",
+        "label": "HTTP Client",
+        "description": "HTTP client configurado com retry policies, circuit breaker e logging.",
+        "technologies": [
+          ".NET 8",
+          "Polly"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "OpenAIAPI",
+        "label": "OpenAI API",
+        "description": "Serviço externo da OpenAI para geração de texto e embeddings.",
+        "technologies": [
+          "OpenAI",
+          "GPT-4"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "AWSSDK",
+        "label": "AWS SDK",
+        "description": "SDK oficial da AWS para interação com serviços de cloud.",
+        "technologies": [
+          "AWS SDK .NET"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "MailerAPI",
+        "label": "MailerSend API",
+        "description": "API externa do MailerSend para envio de emails.",
+        "technologies": [
+          "MailerSend"
+        ],
+        "status": "active"
+      }
+    ]
+  },
+  {
+    "title": "NNews",
+    "description": "CMS microservice for news and blogs with AI-powered content generation (ChatGPT + DALL-E 3). Includes React package with rich-text editor, articles, categories and tags.",
+    "technologies": [
+      ".NET 8",
+      "React",
+      "PostgreSQL",
+      "ChatGPT",
+      "DALL-E 3",
+      "Quill"
+    ],
+    "category": "CMS / Microserviço",
+    "lastUpdate": "2026-03-15",
+    "status": "completed",
+    "urlGitHub": "https://github.com/emaginebr/NNews",
+    "urlGitHubReact": "https://github.com/emaginebr/nnews-react",
+    "urlNuGet": "https://www.nuget.org/packages/NNews/",
+    "urlNpm": "https://www.npmjs.com/package/nnews-react",
+    "slug": "nnews",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "Frontend",
+        "label": "Frontend React",
+        "description": "Interface para leitura de notícias, gerenciamento de fontes e categorias.",
+        "technologies": [
+          "React",
+          "TypeScript",
+          "Tailwind CSS"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "API",
+        "label": "NNews API",
+        "description": "API REST para gerenciar notícias, fontes RSS e categorias.",
+        "technologies": [
+          ".NET 8",
+          "ASP.NET Core"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "FeedService",
+        "label": "Feed Service",
+        "description": "Serviço que parseia feeds RSS/Atom e normaliza os artigos para armazenamento.",
+        "technologies": [
+          ".NET 8",
+          "RSS",
+          "Atom"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Scheduler",
+        "label": "RSS Scheduler",
+        "description": "Background service que agenda a coleta periódica de novos artigos das fontes.",
+        "technologies": [
+          ".NET 8",
+          "Background Service"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "NAuth",
+        "label": "NAuth",
+        "description": "Autenticação de usuários via JWT fornecida pelo microserviço NAuth.",
+        "technologies": [
+          "JWT",
+          ".NET 8"
+        ],
+        "status": "active",
+        "navigateTo": "nauth"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL",
+        "description": "Banco com artigos, fontes, categorias e preferências dos usuários.",
+        "technologies": [
+          "PostgreSQL",
+          "Entity Framework"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "RSS",
+        "label": "RSS Sources",
+        "description": "Fontes externas de notícias em formato RSS e Atom.",
+        "technologies": [
+          "RSS 2.0",
+          "Atom"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "zTools",
+        "label": "zTools",
+        "description": "Pacote utilitário compartilhado.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active",
+        "navigateTo": "ztools"
+      }
+    ]
+  },
+  {
+    "title": "Lofn",
+    "description": "Products, stores and sales orders microservice with GraphQL. Includes React package with storefront, shopping cart and store administration.",
+    "technologies": [
+      ".NET 8",
+      "React",
+      "GraphQL",
+      "HotChocolate",
+      "PostgreSQL",
+      "Stripe"
+    ],
+    "category": "E-commerce / Microserviço",
+    "lastUpdate": "2026-03-23",
+    "status": "completed",
+    "url": "https://emagine.com.br/lofn",
+    "urlGitHub": "https://github.com/emaginebr/Lofn",
+    "urlGitHubReact": "https://github.com/emaginebr/lofn-react",
+    "urlNuGet": "https://www.nuget.org/packages/Lofn/",
+    "urlNpm": "https://www.npmjs.com/package/lofn-react",
+    "slug": "lofn",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "Frontend",
+        "label": "Frontend React",
+        "description": "Interface com storefront, carrinho de compras e administração de loja.",
+        "technologies": [
+          "React",
+          "TypeScript",
+          "Tailwind CSS"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "GraphQL",
+        "label": "GraphQL API",
+        "description": "API GraphQL com HotChocolate para consultas e mutations de produtos, lojas e pedidos.",
+        "technologies": [
+          ".NET 8",
+          "HotChocolate",
+          "GraphQL"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "ProductSvc",
+        "label": "Product Service",
+        "description": "CRUD de produtos com categorias, imagens e variações.",
+        "technologies": [
+          ".NET 8",
+          "Entity Framework"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "StoreSvc",
+        "label": "Store Service",
+        "description": "Gerenciamento de lojas multi-tenant.",
+        "technologies": [
+          ".NET 8",
+          "Entity Framework"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "OrderSvc",
+        "label": "Order Service",
+        "description": "Processamento de pedidos e integração com pagamento.",
+        "technologies": [
+          ".NET 8",
+          "Stripe"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "CartSvc",
+        "label": "Shopping Cart",
+        "description": "Carrinho de compras com sessão persistente.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Stripe",
+        "label": "Stripe Payments",
+        "description": "Integração com Stripe para checkout e pagamentos.",
+        "technologies": [
+          "Stripe API",
+          "Webhooks"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL",
+        "description": "Banco de dados com produtos, lojas, pedidos e carrinhos.",
+        "technologies": [
+          "PostgreSQL",
+          "Entity Framework"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "zTools",
+        "label": "zTools",
+        "description": "Pacote utilitário compartilhado.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active",
+        "navigateTo": "ztools"
+      }
+    ]
+  },
+  {
+    "title": "ProxyPay",
+    "description": "Payment proxy microservice with multi-tenant stores, products, orders and invoices. Integrates with AbacatePay gateway. Includes React package with PIX QR Code, invoice and billing components.",
+    "technologies": [".NET 8", "React", "GraphQL", "HotChocolate", "PostgreSQL", "AbacatePay"],
+    "category": "Payments / Microserviço",
+    "lastUpdate": "2026-03-25",
+    "status": "completed",
+    "url": "https://emagine.com.br/proxypay",
+    "urlGitHub": "https://github.com/emaginebr/ProxyPay",
+    "urlGitHubReact": "https://github.com/emaginebr/proxypay-react",
+    "urlNpm": "https://www.npmjs.com/package/proxypay-react",
+    "slug": "proxypay",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "Frontend",
+        "label": "Frontend React",
+        "description": "Componentes de pagamento PIX QR Code, invoice e billing com provider/hook pattern.",
+        "technologies": ["React", "TypeScript", "Vite"],
+        "status": "active"
+      },
+      {
+        "id": "GraphQL",
+        "label": "GraphQL API",
+        "description": "API GraphQL com HotChocolate para lojas, produtos, pedidos e faturas.",
+        "technologies": [".NET 8", "HotChocolate", "GraphQL"],
+        "status": "active"
+      },
+      {
+        "id": "StoreSvc",
+        "label": "Store Service",
+        "description": "Gerenciamento de lojas multi-tenant com vendedores e equipes.",
+        "technologies": [".NET 8", "Entity Framework"],
+        "status": "active"
+      },
+      {
+        "id": "ProductSvc",
+        "label": "Product Service",
+        "description": "CRUD de produtos com categorias e imagens.",
+        "technologies": [".NET 8", "Entity Framework"],
+        "status": "active"
+      },
+      {
+        "id": "OrderSvc",
+        "label": "Order Service",
+        "description": "Processamento de pedidos de venda.",
+        "technologies": [".NET 8", "Entity Framework"],
+        "status": "active"
+      },
+      {
+        "id": "InvoiceSvc",
+        "label": "Invoice Service",
+        "description": "Gerenciamento de faturas e cobranças recorrentes.",
+        "technologies": [".NET 8", "Entity Framework"],
+        "status": "active"
+      },
+      {
+        "id": "PaymentProxy",
+        "label": "Payment Proxy",
+        "description": "Camada proxy que abstrai gateways de pagamento (AbacatePay).",
+        "technologies": [".NET 8", "AbacatePay API"],
+        "status": "active"
+      },
+      {
+        "id": "BgService",
+        "label": "Background Service",
+        "description": "Processamento assíncrono de jobs para pedidos e faturas.",
+        "technologies": [".NET 8", "Background Service"],
+        "status": "active"
+      },
+      {
+        "id": "NAuth",
+        "label": "NAuth",
+        "description": "Autenticação de usuários via microserviço NAuth.",
+        "technologies": ["JWT", ".NET 8"],
+        "status": "active",
+        "navigateTo": "nauth"
+      },
+      {
+        "id": "AbacatePay",
+        "label": "AbacatePay",
+        "description": "Gateway de pagamento externo para PIX, boleto e cartão.",
+        "technologies": ["AbacatePay API"],
+        "status": "active"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL",
+        "description": "Banco de dados com lojas, produtos, pedidos, faturas e cobranças.",
+        "technologies": ["PostgreSQL", "Entity Framework"],
+        "status": "active"
+      },
+      {
+        "id": "zTools",
+        "label": "zTools",
+        "description": "Pacote utilitário compartilhado.",
+        "technologies": [".NET 8"],
+        "status": "active",
+        "navigateTo": "ztools"
+      }
+    ]
+  },
+  {
+    "title": "BazzucaMedia",
+    "description": "Social media publishing tool (X/Twitter, LinkedIn) with async worker via RabbitMQ. Includes React package with post and social network management.",
+    "technologies": [
+      ".NET 8",
+      "React",
+      "RabbitMQ",
+      "Playwright",
+      "Twitter API",
+      "Docker"
+    ],
+    "category": "Social Media / Microserviço",
+    "lastUpdate": "2026-03-14",
+    "status": "deploying",
+    "url": "https://bazzuca.media",
+    "urlGitHub": "https://github.com/emaginebr/BazzucaMedia",
+    "urlGitHubReact": "https://github.com/emaginebr/bazzuca-react",
+    "urlNuGet": "https://www.nuget.org/packages/BazzucaMedia/",
+    "urlNpm": "https://www.npmjs.com/package/bazzuca-react",
+    "slug": "bazzucamedia",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "Dashboard",
+        "label": "Dashboard React",
+        "description": "Interface web para gerenciar posts, agendar publicações e visualizar analytics.",
+        "technologies": [
+          "React",
+          "TypeScript",
+          "Tailwind CSS"
+        ],
+        "status": "active",
+        "url": "https://bazzuca.media"
+      },
+      {
+        "id": "API",
+        "label": "API .NET 8",
+        "description": "Backend REST API que gerencia usuários, posts e integrações com redes sociais.",
+        "technologies": [
+          ".NET 8",
+          "PostgreSQL",
+          "Docker"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "NAuth",
+        "label": "NAuth",
+        "description": "Autenticação de usuários via microserviço NAuth.",
+        "technologies": [
+          "JWT",
+          ".NET 8"
+        ],
+        "status": "active",
+        "navigateTo": "nauth"
+      },
+      {
+        "id": "Scheduler",
+        "label": "Scheduler Service",
+        "description": "Serviço que monitora posts agendados e os enfileira no RabbitMQ no horário programado.",
+        "technologies": [
+          ".NET 8",
+          "Background Service"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Queue",
+        "label": "RabbitMQ",
+        "description": "Fila de mensagens que desacopla o agendamento da execução das publicações.",
+        "technologies": [
+          "RabbitMQ",
+          "AMQP",
+          "Docker"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Worker",
+        "label": "Worker Playwright",
+        "description": "Worker que consome a fila e executa publicações via API ou automação com Playwright.",
+        "technologies": [
+          "Playwright",
+          ".NET 8",
+          "Headless Browser"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Twitter",
+        "label": "Twitter API",
+        "description": "Integração com Twitter API v2 para publicação automática de tweets.",
+        "technologies": [
+          "Twitter API v2",
+          "OAuth 2.0"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "LinkedIn",
+        "label": "LinkedIn",
+        "description": "Automação de publicações no LinkedIn via Playwright (headless browser).",
+        "technologies": [
+          "Playwright",
+          "Automação"
+        ],
+        "status": "planned"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL",
+        "description": "Banco de dados com histórico de publicações, métricas e configurações de contas.",
+        "technologies": [
+          "PostgreSQL",
+          "Docker"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "zTools",
+        "label": "zTools",
+        "description": "Pacote utilitário compartilhado.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active",
+        "navigateTo": "ztools"
+      }
+    ]
+  },
+  {
+    "title": "DevNote",
+    "description": "Android voice-powered smart notes app for developers with Whisper transcription.",
+    "technologies": [
+      ".NET MAUI",
+      "Whisper",
+      "GPT-4o",
+      "SQLite"
+    ],
+    "category": "Mobile / IA",
+    "lastUpdate": "2026-03-14",
+    "status": "completed",
+    "urlGitHub": "https://github.com/landim32/DevNote",
+    "slug": "devnote",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "App",
+        "label": "DevNote App",
+        "description": "Aplicativo .NET MAUI para notas inteligentes por voz.",
+        "technologies": [
+          ".NET MAUI",
+          "Android"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "VoiceInput",
+        "label": "Voice Input",
+        "description": "Captura de áudio do microfone do dispositivo.",
+        "technologies": [
+          ".NET MAUI",
+          "Audio"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Whisper",
+        "label": "Whisper Transcription",
+        "description": "Transcrição de áudio para texto via modelo Whisper.",
+        "technologies": [
+          "Whisper",
+          "OpenAI"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "GPT",
+        "label": "GPT-4o Processing",
+        "description": "Processamento inteligente da transcrição para gerar notas estruturadas.",
+        "technologies": [
+          "GPT-4o",
+          "OpenAI"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "NoteEditor",
+        "label": "Note Editor",
+        "description": "Editor de notas com suporte a markdown e formatação.",
+        "technologies": [
+          ".NET MAUI"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "SQLite",
+        "label": "SQLite",
+        "description": "Banco local para armazenamento das notas.",
+        "technologies": [
+          "SQLite"
+        ],
+        "status": "active"
+      }
+    ]
+  },
+  {
+    "title": "Pandora Vault",
+    "description": "A vault for passwords and files with zero-knowledge through the site using AES-256 encryption.",
+    "technologies": [
+      "React",
+      ".NET Core",
+      "PostgreSQL",
+      "AES-256",
+      "Docker"
+    ],
+    "category": "Segurança da Informação",
+    "lastUpdate": "2025-01-01",
+    "status": "outdated",
+    "url": "https://pandoravault.com",
+    "slug": "pandoravault",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "Frontend",
+        "label": "Frontend React",
+        "description": "Interface web para gerenciar senhas e arquivos criptografados.",
+        "technologies": [
+          "React",
+          "TypeScript"
+        ],
+        "status": "deprecated"
+      },
+      {
+        "id": "API",
+        "label": "Pandora Vault API",
+        "description": "API .NET Core com criptografia zero-knowledge.",
+        "technologies": [
+          ".NET Core",
+          "ASP.NET Core"
+        ],
+        "status": "deprecated"
+      },
+      {
+        "id": "VaultCtrl",
+        "label": "Vault Controller",
+        "description": "Gerenciamento de cofres de senhas.",
+        "technologies": [
+          ".NET Core"
+        ],
+        "status": "deprecated"
+      },
+      {
+        "id": "FileCtrl",
+        "label": "File Controller",
+        "description": "Upload e download de arquivos criptografados.",
+        "technologies": [
+          ".NET Core"
+        ],
+        "status": "deprecated"
+      },
+      {
+        "id": "AES",
+        "label": "AES-256 Encryption",
+        "description": "Camada de criptografia AES-256 para dados em repouso.",
+        "technologies": [
+          "AES-256",
+          ".NET Core"
+        ],
+        "status": "deprecated"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL",
+        "description": "Banco de dados com cofres, credenciais e metadados.",
+        "technologies": [
+          "PostgreSQL"
+        ],
+        "status": "deprecated"
+      }
+    ]
+  },
+  {
+    "title": "Easy SLA",
+    "description": "Kanban board system with SLA usage and client interaction.",
+    "technologies": [
+      "React",
+      ".NET Core",
+      "PostgreSQL",
+      "Docker",
+      "AWS"
+    ],
+    "category": "Agile / Web App",
+    "lastUpdate": "2025-01-01",
+    "status": "deploying",
+    "url": "https://easysla.com",
+    "slug": "easysla",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "Frontend",
+        "label": "Frontend React",
+        "description": "Interface de kanban board com arrastar e soltar.",
+        "technologies": [
+          "React",
+          "TypeScript"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "API",
+        "label": "Easy SLA API",
+        "description": "API REST para boards, cards e SLA tracking.",
+        "technologies": [
+          ".NET Core",
+          "ASP.NET Core"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "BoardCtrl",
+        "label": "Board Controller",
+        "description": "CRUD de boards e cards do kanban.",
+        "technologies": [
+          ".NET Core"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "SLAEngine",
+        "label": "SLA Engine",
+        "description": "Motor que calcula e monitora SLAs dos cards.",
+        "technologies": [
+          ".NET Core"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "ClientPortal",
+        "label": "Client Portal",
+        "description": "Portal de interação com clientes para acompanhar tarefas.",
+        "technologies": [
+          ".NET Core"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL",
+        "description": "Banco com boards, cards, SLAs e dados de clientes.",
+        "technologies": [
+          "PostgreSQL"
+        ],
+        "status": "active"
+      }
+    ]
+  },
+  {
+    "title": "Viralt",
+    "description": "SaaS platform for viral campaigns with gamification, raffles and social network integration.",
+    "technologies": [
+      "React",
+      ".NET 8",
+      "PostgreSQL",
+      "Docker",
+      "AWS"
+    ],
+    "category": "Marketing / SaaS",
+    "lastUpdate": "2026-03-14",
+    "status": "development",
+    "url": "https://viralt.net",
+    "urlGitHub": "https://github.com/emaginebr/Viralt",
+    "slug": "viralt",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "Frontend",
+        "label": "Frontend React",
+        "description": "Interface para criação e gerenciamento de campanhas virais.",
+        "technologies": [
+          "React",
+          "TypeScript"
+        ],
+        "status": "planned"
+      },
+      {
+        "id": "API",
+        "label": "Viralt API",
+        "description": "API REST para campanhas, sorteios e gamificação.",
+        "technologies": [
+          ".NET 8",
+          "ASP.NET Core"
+        ],
+        "status": "planned"
+      },
+      {
+        "id": "CampaignCtrl",
+        "label": "Campaign Controller",
+        "description": "Gerenciamento de campanhas com publicação em redes sociais.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "planned"
+      },
+      {
+        "id": "RaffleCtrl",
+        "label": "Raffle Controller",
+        "description": "Sistema de sorteios com regras configuráveis.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "planned"
+      },
+      {
+        "id": "GamificationSvc",
+        "label": "Gamification Engine",
+        "description": "Motor de pontos, recompensas e ranking de usuários.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "planned"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL",
+        "description": "Banco com campanhas, participantes, pontos e sorteios.",
+        "technologies": [
+          "PostgreSQL"
+        ],
+        "status": "planned"
+      }
+    ]
+  },
+  {
+    "title": "MonexUp",
+    "description": "Multi-level marketing financial manager with cryptocurrency support.",
+    "technologies": [
+      "React",
+      ".NET 8",
+      "PostgreSQL",
+      "Web3",
+      "Capacitor"
+    ],
+    "category": "FinTech / Web App",
+    "lastUpdate": "2026-03-14",
+    "status": "deploying",
+    "url": "https://monexup.com",
+    "urlGitHub": "https://github.com/emaginebr/MonexUp",
+    "slug": "monexup",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "Frontend",
+        "label": "Frontend React",
+        "description": "Interface web para gerenciamento financeiro MLM.",
+        "technologies": [
+          "React",
+          "TypeScript"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Mobile",
+        "label": "Capacitor Mobile",
+        "description": "Versão mobile via Capacitor.",
+        "technologies": [
+          "Capacitor",
+          "React"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "API",
+        "label": "MonexUp API",
+        "description": "API REST para finanças, rede MLM e criptomoedas.",
+        "technologies": [
+          ".NET 8",
+          "ASP.NET Core"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "FinancialCtrl",
+        "label": "Financial Controller",
+        "description": "Gerenciamento de transações e relatórios financeiros.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "MLMEngine",
+        "label": "MLM Engine",
+        "description": "Motor de rede multi-nível com comissões e bônus.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "CryptoSvc",
+        "label": "Crypto Service",
+        "description": "Integração com blockchain para carteiras e transações.",
+        "technologies": [
+          "Web3",
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL",
+        "description": "Banco com transações, rede MLM e carteiras.",
+        "technologies": [
+          "PostgreSQL"
+        ],
+        "status": "active"
+      }
+    ]
+  },
+  {
+    "title": "DevBlog",
+    "description": "Personal developer blog. React frontend consuming NAuth and NNews APIs.",
+    "technologies": [
+      "React 19",
+      "TypeScript",
+      "nauth-react",
+      "nnews-react"
+    ],
+    "category": "Blog / Frontend",
+    "lastUpdate": "2026-03-17",
+    "status": "completed",
+    "url": "https://emagine.com.br/rodrigolandim",
+    "urlGitHub": "https://github.com/emaginebr/devblog",
+    "slug": "devblog",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "App",
+        "label": "DevBlog App",
+        "description": "Blog React 19 consumindo microserviços NAuth e NNews.",
+        "technologies": [
+          "React 19",
+          "TypeScript"
+        ],
+        "status": "active",
+        "url": "https://emagine.com.br/rodrigolandim"
+      },
+      {
+        "id": "NAuthReact",
+        "label": "nauth-react",
+        "description": "Pacote React para autenticação via NAuth.",
+        "technologies": [
+          "React",
+          "TypeScript"
+        ],
+        "status": "active",
+        "navigateTo": "nauth"
+      },
+      {
+        "id": "NNewsReact",
+        "label": "nnews-react",
+        "description": "Pacote React para exibição de artigos via NNews.",
+        "technologies": [
+          "React",
+          "TypeScript"
+        ],
+        "status": "active",
+        "navigateTo": "nnews"
+      }
+    ]
+  },
+  {
+    "title": "Abipesca",
+    "description": "Complete Abipesca application. Monorepo with NAuth, NNews and BazzucaMedia integrated.",
+    "technologies": [
+      "React 19",
+      "nauth-react",
+      "nnews-react",
+      "bazzuca-react"
+    ],
+    "category": "Monorepo / Web App",
+    "lastUpdate": "2026-02-28",
+    "status": "deploying",
+    "urlGitHub": "https://github.com/emaginebr/Abipesca",
+    "slug": "abipesca",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "App",
+        "label": "Abipesca App",
+        "description": "Monorepo React 19 integrando três microserviços.",
+        "technologies": [
+          "React 19",
+          "TypeScript"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "NAuthReact",
+        "label": "nauth-react",
+        "description": "Pacote React para autenticação.",
+        "technologies": [
+          "React"
+        ],
+        "status": "active",
+        "navigateTo": "nauth"
+      },
+      {
+        "id": "NNewsReact",
+        "label": "nnews-react",
+        "description": "Pacote React para CMS de notícias.",
+        "technologies": [
+          "React"
+        ],
+        "status": "active",
+        "navigateTo": "nnews"
+      },
+      {
+        "id": "BazzucaReact",
+        "label": "bazzuca-react",
+        "description": "Pacote React para gerenciamento de social media.",
+        "technologies": [
+          "React"
+        ],
+        "status": "active",
+        "navigateTo": "bazzucamedia"
+      }
+    ]
+  },
+  {
+    "title": "GoblinWars Reborn",
+    "description": "New version of GoblinWars with retro visuals and modern engine. Combines tactical strategy and pixelated nostalgia.",
+    "technologies": [
+      "Unity",
+      "3D",
+      "PixiJS",
+      "React",
+      ".NET Core",
+      "Solidity"
+    ],
+    "category": "Game / NFT / Web3",
+    "lastUpdate": "2026-01-01",
+    "status": "development",
+    "url": "https://goblinwars.net",
+    "slug": "goblinwars",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "Unity",
+        "label": "Unity 3D Engine",
+        "description": "Engine de jogo com renderização 3D e mecânicas táticas.",
+        "technologies": [
+          "Unity",
+          "C#",
+          "3D"
+        ],
+        "status": "planned"
+      },
+      {
+        "id": "PixiJS",
+        "label": "PixiJS Renderer",
+        "description": "Renderizador 2D/pixelado para visual retrô.",
+        "technologies": [
+          "PixiJS",
+          "WebGL"
+        ],
+        "status": "planned"
+      },
+      {
+        "id": "Frontend",
+        "label": "Frontend React",
+        "description": "Interface web do jogo e marketplace.",
+        "technologies": [
+          "React",
+          "TypeScript"
+        ],
+        "status": "planned"
+      },
+      {
+        "id": "API",
+        "label": "Game API",
+        "description": "Backend .NET Core com lógica do jogo e NFTs.",
+        "technologies": [
+          ".NET Core",
+          "ASP.NET Core"
+        ],
+        "status": "planned"
+      },
+      {
+        "id": "NFTSvc",
+        "label": "NFT Service",
+        "description": "Gerenciamento de NFTs e smart contracts.",
+        "technologies": [
+          "Solidity",
+          "Ethereum"
+        ],
+        "status": "planned"
+      }
+    ]
+  },
+  {
+    "title": "NoChainSwap",
+    "description": "Decentralized exchange inspired by Bisq, focused on secure transactions with Bitcoin using .NET.",
+    "technologies": [
+      ".NET Core",
+      "Bitcoin",
+      "Ethereum",
+      "Solidity",
+      "Tor"
+    ],
+    "category": "DeFi / Blockchain",
+    "lastUpdate": "2024-01-01",
+    "status": "deploying",
+    "url": "https://nochainswap.org",
+    "urlGitHub": "https://github.com/landim32/nochainswap",
+    "slug": "nochainswap",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "Frontend",
+        "label": "Frontend",
+        "description": "Interface web para trocas peer-to-peer.",
+        "technologies": [
+          "React"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "API",
+        "label": "NoChainSwap API",
+        "description": "Backend .NET Core para gerenciar swaps.",
+        "technologies": [
+          ".NET Core",
+          "ASP.NET Core"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "SwapEngine",
+        "label": "Swap Engine",
+        "description": "Motor de trocas descentralizadas.",
+        "technologies": [
+          ".NET Core"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "BTCSvc",
+        "label": "Bitcoin Service",
+        "description": "Integração com rede Bitcoin para transações.",
+        "technologies": [
+          "Bitcoin",
+          ".NET Core"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "ETHSvc",
+        "label": "Ethereum Service",
+        "description": "Integração com Ethereum e smart contracts Solidity.",
+        "technologies": [
+          "Ethereum",
+          "Solidity"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Tor",
+        "label": "Tor Network",
+        "description": "Camada de privacidade via rede Tor.",
+        "technologies": [
+          "Tor"
+        ],
+        "status": "active"
+      }
+    ]
+  },
+  {
+    "title": "WB3",
+    "description": "Asset tokenization system on the B3 stock exchange.",
+    "technologies": [
+      "React",
+      "Blockchain",
+      "IPFS"
+    ],
+    "category": "FinTech / Blockchain",
+    "lastUpdate": "2023-01-01",
+    "status": "discontinued",
+    "url": "https://emagine.com.br/wibov",
+    "slug": "wb3",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "Frontend",
+        "label": "Frontend React",
+        "description": "Interface para tokenização de ativos.",
+        "technologies": [
+          "React"
+        ],
+        "status": "deprecated"
+      },
+      {
+        "id": "TokenSvc",
+        "label": "Tokenization Service",
+        "description": "Serviço de tokenização de ativos da B3.",
+        "technologies": [
+          "Blockchain"
+        ],
+        "status": "deprecated"
+      },
+      {
+        "id": "IPFS",
+        "label": "IPFS Storage",
+        "description": "Armazenamento descentralizado de metadados.",
+        "technologies": [
+          "IPFS"
+        ],
+        "status": "deprecated"
+      }
+    ]
+  },
+  {
+    "title": "GitNews",
+    "description": "Automatic blog article generator from GitHub repositories using AI (GPT-4).",
+    "technologies": [
+      ".NET 8",
+      "Octokit",
+      "OpenAI",
+      "pgvector",
+      "PostgreSQL"
+    ],
+    "category": "DevTool / IA",
+    "lastUpdate": "2026-03-18",
+    "status": "completed",
+    "urlGitHub": "https://github.com/landim32/GitNews",
+    "slug": "gitnews",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "CLI",
+        "label": "GitNews CLI",
+        "description": "CLI .NET 8 para gerar artigos a partir de repos GitHub.",
+        "technologies": [
+          ".NET 8",
+          "CLI"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Octokit",
+        "label": "Octokit",
+        "description": "Client GitHub API para buscar dados de repositórios.",
+        "technologies": [
+          "Octokit",
+          "GitHub API"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "GPT",
+        "label": "OpenAI GPT-4",
+        "description": "Geração de artigos via GPT-4.",
+        "technologies": [
+          "OpenAI",
+          "GPT-4"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Embeddings",
+        "label": "pgvector Embeddings",
+        "description": "Embeddings vetoriais para busca semântica.",
+        "technologies": [
+          "pgvector",
+          "OpenAI"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL + pgvector",
+        "description": "Banco com artigos e embeddings vetoriais.",
+        "technologies": [
+          "PostgreSQL",
+          "pgvector"
+        ],
+        "status": "active"
+      }
+    ]
+  },
+  {
+    "title": "Germanium",
+    "description": "CLI tool to generate beautiful PNG images from source code, inspired by Carbon/Silicon.",
+    "technologies": [
+      ".NET 9",
+      "SkiaSharp",
+      "CLI"
+    ],
+    "category": "DevTool / CLI",
+    "lastUpdate": "2026-03-15",
+    "status": "completed",
+    "urlGitHub": "https://github.com/landim32/germanium",
+    "slug": "germanium",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "CLI",
+        "label": "Germanium CLI",
+        "description": "CLI .NET 9 para gerar imagens de código-fonte.",
+        "technologies": [
+          ".NET 9",
+          "CLI"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Parser",
+        "label": "Source Code Parser",
+        "description": "Parser que tokeniza código-fonte para renderização.",
+        "technologies": [
+          ".NET 9"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Renderer",
+        "label": "SkiaSharp Renderer",
+        "description": "Renderizador de imagens PNG usando SkiaSharp.",
+        "technologies": [
+          "SkiaSharp"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "ThemeEngine",
+        "label": "Theme Engine",
+        "description": "Motor de temas para estilização do código.",
+        "technologies": [
+          ".NET 9"
+        ],
+        "status": "active"
+      }
+    ]
+  },
+  {
+    "title": "VoxMeet",
+    "description": "Real-time AI interview assistant. Transcription via Whisper and responses via GPT-4o.",
+    "technologies": [
+      ".NET 8",
+      "WPF",
+      "NAudio",
+      "Whisper",
+      "GPT-4o"
+    ],
+    "category": "IA / Desktop",
+    "lastUpdate": "2026-03-14",
+    "status": "completed",
+    "urlGitHub": "https://github.com/landim32/VoxMeet",
+    "slug": "voxmeet",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "App",
+        "label": "VoxMeet App",
+        "description": "Aplicação WPF para assistência em entrevistas.",
+        "technologies": [
+          ".NET 8",
+          "WPF"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "NAudio",
+        "label": "NAudio Capture",
+        "description": "Captura de áudio em tempo real do sistema.",
+        "technologies": [
+          "NAudio",
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Whisper",
+        "label": "Whisper Transcription",
+        "description": "Transcrição de áudio para texto via Whisper.",
+        "technologies": [
+          "Whisper",
+          "OpenAI"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "GPT",
+        "label": "GPT-4o",
+        "description": "Geração de respostas inteligentes em tempo real.",
+        "technologies": [
+          "GPT-4o",
+          "OpenAI"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Display",
+        "label": "Response Display",
+        "description": "Painel de exibição de respostas sugeridas.",
+        "technologies": [
+          "WPF",
+          "XAML"
+        ],
+        "status": "active"
+      }
+    ]
+  },
+  {
+    "title": "LinkedinBot",
+    "description": "LinkedIn job application automation with AI-powered compatibility analysis.",
+    "technologies": [
+      ".NET 8",
+      "Playwright",
+      "OpenAI",
+      "PostgreSQL"
+    ],
+    "category": "Automação / IA",
+    "lastUpdate": "2026-03-15",
+    "status": "completed",
+    "urlGitHub": "https://github.com/landim32/LinkedinBot",
+    "slug": "linkedinbot",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "App",
+        "label": "LinkedinBot App",
+        "description": "Aplicação .NET 8 para automação de candidaturas.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Playwright",
+        "label": "Playwright Browser",
+        "description": "Automação de navegador headless para interagir com LinkedIn.",
+        "technologies": [
+          "Playwright",
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "JobParser",
+        "label": "Job Parser",
+        "description": "Parser que extrai dados de vagas do LinkedIn.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "AIAnalysis",
+        "label": "AI Compatibility Analysis",
+        "description": "Análise de compatibilidade entre perfil e vaga via OpenAI.",
+        "technologies": [
+          "OpenAI",
+          "GPT-4"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL",
+        "description": "Banco com vagas, candidaturas e scores de compatibilidade.",
+        "technologies": [
+          "PostgreSQL"
+        ],
+        "status": "active"
+      }
+    ]
+  },
+  {
+    "title": "KryptoDrive",
+    "description": "Mobile app for AES-256 file encryption on external drives with per-file passphrase.",
+    "technologies": [
+      ".NET MAUI",
+      "AES-256",
+      "Google Drive",
+      "PBKDF2"
+    ],
+    "category": "Security / Mobile",
+    "lastUpdate": "2026-03-14",
+    "status": "migration",
+    "urlGitHub": "https://github.com/landim32/KryptoDrive",
+    "slug": "kryptodrive",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "App",
+        "label": "KryptoDrive App",
+        "description": "App .NET MAUI para criptografia de arquivos.",
+        "technologies": [
+          ".NET MAUI"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "FileManager",
+        "label": "File Manager",
+        "description": "Gerenciador de arquivos com navegação e seleção.",
+        "technologies": [
+          ".NET MAUI"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "AES",
+        "label": "AES-256 Encryption",
+        "description": "Criptografia AES-256 com chave derivada por arquivo.",
+        "technologies": [
+          "AES-256"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "PBKDF2",
+        "label": "PBKDF2 Key Derivation",
+        "description": "Derivação de chave a partir de passphrase por arquivo.",
+        "technologies": [
+          "PBKDF2"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "GDrive",
+        "label": "Google Drive",
+        "description": "Sincronização de arquivos criptografados com Google Drive.",
+        "technologies": [
+          "Google Drive API"
+        ],
+        "status": "active"
+      }
+    ]
+  },
+  {
+    "title": "LadinoBot",
+    "description": "Open source robot for MetaTrader 5, with configurable strategies and trading automation focus.",
+    "technologies": [
+      "MQL5",
+      "MetaTrader 5"
+    ],
+    "category": "FinTech / Trading",
+    "lastUpdate": "2024-09-23",
+    "status": "completed",
+    "urlGitHub": "https://github.com/landim32/LadinoBot",
+    "slug": "ladinobot",
+    "diagramParent": "main",
+    "diagramNodes": [
+      {
+        "id": "MT5",
+        "label": "MetaTrader 5",
+        "description": "Plataforma de trading para execução de ordens.",
+        "technologies": [
+          "MetaTrader 5"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "LadinoBot",
+        "label": "LadinoBot",
+        "description": "Expert Advisor MQL5 com estratégias configuráveis.",
+        "technologies": [
+          "MQL5"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "StrategyEngine",
+        "label": "Strategy Engine",
+        "description": "Motor de estratégias com regras de entrada e saída.",
+        "technologies": [
+          "MQL5"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "SignalAnalyzer",
+        "label": "Signal Analyzer",
+        "description": "Analisador de sinais de mercado com indicadores técnicos.",
+        "technologies": [
+          "MQL5"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "OrderManager",
+        "label": "Order Manager",
+        "description": "Gerenciador de ordens com stop loss, take profit e trailing.",
+        "technologies": [
+          "MQL5"
+        ],
+        "status": "active"
+      }
+    ]
+  }
+]

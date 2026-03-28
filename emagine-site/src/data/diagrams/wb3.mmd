@@ -1,0 +1,35 @@
+graph TD
+    subgraph Frontend
+        FrontendApp["Frontend React"]
+    end
+    subgraph Services
+        TokenSvc["Tokenization Service"]
+    end
+    subgraph External
+        Blockchain["Blockchain"]
+        IPFS["IPFS Storage"]
+        B3["B3 Stock Exchange"]
+    end
+
+    FrontendApp -->|"Interact"| TokenSvc
+    TokenSvc -->|"Tokenize"| Blockchain
+    TokenSvc -->|"Store"| IPFS
+    TokenSvc -->|"Assets"| B3
+
+    click FrontendApp mermaidCallback "Frontend"
+    click TokenSvc mermaidCallback "TokenSvc"
+    click Blockchain mermaidCallback "Blockchain"
+    click IPFS mermaidCallback "IPFS"
+    click B3 mermaidCallback "B3"
+
+    style FrontendApp fill:#61DAFB,stroke:#21a1c9,color:#000
+    style TokenSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style Blockchain fill:#f7931a,stroke:#c77415,color:#fff
+    style IPFS fill:#65C2CB,stroke:#4da8b1,color:#000
+    style B3 fill:#28a745,stroke:#1e7e34,color:#fff
+
+    style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style Services fill:#ede7f6,stroke:#512BD4,color:#000
+    style External fill:#d4edda,stroke:#28a745,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

@@ -1,0 +1,42 @@
+graph TD
+    ACL["zTools.ACL (NuGet Package)"]
+    subgraph API["API Rest"]
+        OpenAI["OpenAI Integration"]
+        S3["AWS S3 Storage"]
+        Email["MailerSend Email"]
+        Crypto["Crypto Utils"]
+        StringUtils["String Helpers"]
+        DateUtils["Date Helpers"]
+    end
+    subgraph External["External Services"]
+        OpenAIAPI["OpenAI API"]
+        AWSSDK["AWS SDK"]
+        MailerAPI["MailerSend API"]
+    end
+
+    ACL -->|"IA"| OpenAI
+    ACL -->|"Storage"| S3
+    ACL -->|"Email"| Email
+    ACL -->|"Crypto"| Crypto
+    ACL -->|"String"| StringUtils
+    ACL -->|"Date"| DateUtils
+
+    OpenAI -->|"API"| OpenAIAPI
+    S3 -->|"SDK"| AWSSDK
+    Email -->|"API"| MailerAPI
+
+    style ACL fill:#c0392b,stroke:#96281B,color:#fff
+    style OpenAI fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style S3 fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style Email fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style Crypto fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style StringUtils fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style DateUtils fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style OpenAIAPI fill:#dc3545,stroke:#c0392b,color:#fff
+    style AWSSDK fill:#dc3545,stroke:#c0392b,color:#fff
+    style MailerAPI fill:#dc3545,stroke:#c0392b,color:#fff
+
+    style API fill:#ede7f6,stroke:#512BD4,color:#000
+    style External fill:#f8d7da,stroke:#dc3545,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

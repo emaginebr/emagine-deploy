@@ -1,0 +1,45 @@
+graph TD
+    subgraph Frontend
+        FrontendApp["Frontend React"]
+    end
+    subgraph API["API Layer"]
+        APIServer["Viralt API (.NET 8)"]
+        CampaignCtrl["Campaign Controller"]
+        RaffleCtrl["Raffle Controller"]
+        GamificationSvc["Gamification Engine"]
+    end
+    subgraph External
+        SocialIntegration["Social Network Integration"]
+    end
+    DB[(" PostgreSQL")]
+
+    FrontendApp -->|"REST"| APIServer
+    APIServer --> CampaignCtrl
+    APIServer --> RaffleCtrl
+    APIServer --> GamificationSvc
+    CampaignCtrl -->|"Publish"| SocialIntegration
+    CampaignCtrl -->|"CRUD"| DB
+    RaffleCtrl -->|"CRUD"| DB
+    GamificationSvc -->|"Points/Rewards"| DB
+
+    click FrontendApp mermaidCallback "Frontend"
+    click APIServer mermaidCallback "API"
+    click CampaignCtrl mermaidCallback "CampaignCtrl"
+    click RaffleCtrl mermaidCallback "RaffleCtrl"
+    click GamificationSvc mermaidCallback "GamificationSvc"
+    click SocialIntegration mermaidCallback "SocialIntegration"
+    click DB mermaidCallback "DB"
+
+    style FrontendApp fill:#61DAFB,stroke:#21a1c9,color:#000
+    style APIServer fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style CampaignCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style RaffleCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style GamificationSvc fill:#f7b731,stroke:#d4991a,color:#000
+    style SocialIntegration fill:#1DA1F2,stroke:#1a91da,color:#fff
+    style DB fill:#336791,stroke:#264d6e,color:#fff
+
+    style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style API fill:#ede7f6,stroke:#512BD4,color:#000
+    style External fill:#d4edda,stroke:#28a745,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

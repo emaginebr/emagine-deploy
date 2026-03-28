@@ -1,0 +1,42 @@
+graph TD
+    subgraph Frontend
+        FrontendApp["Frontend React"]
+        Kanban["Kanban Board"]
+    end
+    subgraph API["API Layer"]
+        APIServer["Easy SLA API (.NET Core)"]
+        BoardCtrl["Board Controller"]
+        SLAEngine["SLA Engine"]
+        ClientPortal["Client Portal"]
+    end
+    DB[(" PostgreSQL")]
+
+    FrontendApp --> Kanban
+    FrontendApp -->|"REST"| APIServer
+    APIServer --> BoardCtrl
+    APIServer --> SLAEngine
+    APIServer --> ClientPortal
+    BoardCtrl -->|"CRUD"| DB
+    SLAEngine -->|"Track"| DB
+    ClientPortal -->|"Interact"| DB
+
+    click FrontendApp mermaidCallback "Frontend"
+    click Kanban mermaidCallback "Kanban"
+    click APIServer mermaidCallback "API"
+    click BoardCtrl mermaidCallback "BoardCtrl"
+    click SLAEngine mermaidCallback "SLAEngine"
+    click ClientPortal mermaidCallback "ClientPortal"
+    click DB mermaidCallback "DB"
+
+    style FrontendApp fill:#61DAFB,stroke:#21a1c9,color:#000
+    style Kanban fill:#61DAFB,stroke:#21a1c9,color:#000
+    style APIServer fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style BoardCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style SLAEngine fill:#f7b731,stroke:#d4991a,color:#000
+    style ClientPortal fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style DB fill:#336791,stroke:#264d6e,color:#fff
+
+    style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style API fill:#ede7f6,stroke:#512BD4,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

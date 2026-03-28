@@ -1,0 +1,49 @@
+graph TD
+    subgraph Frontend
+        FrontendApp["Frontend React"]
+        Mobile["Capacitor Mobile"]
+    end
+    subgraph API["API Layer"]
+        APIServer["MonexUp API (.NET 8)"]
+        FinancialCtrl["Financial Controller"]
+        MLMEngine["MLM Engine"]
+        CryptoSvc["₿ Crypto Service"]
+    end
+    subgraph External
+        Web3["Web3 Integration"]
+    end
+    DB[(" PostgreSQL")]
+
+    FrontendApp -->|"REST"| APIServer
+    Mobile -->|"REST"| APIServer
+    APIServer --> FinancialCtrl
+    APIServer --> MLMEngine
+    APIServer --> CryptoSvc
+    CryptoSvc -->|"Blockchain"| Web3
+    FinancialCtrl -->|"CRUD"| DB
+    MLMEngine -->|"Network"| DB
+    CryptoSvc -->|"Wallets"| DB
+
+    click FrontendApp mermaidCallback "Frontend"
+    click Mobile mermaidCallback "Mobile"
+    click APIServer mermaidCallback "API"
+    click FinancialCtrl mermaidCallback "FinancialCtrl"
+    click MLMEngine mermaidCallback "MLMEngine"
+    click CryptoSvc mermaidCallback "CryptoSvc"
+    click Web3 mermaidCallback "Web3"
+    click DB mermaidCallback "DB"
+
+    style FrontendApp fill:#61DAFB,stroke:#21a1c9,color:#000
+    style Mobile fill:#e74c3c,stroke:#c0392b,color:#fff
+    style APIServer fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style FinancialCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style MLMEngine fill:#f7b731,stroke:#d4991a,color:#000
+    style CryptoSvc fill:#f7931a,stroke:#c77415,color:#fff
+    style Web3 fill:#f7931a,stroke:#c77415,color:#fff
+    style DB fill:#336791,stroke:#264d6e,color:#fff
+
+    style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style API fill:#ede7f6,stroke:#512BD4,color:#000
+    style External fill:#fff8e1,stroke:#f7b731,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

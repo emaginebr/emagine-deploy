@@ -1,0 +1,41 @@
+graph TD
+    subgraph App
+        AppMain["LinkedinBot (.NET 8)"]
+        JobParser["Job Parser"]
+    end
+    subgraph Automation
+        Playwright["Playwright Browser"]
+        LinkedIn["LinkedIn"]
+    end
+    subgraph AI["AI Analysis"]
+        AIAnalysis["OpenAI Compatibility Analysis"]
+    end
+    DB[(" PostgreSQL")]
+
+    AppMain --> Playwright
+    Playwright -->|"Scrape Jobs"| LinkedIn
+    LinkedIn -->|"Job Data"| JobParser
+    JobParser -->|"Analyze"| AIAnalysis
+    AIAnalysis -->|"Match Score"| AppMain
+    AppMain -->|"Auto Apply"| Playwright
+    AppMain -->|"Log"| DB
+
+    click AppMain mermaidCallback "App"
+    click JobParser mermaidCallback "JobParser"
+    click Playwright mermaidCallback "Playwright"
+    click LinkedIn mermaidCallback "LinkedIn"
+    click AIAnalysis mermaidCallback "AIAnalysis"
+    click DB mermaidCallback "DB"
+
+    style AppMain fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style JobParser fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style Playwright fill:#2EAD33,stroke:#228B22,color:#fff
+    style LinkedIn fill:#0A66C2,stroke:#084d94,color:#fff
+    style AIAnalysis fill:#10a37f,stroke:#0d8a6a,color:#fff
+    style DB fill:#336791,stroke:#264d6e,color:#fff
+
+    style App fill:#ede7f6,stroke:#512BD4,color:#000
+    style Automation fill:#d4edda,stroke:#28a745,color:#000
+    style AI fill:#e8f4fd,stroke:#61DAFB,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

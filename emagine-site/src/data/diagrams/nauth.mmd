@@ -1,0 +1,38 @@
+graph TD
+    subgraph Frontend
+        NAuthApp["NAuth App (React)"]
+        NAuthReact["nauth-react (NPM Package)"]
+    end
+    subgraph API["API Layer"]
+        APIServer["NAuth API (.NET 8)"]
+        UserController["User Controller"]
+        RoleController["Role Controller"]
+    end
+    subgraph External["External Services"]
+        zTools["zTools"]
+    end
+    DB[(" PostgreSQL")]
+
+    NAuthApp --> NAuthReact
+    NAuthReact -->|"REST"| APIServer
+    APIServer --> UserController
+    APIServer --> RoleController
+    UserController -->|"CRUD"| DB
+    RoleController -->|"CRUD"| DB
+    UserController -->|"S3 & Email"| zTools
+
+    click zTools mermaidCallback "zTools"
+
+    style NAuthApp fill:#2980b9,stroke:#1a5276,color:#fff
+    style NAuthReact fill:#c0392b,stroke:#96281B,color:#fff
+    style APIServer fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style UserController fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style RoleController fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style DB fill:#336791,stroke:#264d6e,color:#fff
+    style zTools fill:#28a745,stroke:#1e7e34,color:#fff
+
+    style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style API fill:#ede7f6,stroke:#512BD4,color:#000
+    style External fill:#f8d7da,stroke:#dc3545,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

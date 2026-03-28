@@ -1,0 +1,77 @@
+graph TD
+    subgraph Frontend
+        Dashboard["BazzucaMedia App (React)"]
+        BazzucaReact["bazzuca-react (NPM Package)"]
+    end
+    subgraph API["API"]
+        ClientCtrl["Client Controller"]
+        PostCtrl["Post Controller"]
+        SocialCtrl["SocialNetwork Controller"]
+        ImageCtrl["Image Controller"]
+        XCtrl["X Controller"]
+        PostSvc["Post Service"]
+        ClientSvc["Client Service"]
+        SocialSvc["SocialNetwork Service"]
+    end
+    subgraph Messaging
+        RabbitMQ["RabbitMQ"]
+        LinkedinWorker["LinkedIn Worker"]
+    end
+    subgraph External["External Services"]
+        NAuth["NAuth"]
+        zTools["zTools"]
+        TwitterAPI["Twitter/X API"]
+        LinkedIn["LinkedIn (Playwright)"]
+    end
+    DB[("PostgreSQL")]
+
+    Dashboard --> BazzucaReact
+    BazzucaReact -->|"REST"| ClientCtrl
+    BazzucaReact -->|"REST"| PostCtrl
+    BazzucaReact -->|"REST"| SocialCtrl
+    BazzucaReact -->|"Upload"| ImageCtrl
+
+    ClientCtrl --> ClientSvc
+    PostCtrl --> PostSvc
+    SocialCtrl --> SocialSvc
+    XCtrl -->|"OAuth"| TwitterAPI
+
+    ClientSvc -->|"CRUD"| DB
+    PostSvc -->|"CRUD"| DB
+    SocialSvc -->|"CRUD"| DB
+
+    PostSvc -->|"Publish"| RabbitMQ
+    RabbitMQ -->|"Consume"| LinkedinWorker
+    LinkedinWorker -->|"Automation"| LinkedIn
+    PostSvc -->|"API v2"| TwitterAPI
+
+    PostCtrl -->|"Auth"| NAuth
+    ImageCtrl -->|"S3"| zTools
+
+    click NAuth mermaidCallback "NAuth"
+    click zTools mermaidCallback "zTools"
+
+    style Dashboard fill:#2980b9,stroke:#1a5276,color:#fff
+    style BazzucaReact fill:#c0392b,stroke:#96281B,color:#fff
+    style ClientCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style PostCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style SocialCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style ImageCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style XCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style PostSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style ClientSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style SocialSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style RabbitMQ fill:#f7b731,stroke:#d4991a,color:#000
+    style LinkedinWorker fill:#f7b731,stroke:#d4991a,color:#000
+    style NAuth fill:#28a745,stroke:#1e7e34,color:#fff
+    style zTools fill:#28a745,stroke:#1e7e34,color:#fff
+    style TwitterAPI fill:#dc3545,stroke:#c0392b,color:#fff
+    style LinkedIn fill:#dc3545,stroke:#c0392b,color:#fff
+    style DB fill:#336791,stroke:#264d6e,color:#fff
+
+    style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style API fill:#ede7f6,stroke:#512BD4,color:#000
+    style Messaging fill:#fff8e1,stroke:#f7b731,color:#000
+    style External fill:#f8d7da,stroke:#dc3545,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

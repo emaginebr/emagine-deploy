@@ -1,0 +1,35 @@
+graph TD
+    subgraph App
+        CLI["Germanium CLI (.NET 9)"]
+    end
+    subgraph Processing
+        Parser["Source Code Parser"]
+        ThemeEngine["Theme Engine"]
+        Renderer["SkiaSharp Renderer"]
+    end
+    subgraph Output
+        PNG["PNG Output"]
+    end
+
+    CLI -->|"Input"| Parser
+    Parser -->|"Tokens"| Renderer
+    ThemeEngine -->|"Styles"| Renderer
+    Renderer -->|"Render"| PNG
+
+    click CLI mermaidCallback "CLI"
+    click Parser mermaidCallback "Parser"
+    click ThemeEngine mermaidCallback "ThemeEngine"
+    click Renderer mermaidCallback "Renderer"
+    click PNG mermaidCallback "PNG"
+
+    style CLI fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style Parser fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style ThemeEngine fill:#f7b731,stroke:#d4991a,color:#000
+    style Renderer fill:#e91e63,stroke:#c2185b,color:#fff
+    style PNG fill:#28a745,stroke:#1e7e34,color:#fff
+
+    style App fill:#ede7f6,stroke:#512BD4,color:#000
+    style Processing fill:#fff8e1,stroke:#f7b731,color:#000
+    style Output fill:#d4edda,stroke:#28a745,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import mermaid from 'mermaid';
 import { ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,24 +10,24 @@ interface MermaidRendererProps {
 
 let renderCounter = 0;
 
-const MAX_AUTO_ZOOM = 2;
 const PADDING = 80;
+const ZOOM_STEP = 0.15;
 
 const MermaidRenderer = ({ definition, onNodeClick }: MermaidRendererProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const callbackRef = useRef(onNodeClick);
-  const fitScaleRef = useRef(1);
+  const naturalSizeRef = useRef({ w: 0, h: 0 });
   const [scale, setScale] = useState(1);
+  const [fitScale, setFitScale] = useState(1);
   const [error, setError] = useState<string | null>(null);
 
-  const handleZoomIn = () => setScale((s) => Math.min(s + 0.2, 3));
-  const handleZoomOut = () => setScale((s) => Math.max(s - 0.2, 0.3));
-  const handleReset = () => setScale(fitScaleRef.current);
+  const handleZoomIn = () => setScale((s) => s + ZOOM_STEP);
+  const handleZoomOut = () => setScale((s) => Math.max(s - ZOOM_STEP, 0.1));
+  const handleReset = () => setScale(fitScale);
 
   callbackRef.current = onNodeClick;
 
-  // Register global callback synchronously so it's always available
   (window as any).mermaidCallback = (nodeId: string) => {
     callbackRef.current(nodeId);
   };
@@ -38,9 +38,19 @@ const MermaidRenderer = ({ definition, onNodeClick }: MermaidRendererProps) => {
     };
   }, []);
 
+  // Apply scale by resizing the SVG element directly
+  useEffect(() => {
+    const svgEl = containerRef.current?.querySelector('svg');
+    if (!svgEl || !naturalSizeRef.current.w) return;
+
+    const { w, h } = naturalSizeRef.current;
+    svgEl.setAttribute('width', `${w * scale}`);
+    svgEl.setAttribute('height', `${h * scale}`);
+  }, [scale]);
+
   useEffect(() => {
     const renderDiagram = async () => {
-      if (!containerRef.current) return;
+      if (!containerRef.current || !wrapperRef.current) return;
 
       mermaid.initialize({
         startOnLoad: false,
@@ -73,22 +83,33 @@ const MermaidRenderer = ({ definition, onNodeClick }: MermaidRendererProps) => {
           containerRef.current.innerHTML = svg;
           setError(null);
 
-          // Fit-to-screen: calculate scale so diagram fills the viewport
           const svgEl = containerRef.current.querySelector('svg');
           if (svgEl && wrapperRef.current) {
-            const svgW = svgEl.getBoundingClientRect().width;
-            const svgH = svgEl.getBoundingClientRect().height;
+            // Remove Mermaid's max-width constraint to allow full sizing
+            svgEl.style.maxWidth = 'none';
+
+            // Get natural diagram dimensions from viewBox
+            const vb = svgEl.getAttribute('viewBox')?.split(/[\s,]+/).map(Number);
+            const natW = vb && vb.length === 4 ? vb[2] : parseFloat(svgEl.getAttribute('width') || '0');
+            const natH = vb && vb.length === 4 ? vb[3] : parseFloat(svgEl.getAttribute('height') || '0');
+            naturalSizeRef.current = { w: natW, h: natH };
+
+            // Calculate scale to fill the viewport
             const wrapW = wrapperRef.current.clientWidth - PADDING;
             const wrapH = wrapperRef.current.clientHeight - PADDING;
 
-            if (svgW > 0 && svgH > 0) {
-              const fitScale = Math.min(wrapW / svgW, wrapH / svgH, MAX_AUTO_ZOOM);
-              const clamped = Math.round(fitScale * 100) / 100;
-              fitScaleRef.current = clamped;
-              setScale(clamped);
+            if (natW > 0 && natH > 0) {
+              const fit = Math.min(wrapW / natW, wrapH / natH);
+              const rounded = Math.round(fit * 100) / 100;
+              setFitScale(rounded);
+              setScale(rounded);
+
+              // Apply immediately
+              svgEl.setAttribute('width', `${natW * rounded}`);
+              svgEl.setAttribute('height', `${natH * rounded}`);
             }
 
-            // Fallback: attach click listeners to nodes
+            // Attach click listeners to nodes
             svgEl.querySelectorAll('.node').forEach((node) => {
               const nodeEl = node as HTMLElement;
               nodeEl.style.cursor = 'pointer';
@@ -150,11 +171,7 @@ const MermaidRenderer = ({ definition, onNodeClick }: MermaidRendererProps) => {
         ) : (
           <div
             ref={containerRef}
-            className="mermaid-container transition-transform duration-200 cursor-grab active:cursor-grabbing"
-            style={{
-              transform: `scale(${scale})`,
-              transformOrigin: 'center center',
-            }}
+            className="mermaid-container cursor-grab active:cursor-grabbing"
           />
         )}
       </div>

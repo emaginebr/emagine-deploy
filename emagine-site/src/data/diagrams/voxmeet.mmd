@@ -1,0 +1,31 @@
+graph TD
+    subgraph App["VoxMeet (WPF)"]
+        Display["Response Display"]
+    end
+    subgraph Audio["Audio Pipeline"]
+        NAudio["NAudio Capture"]
+        Whisper["Whisper Transcription"]
+    end
+    subgraph AI["AI Processing"]
+        GPT["GPT-4o"]
+    end
+
+    NAudio -->|"Audio Stream"| Whisper
+    Whisper -->|"Transcript"| GPT
+    GPT -->|"AI Response"| Display
+
+    click Display mermaidCallback "Display"
+    click NAudio mermaidCallback "NAudio"
+    click Whisper mermaidCallback "Whisper"
+    click GPT mermaidCallback "GPT"
+
+    style Display fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style NAudio fill:#61DAFB,stroke:#21a1c9,color:#000
+    style Whisper fill:#10a37f,stroke:#0d8a6a,color:#fff
+    style GPT fill:#10a37f,stroke:#0d8a6a,color:#fff
+
+    style App fill:#ede7f6,stroke:#512BD4,color:#000
+    style Audio fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style AI fill:#d4edda,stroke:#28a745,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

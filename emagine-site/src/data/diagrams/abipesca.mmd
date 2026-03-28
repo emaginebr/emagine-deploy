@@ -1,0 +1,34 @@
+graph TD
+    subgraph App["Abipesca (React 19)"]
+        NAuthReact["nauth-react"]
+        NNewsReact["nnews-react"]
+        BazzucaReact["bazzuca-react"]
+    end
+    subgraph External["External APIs"]
+        NAuthAPI["NAuth API"]
+        NNewsAPI["NNews API"]
+        BazzucaAPI["BazzucaMedia API"]
+    end
+
+    NAuthReact -->|"Auth"| NAuthAPI
+    NNewsReact -->|"CMS"| NNewsAPI
+    BazzucaReact -->|"Social"| BazzucaAPI
+
+    click NAuthReact mermaidCallback "NAuthReact"
+    click NNewsReact mermaidCallback "NNewsReact"
+    click BazzucaReact mermaidCallback "BazzucaReact"
+    click NAuthAPI mermaidCallback "NAuthAPI"
+    click NNewsAPI mermaidCallback "NNewsAPI"
+    click BazzucaAPI mermaidCallback "BazzucaAPI"
+
+    style NAuthReact fill:#61DAFB,stroke:#21a1c9,color:#000
+    style NNewsReact fill:#61DAFB,stroke:#21a1c9,color:#000
+    style BazzucaReact fill:#61DAFB,stroke:#21a1c9,color:#000
+    style NAuthAPI fill:#28a745,stroke:#1e7e34,color:#fff
+    style NNewsAPI fill:#28a745,stroke:#1e7e34,color:#fff
+    style BazzucaAPI fill:#28a745,stroke:#1e7e34,color:#fff
+
+    style App fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style External fill:#d4edda,stroke:#28a745,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

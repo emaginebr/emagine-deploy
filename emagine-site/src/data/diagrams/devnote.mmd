@@ -1,0 +1,32 @@
+graph TD
+    subgraph App["DevNote App"]
+        VoiceInput["Voice Input"]
+        NoteEditor["Note Editor"]
+    end
+    subgraph AI["AI Processing"]
+        Whisper["Whisper Transcription"]
+        GPT["GPT-4o Processing"]
+    end
+    SQLite[(" SQLite")]
+
+    VoiceInput -->|"Audio"| Whisper
+    Whisper -->|"Text"| GPT
+    GPT -->|"Smart Note"| NoteEditor
+    NoteEditor -->|"Save"| SQLite
+
+    click VoiceInput mermaidCallback "VoiceInput"
+    click NoteEditor mermaidCallback "NoteEditor"
+    click Whisper mermaidCallback "Whisper"
+    click GPT mermaidCallback "GPT"
+    click SQLite mermaidCallback "SQLite"
+
+    style VoiceInput fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style NoteEditor fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style Whisper fill:#10a37f,stroke:#0d8a6a,color:#fff
+    style GPT fill:#10a37f,stroke:#0d8a6a,color:#fff
+    style SQLite fill:#336791,stroke:#264d6e,color:#fff
+
+    style App fill:#f8d7da,stroke:#dc3545,color:#000
+    style AI fill:#d4edda,stroke:#28a745,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

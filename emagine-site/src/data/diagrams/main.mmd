@@ -1,0 +1,91 @@
+graph TD
+    subgraph AppMobile["App Mobile"]
+        Abipesca["Abipesca"]
+        DevNote["DevNote"]
+        KryptoDrive["KryptoDrive"]
+    end
+    subgraph SaaS
+        Viralt["Viralt"]
+        MonexUp["MonexUp (MMN)"]
+        DevBlog["DevBlog"]
+        EasySLA["Easy SLA"]
+        PandoraVault["Pandora Vault"]
+    end
+    subgraph Microservices
+        NAuth["NAuth"]
+        NNews["NNews"]
+        zTools["zTools"]
+        BazzucaMedia["BazzucaMedia"]
+        Lofn["Lofn (B2C)"]
+        ProxyPay["ProxyPay"]
+    end
+    GitNews["GitNews"]
+    LinkedinBot["LinkedinBot"]
+
+    Viralt --> ProxyPay
+    Viralt --> BazzucaMedia
+    Viralt --> |"S3"| zTools
+
+    MonexUp --> Lofn
+    MonexUp --> ProxyPay
+    MonexUp --> |"S3"| zTools
+
+    DevBlog --> NNews
+
+    GitNews --> DevBlog
+    NAuth --> zTools
+    NNews --> |"S3 & IA"| zTools
+    BazzucaMedia -->|"S3"| zTools
+    Lofn -->|"S3"| zTools
+
+    LinkedinBot --> BazzucaMedia
+    PandoraVault --> NAuth
+    BazzucaMedia --> NAuth
+    NNews --> NAuth
+    Lofn --> NAuth
+    ProxyPay --> NAuth
+    EasySLA --> NAuth
+
+    Abipesca --> NNews
+    Abipesca --> NAuth
+    Abipesca -->|"Push Notification"| BazzucaMedia
+
+    click NAuth mermaidCallback "NAuth"
+    click NNews mermaidCallback "NNews"
+    click zTools mermaidCallback "zTools"
+    click BazzucaMedia mermaidCallback "BazzucaMedia"
+    click Lofn mermaidCallback "Lofn"
+    click ProxyPay mermaidCallback "ProxyPay"
+    click DevNote mermaidCallback "DevNote"
+    click PandoraVault mermaidCallback "PandoraVault"
+    click EasySLA mermaidCallback "EasySLA"
+    click Viralt mermaidCallback "Viralt"
+    click MonexUp mermaidCallback "MonexUp"
+    click DevBlog mermaidCallback "DevBlog"
+    click Abipesca mermaidCallback "Abipesca"
+    click GitNews mermaidCallback "GitNews"
+    click LinkedinBot mermaidCallback "LinkedinBot"
+    click KryptoDrive mermaidCallback "KryptoDrive"
+
+    style NAuth fill:#28a745,stroke:#1e7e34,color:#fff
+    style NNews fill:#28a745,stroke:#1e7e34,color:#fff
+    style zTools fill:#28a745,stroke:#1e7e34,color:#fff
+    style BazzucaMedia fill:#28a745,stroke:#1e7e34,color:#fff
+    style Lofn fill:#28a745,stroke:#1e7e34,color:#fff
+    style ProxyPay fill:#28a745,stroke:#1e7e34,color:#fff
+
+    style Microservices fill:#d4edda,stroke:#28a745,color:#000
+    style AppMobile fill:#f8d7da,stroke:#dc3545,color:#000
+    style SaaS fill:#d6eaf8,stroke:#2980b9,color:#000
+
+    style Viralt fill:#2980b9,stroke:#1a5276,color:#fff
+    style MonexUp fill:#2980b9,stroke:#1a5276,color:#fff
+    style DevBlog fill:#2980b9,stroke:#1a5276,color:#fff
+    style EasySLA fill:#2980b9,stroke:#1a5276,color:#fff
+    style PandoraVault fill:#2980b9,stroke:#1a5276,color:#fff
+
+    style DevNote fill:#e74c3c,stroke:#c0392b,color:#fff
+    style Abipesca fill:#e74c3c,stroke:#c0392b,color:#fff
+    style KryptoDrive fill:#e74c3c,stroke:#c0392b,color:#fff
+
+    linkStyle default stroke:#999,stroke-width:2px

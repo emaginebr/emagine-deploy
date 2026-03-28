@@ -1,0 +1,67 @@
+graph TD
+    subgraph Frontend
+        WebApp["ProxyPay App (React)"]
+        ProxyPayReact["proxypay-react (NPM Package)"]
+    end
+    subgraph API["API"]
+        GraphQL["GraphQL API (HotChocolate)"]
+        ProxyPayCtrl["ProxyPay API"]
+        WebhookCtrl["Webhook API"]
+        InvoiceSvc["Invoice Service"]
+        CustomerSvc["Customer Service"]
+        StoreSvc["Store Service"]
+        BillingSvc["Billing Service"]
+    end
+    subgraph External["External Services"]
+        NAuth["NAuth"]
+        AbacatePay["AbacatePay"]
+    end
+    RabbitMQ["RabbitMQ"]
+    DB[("PostgreSQL")]
+
+    WebApp --> ProxyPayReact
+    ProxyPayReact -->|"GraphQL"| GraphQL
+    ProxyPayReact -->|"REST"| ProxyPayCtrl
+
+    GraphQL --> InvoiceSvc
+    GraphQL --> CustomerSvc
+    GraphQL --> StoreSvc
+    GraphQL --> BillingSvc
+
+    ProxyPayCtrl -->|"QR Code & Invoice"| InvoiceSvc
+    ProxyPayCtrl -->|"Billing"| BillingSvc
+    ProxyPayCtrl -->|"CRUD"| StoreSvc
+    WebhookCtrl -->|"Paid"| InvoiceSvc
+
+    InvoiceSvc -->|"CRUD"| DB
+    CustomerSvc -->|"CRUD"| DB
+    StoreSvc -->|"CRUD"| DB
+    BillingSvc -->|"CRUD"| DB
+
+    InvoiceSvc -->|"OnPaid"| RabbitMQ
+
+    ProxyPayCtrl -->|"Auth"| NAuth
+    InvoiceSvc -->|"Gateway"| AbacatePay
+    AbacatePay -->|"Webhook"| WebhookCtrl
+
+    click NAuth mermaidCallback "NAuth"
+
+    style WebApp fill:#2980b9,stroke:#1a5276,color:#fff
+    style ProxyPayReact fill:#c0392b,stroke:#96281B,color:#fff
+    style GraphQL fill:#E10098,stroke:#b3007a,color:#fff
+    style ProxyPayCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style WebhookCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style InvoiceSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style CustomerSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style StoreSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style BillingSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style RabbitMQ fill:#f7b731,stroke:#d4991a,color:#000
+    style NAuth fill:#28a745,stroke:#1e7e34,color:#fff
+    style AbacatePay fill:#dc3545,stroke:#c0392b,color:#fff
+    style DB fill:#336791,stroke:#264d6e,color:#fff
+
+    style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style API fill:#ede7f6,stroke:#512BD4,color:#000
+    style External fill:#f8d7da,stroke:#dc3545,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px

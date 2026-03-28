@@ -1,0 +1,63 @@
+graph TD
+    subgraph Frontend
+        NNewsApp["NNews App (React)"]
+        NNewsReact["nnews-react (NPM Package)"]
+    end
+    subgraph API["API"]
+        ArticleCtrl["Article Controller"]
+        CategoryCtrl["Category Controller"]
+        TagCtrl["Tag Controller"]
+        ImageCtrl["Image Controller"]
+        ArticleSvc["Article Service"]
+        ArticleAISvc["Article AI Service"]
+        CategorySvc["Category Service"]
+        TagSvc["Tag Service"]
+    end
+    subgraph External["External Services"]
+        NAuth["NAuth"]
+        zTools["zTools"]
+    end
+    DB[("PostgreSQL")]
+
+    NNewsApp --> NNewsReact
+    NNewsReact -->|"REST"| ArticleCtrl
+    NNewsReact -->|"REST"| CategoryCtrl
+    NNewsReact -->|"REST"| TagCtrl
+    NNewsReact -->|"Upload"| ImageCtrl
+
+    ArticleCtrl --> ArticleSvc
+    ArticleCtrl --> ArticleAISvc
+    CategoryCtrl --> CategorySvc
+    TagCtrl --> TagSvc
+
+    ArticleSvc -->|"CRUD"| DB
+    CategorySvc -->|"CRUD"| DB
+    TagSvc -->|"CRUD"| DB
+
+    ArticleCtrl -->|"Auth"| NAuth
+    ArticleAISvc -->|"ChatGPT & DALL-E"| zTools
+    ImageCtrl -->|"S3"| zTools
+    TagSvc -->|"Slug"| zTools
+
+    click NAuth mermaidCallback "NAuth"
+    click zTools mermaidCallback "zTools"
+
+    style NNewsApp fill:#2980b9,stroke:#1a5276,color:#fff
+    style NNewsReact fill:#c0392b,stroke:#96281B,color:#fff
+    style ArticleCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style CategoryCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style TagCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style ImageCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style ArticleSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style ArticleAISvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style CategorySvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style TagSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style NAuth fill:#28a745,stroke:#1e7e34,color:#fff
+    style zTools fill:#28a745,stroke:#1e7e34,color:#fff
+    style DB fill:#336791,stroke:#264d6e,color:#fff
+
+    style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
+    style API fill:#ede7f6,stroke:#512BD4,color:#000
+    style External fill:#f8d7da,stroke:#dc3545,color:#000
+
+    linkStyle default stroke:#999,stroke-width:2px
