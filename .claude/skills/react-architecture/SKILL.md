@@ -1,5 +1,5 @@
 ---
-name: react-arch
+name: react-architecture
 description: Create the complete frontend architecture for a new entity in the React application. Generates TypeScript types, service class, context provider, custom hook, and registers the provider in main.tsx. Use this skill when the user asks to create a new entity, feature module, or domain area in the frontend.
 ---
 
