@@ -1,49 +1,61 @@
 graph TD
     subgraph Frontend
-        FrontendApp["Frontend React"]
+        MonexUpApp["MonexUp App (React)"]
         Mobile["Capacitor Mobile"]
+        MonexUpReact["monexup-react (NPM Package)"]
     end
-    subgraph API["API Layer"]
+    subgraph API["API"]
         APIServer["MonexUp API (.NET 8)"]
         FinancialCtrl["Financial Controller"]
+        NetworkCtrl["Network Controller"]
         MLMEngine["MLM Engine"]
-        CryptoSvc["₿ Crypto Service"]
+        CryptoSvc["Crypto Service"]
     end
-    subgraph External
-        Web3["Web3 Integration"]
+    subgraph External["External Services"]
+        NAuth["NAuth"]
+        Lofn["Lofn"]
+        ProxyPay["ProxyPay"]
+        zTools["zTools"]
     end
-    DB[(" PostgreSQL")]
+    DB[("PostgreSQL")]
 
-    FrontendApp -->|"REST"| APIServer
-    Mobile -->|"REST"| APIServer
+    MonexUpApp --> MonexUpReact
+    Mobile --> MonexUpReact
+    MonexUpReact -->|"REST"| APIServer
     APIServer --> FinancialCtrl
+    APIServer --> NetworkCtrl
     APIServer --> MLMEngine
     APIServer --> CryptoSvc
-    CryptoSvc -->|"Blockchain"| Web3
     FinancialCtrl -->|"CRUD"| DB
-    MLMEngine -->|"Network"| DB
+    NetworkCtrl -->|"Network"| DB
+    MLMEngine -->|"Commissions"| DB
     CryptoSvc -->|"Wallets"| DB
+    APIServer -->|"Auth"| NAuth
+    APIServer -->|"Store"| Lofn
+    APIServer -->|"Payment"| ProxyPay
+    CryptoSvc -->|"S3"| zTools
 
-    click FrontendApp mermaidCallback "Frontend"
-    click Mobile mermaidCallback "Mobile"
-    click APIServer mermaidCallback "API"
-    click FinancialCtrl mermaidCallback "FinancialCtrl"
-    click MLMEngine mermaidCallback "MLMEngine"
-    click CryptoSvc mermaidCallback "CryptoSvc"
-    click Web3 mermaidCallback "Web3"
-    click DB mermaidCallback "DB"
+    click NAuth mermaidCallback "NAuth"
+    click Lofn mermaidCallback "Lofn"
+    click ProxyPay mermaidCallback "ProxyPay"
+    click zTools mermaidCallback "zTools"
 
-    style FrontendApp fill:#61DAFB,stroke:#21a1c9,color:#000
+    style MonexUpApp fill:#2980b9,stroke:#1a5276,color:#fff
     style Mobile fill:#e74c3c,stroke:#c0392b,color:#fff
+    style MonexUpReact fill:#c0392b,stroke:#96281B,color:#fff
     style APIServer fill:#512BD4,stroke:#3a1d9e,color:#fff
     style FinancialCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
-    style MLMEngine fill:#f7b731,stroke:#d4991a,color:#000
-    style CryptoSvc fill:#f7931a,stroke:#c77415,color:#fff
-    style Web3 fill:#f7931a,stroke:#c77415,color:#fff
+    style NetworkCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style MLMEngine fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style CryptoSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style NAuth fill:#28a745,stroke:#1e7e34,color:#fff
+    style Lofn fill:#28a745,stroke:#1e7e34,color:#fff
+    style ProxyPay fill:#28a745,stroke:#1e7e34,color:#fff
+    style zTools fill:#28a745,stroke:#1e7e34,color:#fff
     style DB fill:#336791,stroke:#264d6e,color:#fff
 
     style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
     style API fill:#ede7f6,stroke:#512BD4,color:#000
-    style External fill:#fff8e1,stroke:#f7b731,color:#000
+    style External fill:#f8d7da,stroke:#dc3545,color:#000
 
     linkStyle default stroke:#999,stroke-width:2px

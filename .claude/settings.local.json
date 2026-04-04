@@ -3,7 +3,9 @@
     "allow": [
       "Bash(npm run:*)",
       "Bash(git remote:*)",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "Bash(powershell:*)",
+      "Bash(ls C:/repos/emagine-deploy/emagine-site/src/data/diagrams/*.mmd)"
     ]
   }
 }

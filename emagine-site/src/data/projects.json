@@ -866,6 +866,15 @@
         "status": "active"
       },
       {
+        "id": "NoteList",
+        "label": "Note List",
+        "description": "Lista de notas com busca e filtros.",
+        "technologies": [
+          ".NET MAUI"
+        ],
+        "status": "active"
+      },
+      {
         "id": "SQLite",
         "label": "SQLite",
         "description": "Banco local para armazenamento das notas.",
@@ -993,6 +1002,15 @@
         "id": "BoardCtrl",
         "label": "Board Controller",
         "description": "CRUD de boards e cards do kanban.",
+        "technologies": [
+          ".NET Core"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "CardCtrl",
+        "label": "Card Controller",
+        "description": "CRUD de cards individuais com prioridade e status.",
         "technologies": [
           ".NET Core"
         ],
@@ -1155,6 +1173,15 @@
         "id": "FinancialCtrl",
         "label": "Financial Controller",
         "description": "Gerenciamento de transações e relatórios financeiros.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "NetworkCtrl",
+        "label": "Network Controller",
+        "description": "Gerenciamento da rede de afiliados e estrutura multinível.",
         "technologies": [
           ".NET 8"
         ],
@@ -1360,12 +1387,48 @@
         "status": "planned"
       },
       {
+        "id": "GameLogic",
+        "label": "Game Logic",
+        "description": "Motor de lógica do jogo com mecânicas táticas.",
+        "technologies": [
+          ".NET Core"
+        ],
+        "status": "planned"
+      },
+      {
+        "id": "MatchMaker",
+        "label": "Match Maker",
+        "description": "Sistema de matchmaking para partidas entre jogadores.",
+        "technologies": [
+          ".NET Core"
+        ],
+        "status": "planned"
+      },
+      {
         "id": "NFTSvc",
         "label": "NFT Service",
         "description": "Gerenciamento de NFTs e smart contracts.",
         "technologies": [
           "Solidity",
           "Ethereum"
+        ],
+        "status": "planned"
+      },
+      {
+        "id": "Solidity",
+        "label": "Solidity Contracts",
+        "description": "Smart contracts para NFTs e economia do jogo.",
+        "technologies": [
+          "Solidity"
+        ],
+        "status": "planned"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL",
+        "description": "Banco com dados de jogadores, partidas e inventário.",
+        "technologies": [
+          "PostgreSQL"
         ],
         "status": "planned"
       }
@@ -1409,6 +1472,24 @@
         "status": "active"
       },
       {
+        "id": "SwapCtrl",
+        "label": "Swap Controller",
+        "description": "Endpoints REST para criar e gerenciar trocas P2P.",
+        "technologies": [
+          ".NET Core"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "OrderCtrl",
+        "label": "Order Controller",
+        "description": "Endpoints REST para ordens de compra e venda.",
+        "technologies": [
+          ".NET Core"
+        ],
+        "status": "active"
+      },
+      {
         "id": "SwapEngine",
         "label": "Swap Engine",
         "description": "Motor de trocas descentralizadas.",
@@ -1438,11 +1519,29 @@
         "status": "active"
       },
       {
+        "id": "Solidity",
+        "label": "Solidity Contracts",
+        "description": "Smart contracts para trocas descentralizadas.",
+        "technologies": [
+          "Solidity"
+        ],
+        "status": "active"
+      },
+      {
         "id": "Tor",
         "label": "Tor Network",
         "description": "Camada de privacidade via rede Tor.",
         "technologies": [
           "Tor"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL",
+        "description": "Banco com ordens, swaps e histórico de transações.",
+        "technologies": [
+          "PostgreSQL"
         ],
         "status": "active"
       }
@@ -1473,9 +1572,36 @@
         "status": "deprecated"
       },
       {
+        "id": "TokenCtrl",
+        "label": "Token Controller",
+        "description": "Endpoints REST para gerenciamento de tokens de ativos.",
+        "technologies": [
+          ".NET Core"
+        ],
+        "status": "deprecated"
+      },
+      {
+        "id": "AssetCtrl",
+        "label": "Asset Controller",
+        "description": "Endpoints REST para gerenciamento de ativos da B3.",
+        "technologies": [
+          ".NET Core"
+        ],
+        "status": "deprecated"
+      },
+      {
         "id": "TokenSvc",
         "label": "Tokenization Service",
         "description": "Serviço de tokenização de ativos da B3.",
+        "technologies": [
+          "Blockchain"
+        ],
+        "status": "deprecated"
+      },
+      {
+        "id": "Blockchain",
+        "label": "Blockchain",
+        "description": "Rede blockchain para registro de tokens.",
         "technologies": [
           "Blockchain"
         ],
@@ -1487,6 +1613,24 @@
         "description": "Armazenamento descentralizado de metadados.",
         "technologies": [
           "IPFS"
+        ],
+        "status": "deprecated"
+      },
+      {
+        "id": "B3",
+        "label": "B3 Stock Exchange",
+        "description": "Bolsa de valores B3 como fonte de ativos.",
+        "technologies": [
+          "B3 API"
+        ],
+        "status": "deprecated"
+      },
+      {
+        "id": "DB",
+        "label": "PostgreSQL",
+        "description": "Banco de dados com tokens e ativos.",
+        "technologies": [
+          "PostgreSQL"
         ],
         "status": "deprecated"
       }
@@ -1516,6 +1660,25 @@
         "technologies": [
           ".NET 8",
           "CLI"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "RepoFetcher",
+        "label": "Repo Fetcher",
+        "description": "Módulo que busca e filtra repositórios do GitHub.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "ArticleGen",
+        "label": "Article Generator",
+        "description": "Gerador de artigos a partir de dados de repositórios.",
+        "technologies": [
+          ".NET 8",
+          "OpenAI"
         ],
         "status": "active"
       },
@@ -1587,9 +1750,27 @@
         "status": "active"
       },
       {
+        "id": "FileReader",
+        "label": "File Reader",
+        "description": "Leitor de arquivos de código-fonte com detecção de linguagem.",
+        "technologies": [
+          ".NET 9"
+        ],
+        "status": "active"
+      },
+      {
         "id": "Parser",
         "label": "Source Code Parser",
         "description": "Parser que tokeniza código-fonte para renderização.",
+        "technologies": [
+          ".NET 9"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Tokenizer",
+        "label": "Syntax Tokenizer",
+        "description": "Tokenizador de sintaxe com suporte a múltiplas linguagens.",
         "technologies": [
           ".NET 9"
         ],
@@ -1610,6 +1791,15 @@
         "description": "Motor de temas para estilização do código.",
         "technologies": [
           ".NET 9"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "PNG",
+        "label": "PNG Output",
+        "description": "Arquivo de imagem PNG gerado como saída.",
+        "technologies": [
+          "SkiaSharp"
         ],
         "status": "active"
       }
@@ -1681,6 +1871,24 @@
           "XAML"
         ],
         "status": "active"
+      },
+      {
+        "id": "Overlay",
+        "label": "Overlay Window",
+        "description": "Janela overlay transparente para exibir respostas sobre outras aplicações.",
+        "technologies": [
+          "WPF"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "ContextManager",
+        "label": "Context Manager",
+        "description": "Gerenciador de contexto que mantém histórico da conversa para prompts.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active"
       }
     ]
   },
@@ -1725,6 +1933,24 @@
         "description": "Parser que extrai dados de vagas do LinkedIn.",
         "technologies": [
           ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "ResumeAnalyzer",
+        "label": "Resume Analyzer",
+        "description": "Analisador de currículo para matching com vagas.",
+        "technologies": [
+          ".NET 8"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "LinkedIn",
+        "label": "LinkedIn",
+        "description": "Plataforma LinkedIn como fonte de vagas e destino de candidaturas.",
+        "technologies": [
+          "Web"
         ],
         "status": "active"
       },
@@ -1778,6 +2004,15 @@
         "id": "FileManager",
         "label": "File Manager",
         "description": "Gerenciador de arquivos com navegação e seleção.",
+        "technologies": [
+          ".NET MAUI"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "FileBrowser",
+        "label": "File Browser",
+        "description": "Navegador de arquivos para seleção de itens a criptografar.",
         "technologies": [
           ".NET MAUI"
         ],
@@ -1863,11 +2098,29 @@
         "status": "active"
       },
       {
+        "id": "RiskManager",
+        "label": "Risk Manager",
+        "description": "Gerenciador de risco com limites de exposição e drawdown.",
+        "technologies": [
+          "MQL5"
+        ],
+        "status": "active"
+      },
+      {
         "id": "OrderManager",
         "label": "Order Manager",
         "description": "Gerenciador de ordens com stop loss, take profit e trailing.",
         "technologies": [
           "MQL5"
+        ],
+        "status": "active"
+      },
+      {
+        "id": "Market",
+        "label": "Real-Time Ticks/Candles",
+        "description": "Dados de mercado em tempo real recebidos pelo MetaTrader.",
+        "technologies": [
+          "MetaTrader 5"
         ],
         "status": "active"
       }

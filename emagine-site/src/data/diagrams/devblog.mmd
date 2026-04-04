@@ -1,23 +1,25 @@
 graph TD
     subgraph App["DevBlog (React 19)"]
-        NAuthReact["nauth-react"]
-        NNewsReact["nnews-react"]
+        DevBlogApp["DevBlog App"]
+        NAuthReact["nauth-react (NPM Package)"]
+        NNewsReact["nnews-react (NPM Package)"]
     end
     subgraph External["External APIs"]
         NAuthAPI["NAuth API"]
         NNewsAPI["NNews API"]
     end
 
+    DevBlogApp --> NAuthReact
+    DevBlogApp --> NNewsReact
     NAuthReact -->|"Auth"| NAuthAPI
     NNewsReact -->|"Articles"| NNewsAPI
 
-    click NAuthReact mermaidCallback "NAuthReact"
-    click NNewsReact mermaidCallback "NNewsReact"
-    click NAuthAPI mermaidCallback "NAuthAPI"
-    click NNewsAPI mermaidCallback "NNewsAPI"
+    click NAuthAPI mermaidCallback "NAuth"
+    click NNewsAPI mermaidCallback "NNews"
 
-    style NAuthReact fill:#61DAFB,stroke:#21a1c9,color:#000
-    style NNewsReact fill:#61DAFB,stroke:#21a1c9,color:#000
+    style DevBlogApp fill:#2980b9,stroke:#1a5276,color:#fff
+    style NAuthReact fill:#c0392b,stroke:#96281B,color:#fff
+    style NNewsReact fill:#c0392b,stroke:#96281B,color:#fff
     style NAuthAPI fill:#28a745,stroke:#1e7e34,color:#fff
     style NNewsAPI fill:#28a745,stroke:#1e7e34,color:#fff
 

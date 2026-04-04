@@ -1,44 +1,46 @@
 graph TD
     subgraph Frontend
-        FrontendApp["Frontend"]
+        FrontendApp["NoChainSwap App (React)"]
     end
-    subgraph API["API Layer"]
+    subgraph API["API"]
         APIServer["NoChainSwap API (.NET Core)"]
+        SwapCtrl["Swap Controller"]
+        OrderCtrl["Order Controller"]
         SwapEngine["Swap Engine"]
     end
     subgraph Blockchain["Blockchain Services"]
-        BTCSvc["₿ Bitcoin Service"]
-        ETHSvc["⟠ Ethereum Service"]
+        BTCSvc["Bitcoin Service"]
+        ETHSvc["Ethereum Service"]
         Solidity["Solidity Contracts"]
     end
-    subgraph Privacy
+    subgraph Privacy["Privacy Layer"]
         Tor["Tor Network"]
     end
+    DB[("PostgreSQL")]
 
     FrontendApp -->|"REST"| APIServer
+    APIServer --> SwapCtrl
+    APIServer --> OrderCtrl
     APIServer --> SwapEngine
     SwapEngine --> BTCSvc
     SwapEngine --> ETHSvc
     ETHSvc -->|"Contracts"| Solidity
-    BTCSvc -->|"Transactions"| Blockchain
-    ETHSvc -->|"Transactions"| Blockchain
+    BTCSvc -->|"Transactions"| DB
+    ETHSvc -->|"Transactions"| DB
+    SwapCtrl -->|"CRUD"| DB
+    OrderCtrl -->|"CRUD"| DB
     APIServer -->|"Privacy"| Tor
 
-    click FrontendApp mermaidCallback "Frontend"
-    click APIServer mermaidCallback "API"
-    click SwapEngine mermaidCallback "SwapEngine"
-    click BTCSvc mermaidCallback "BTCSvc"
-    click ETHSvc mermaidCallback "ETHSvc"
-    click Solidity mermaidCallback "Solidity"
-    click Tor mermaidCallback "Tor"
-
-    style FrontendApp fill:#61DAFB,stroke:#21a1c9,color:#000
+    style FrontendApp fill:#2980b9,stroke:#1a5276,color:#fff
     style APIServer fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style SwapCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style OrderCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
     style SwapEngine fill:#512BD4,stroke:#3a1d9e,color:#fff
     style BTCSvc fill:#f7931a,stroke:#c77415,color:#fff
     style ETHSvc fill:#627EEA,stroke:#4a64c0,color:#fff
     style Solidity fill:#363636,stroke:#1a1a1a,color:#fff
     style Tor fill:#7D4698,stroke:#5f3573,color:#fff
+    style DB fill:#336791,stroke:#264d6e,color:#fff
 
     style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
     style API fill:#ede7f6,stroke:#512BD4,color:#000

@@ -1,26 +1,24 @@
 graph TD
     subgraph App["KryptoDrive (.NET MAUI)"]
         FileManager["File Manager"]
+        FileBrowser["File Browser"]
     end
     subgraph Encryption["Encryption Layer"]
         PBKDF2["PBKDF2 Key Derivation"]
         AES["AES-256 Encryption"]
     end
-    subgraph Cloud
+    subgraph Cloud["Cloud Storage"]
         GDrive["Google Drive"]
     end
 
+    FileBrowser -->|"Select"| FileManager
     FileManager -->|"Passphrase"| PBKDF2
     PBKDF2 -->|"Key"| AES
     FileManager -->|"Encrypt/Decrypt"| AES
     AES -->|"Sync"| GDrive
 
-    click FileManager mermaidCallback "FileManager"
-    click PBKDF2 mermaidCallback "PBKDF2"
-    click AES mermaidCallback "AES"
-    click GDrive mermaidCallback "GDrive"
-
     style FileManager fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style FileBrowser fill:#512BD4,stroke:#3a1d9e,color:#fff
     style PBKDF2 fill:#f7b731,stroke:#d4991a,color:#000
     style AES fill:#f7b731,stroke:#d4991a,color:#000
     style GDrive fill:#4285F4,stroke:#3367d6,color:#fff
