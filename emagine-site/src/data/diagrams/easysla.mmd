@@ -1,42 +1,50 @@
 graph TD
     subgraph Frontend
-        FrontendApp["Frontend React"]
-        Kanban["Kanban Board"]
+        EasySLAApp["EasySLA App (React)"]
+        EasySLAReact["easysla-react (NPM Package)"]
     end
-    subgraph API["API Layer"]
-        APIServer["Easy SLA API (.NET Core)"]
+    subgraph API["API"]
+        APIServer["EasySLA API (.NET 8)"]
         BoardCtrl["Board Controller"]
+        CardCtrl["Card Controller"]
         SLAEngine["SLA Engine"]
         ClientPortal["Client Portal"]
     end
-    DB[(" PostgreSQL")]
+    subgraph External["External Services"]
+        NAuth["NAuth"]
+        zTools["zTools"]
+    end
+    DB[("PostgreSQL")]
 
-    FrontendApp --> Kanban
-    FrontendApp -->|"REST"| APIServer
+    EasySLAApp --> EasySLAReact
+    EasySLAReact -->|"REST"| APIServer
     APIServer --> BoardCtrl
+    APIServer --> CardCtrl
     APIServer --> SLAEngine
     APIServer --> ClientPortal
     BoardCtrl -->|"CRUD"| DB
+    CardCtrl -->|"CRUD"| DB
     SLAEngine -->|"Track"| DB
     ClientPortal -->|"Interact"| DB
+    APIServer -->|"Auth"| NAuth
+    SLAEngine -->|"Email"| zTools
 
-    click FrontendApp mermaidCallback "Frontend"
-    click Kanban mermaidCallback "Kanban"
-    click APIServer mermaidCallback "API"
-    click BoardCtrl mermaidCallback "BoardCtrl"
-    click SLAEngine mermaidCallback "SLAEngine"
-    click ClientPortal mermaidCallback "ClientPortal"
-    click DB mermaidCallback "DB"
+    click NAuth mermaidCallback "NAuth"
+    click zTools mermaidCallback "zTools"
 
-    style FrontendApp fill:#61DAFB,stroke:#21a1c9,color:#000
-    style Kanban fill:#61DAFB,stroke:#21a1c9,color:#000
+    style EasySLAApp fill:#2980b9,stroke:#1a5276,color:#fff
+    style EasySLAReact fill:#c0392b,stroke:#96281B,color:#fff
     style APIServer fill:#512BD4,stroke:#3a1d9e,color:#fff
     style BoardCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
-    style SLAEngine fill:#f7b731,stroke:#d4991a,color:#000
+    style CardCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style SLAEngine fill:#512BD4,stroke:#3a1d9e,color:#fff
     style ClientPortal fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style NAuth fill:#28a745,stroke:#1e7e34,color:#fff
+    style zTools fill:#28a745,stroke:#1e7e34,color:#fff
     style DB fill:#336791,stroke:#264d6e,color:#fff
 
     style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
     style API fill:#ede7f6,stroke:#512BD4,color:#000
+    style External fill:#f8d7da,stroke:#dc3545,color:#000
 
     linkStyle default stroke:#999,stroke-width:2px

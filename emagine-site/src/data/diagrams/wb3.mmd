@@ -1,35 +1,43 @@
 graph TD
     subgraph Frontend
-        FrontendApp["Frontend React"]
+        FrontendApp["WB3 App (React)"]
     end
-    subgraph Services
+    subgraph API["API Layer"]
+        APIServer["WB3 API (.NET Core)"]
+        TokenCtrl["Token Controller"]
+        AssetCtrl["Asset Controller"]
         TokenSvc["Tokenization Service"]
     end
-    subgraph External
+    subgraph External["External Services"]
         Blockchain["Blockchain"]
         IPFS["IPFS Storage"]
         B3["B3 Stock Exchange"]
     end
+    DB[("PostgreSQL")]
 
-    FrontendApp -->|"Interact"| TokenSvc
+    FrontendApp -->|"REST"| APIServer
+    APIServer --> TokenCtrl
+    APIServer --> AssetCtrl
+    TokenCtrl --> TokenSvc
+    AssetCtrl --> TokenSvc
     TokenSvc -->|"Tokenize"| Blockchain
     TokenSvc -->|"Store"| IPFS
     TokenSvc -->|"Assets"| B3
+    TokenCtrl -->|"CRUD"| DB
+    AssetCtrl -->|"CRUD"| DB
 
-    click FrontendApp mermaidCallback "Frontend"
-    click TokenSvc mermaidCallback "TokenSvc"
-    click Blockchain mermaidCallback "Blockchain"
-    click IPFS mermaidCallback "IPFS"
-    click B3 mermaidCallback "B3"
-
-    style FrontendApp fill:#61DAFB,stroke:#21a1c9,color:#000
+    style FrontendApp fill:#2980b9,stroke:#1a5276,color:#fff
+    style APIServer fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style TokenCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style AssetCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
     style TokenSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
     style Blockchain fill:#f7931a,stroke:#c77415,color:#fff
     style IPFS fill:#65C2CB,stroke:#4da8b1,color:#000
     style B3 fill:#28a745,stroke:#1e7e34,color:#fff
+    style DB fill:#336791,stroke:#264d6e,color:#fff
 
     style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
-    style Services fill:#ede7f6,stroke:#512BD4,color:#000
+    style API fill:#ede7f6,stroke:#512BD4,color:#000
     style External fill:#d4edda,stroke:#28a745,color:#000
 
     linkStyle default stroke:#999,stroke-width:2px

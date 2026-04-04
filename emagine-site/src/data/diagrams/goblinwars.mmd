@@ -9,34 +9,32 @@ graph TD
     subgraph API["API Layer"]
         APIServer["Game API (.NET Core)"]
         GameLogic["Game Logic"]
+        MatchMaker["Match Maker"]
     end
     subgraph Blockchain["Blockchain Layer"]
         NFTSvc["NFT Service"]
         Solidity["Solidity Contracts"]
     end
+    DB[("PostgreSQL")]
 
     Unity -->|"3D Render"| PixiJS
     FrontendApp -->|"REST"| APIServer
     APIServer --> GameLogic
+    APIServer --> MatchMaker
     APIServer --> NFTSvc
     NFTSvc -->|"Smart Contracts"| Solidity
-    GameLogic -->|"State"| APIServer
-
-    click Unity mermaidCallback "Unity"
-    click PixiJS mermaidCallback "PixiJS"
-    click FrontendApp mermaidCallback "Frontend"
-    click APIServer mermaidCallback "API"
-    click GameLogic mermaidCallback "GameLogic"
-    click NFTSvc mermaidCallback "NFTSvc"
-    click Solidity mermaidCallback "Solidity"
+    GameLogic -->|"State"| DB
+    MatchMaker -->|"Queue"| DB
 
     style Unity fill:#000000,stroke:#333,color:#fff
     style PixiJS fill:#e91e63,stroke:#c2185b,color:#fff
-    style FrontendApp fill:#61DAFB,stroke:#21a1c9,color:#000
+    style FrontendApp fill:#2980b9,stroke:#1a5276,color:#fff
     style APIServer fill:#512BD4,stroke:#3a1d9e,color:#fff
     style GameLogic fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style MatchMaker fill:#512BD4,stroke:#3a1d9e,color:#fff
     style NFTSvc fill:#f7931a,stroke:#c77415,color:#fff
     style Solidity fill:#363636,stroke:#1a1a1a,color:#fff
+    style DB fill:#336791,stroke:#264d6e,color:#fff
 
     style Engine fill:#f8d7da,stroke:#dc3545,color:#000
     style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000

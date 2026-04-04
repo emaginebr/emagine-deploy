@@ -1,8 +1,9 @@
 graph TD
     subgraph App["Abipesca (React 19)"]
-        NAuthReact["nauth-react"]
-        NNewsReact["nnews-react"]
-        BazzucaReact["bazzuca-react"]
+        AbipescaApp["Abipesca App"]
+        NAuthReact["nauth-react (NPM Package)"]
+        NNewsReact["nnews-react (NPM Package)"]
+        BazzucaReact["bazzuca-react (NPM Package)"]
     end
     subgraph External["External APIs"]
         NAuthAPI["NAuth API"]
@@ -10,20 +11,21 @@ graph TD
         BazzucaAPI["BazzucaMedia API"]
     end
 
+    AbipescaApp --> NAuthReact
+    AbipescaApp --> NNewsReact
+    AbipescaApp --> BazzucaReact
     NAuthReact -->|"Auth"| NAuthAPI
     NNewsReact -->|"CMS"| NNewsAPI
-    BazzucaReact -->|"Social"| BazzucaAPI
+    BazzucaReact -->|"Push Notification"| BazzucaAPI
 
-    click NAuthReact mermaidCallback "NAuthReact"
-    click NNewsReact mermaidCallback "NNewsReact"
-    click BazzucaReact mermaidCallback "BazzucaReact"
-    click NAuthAPI mermaidCallback "NAuthAPI"
-    click NNewsAPI mermaidCallback "NNewsAPI"
-    click BazzucaAPI mermaidCallback "BazzucaAPI"
+    click NAuthAPI mermaidCallback "NAuth"
+    click NNewsAPI mermaidCallback "NNews"
+    click BazzucaAPI mermaidCallback "BazzucaMedia"
 
-    style NAuthReact fill:#61DAFB,stroke:#21a1c9,color:#000
-    style NNewsReact fill:#61DAFB,stroke:#21a1c9,color:#000
-    style BazzucaReact fill:#61DAFB,stroke:#21a1c9,color:#000
+    style AbipescaApp fill:#2980b9,stroke:#1a5276,color:#fff
+    style NAuthReact fill:#c0392b,stroke:#96281B,color:#fff
+    style NNewsReact fill:#c0392b,stroke:#96281B,color:#fff
+    style BazzucaReact fill:#c0392b,stroke:#96281B,color:#fff
     style NAuthAPI fill:#28a745,stroke:#1e7e34,color:#fff
     style NNewsAPI fill:#28a745,stroke:#1e7e34,color:#fff
     style BazzucaAPI fill:#28a745,stroke:#1e7e34,color:#fff

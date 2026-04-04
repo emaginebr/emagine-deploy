@@ -1,45 +1,54 @@
 graph TD
     subgraph Frontend
-        FrontendApp["Frontend React"]
+        ViraltApp["Viralt App (React)"]
+        ViraltReact["viralt-react (NPM Package)"]
     end
-    subgraph API["API Layer"]
+    subgraph API["API"]
         APIServer["Viralt API (.NET 8)"]
         CampaignCtrl["Campaign Controller"]
         RaffleCtrl["Raffle Controller"]
-        GamificationSvc["Gamification Engine"]
+        GamificationSvc["Gamification Service"]
     end
-    subgraph External
-        SocialIntegration["Social Network Integration"]
+    subgraph External["External Services"]
+        NAuth["NAuth"]
+        ProxyPay["ProxyPay"]
+        BazzucaMedia["BazzucaMedia"]
+        zTools["zTools"]
     end
-    DB[(" PostgreSQL")]
+    DB[("PostgreSQL")]
 
-    FrontendApp -->|"REST"| APIServer
+    ViraltApp --> ViraltReact
+    ViraltReact -->|"REST"| APIServer
     APIServer --> CampaignCtrl
     APIServer --> RaffleCtrl
     APIServer --> GamificationSvc
-    CampaignCtrl -->|"Publish"| SocialIntegration
     CampaignCtrl -->|"CRUD"| DB
     RaffleCtrl -->|"CRUD"| DB
     GamificationSvc -->|"Points/Rewards"| DB
+    CampaignCtrl -->|"Publish"| BazzucaMedia
+    APIServer -->|"Auth"| NAuth
+    APIServer -->|"Payment"| ProxyPay
+    CampaignCtrl -->|"S3"| zTools
 
-    click FrontendApp mermaidCallback "Frontend"
-    click APIServer mermaidCallback "API"
-    click CampaignCtrl mermaidCallback "CampaignCtrl"
-    click RaffleCtrl mermaidCallback "RaffleCtrl"
-    click GamificationSvc mermaidCallback "GamificationSvc"
-    click SocialIntegration mermaidCallback "SocialIntegration"
-    click DB mermaidCallback "DB"
+    click NAuth mermaidCallback "NAuth"
+    click ProxyPay mermaidCallback "ProxyPay"
+    click BazzucaMedia mermaidCallback "BazzucaMedia"
+    click zTools mermaidCallback "zTools"
 
-    style FrontendApp fill:#61DAFB,stroke:#21a1c9,color:#000
+    style ViraltApp fill:#2980b9,stroke:#1a5276,color:#fff
+    style ViraltReact fill:#c0392b,stroke:#96281B,color:#fff
     style APIServer fill:#512BD4,stroke:#3a1d9e,color:#fff
     style CampaignCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
     style RaffleCtrl fill:#512BD4,stroke:#3a1d9e,color:#fff
-    style GamificationSvc fill:#f7b731,stroke:#d4991a,color:#000
-    style SocialIntegration fill:#1DA1F2,stroke:#1a91da,color:#fff
+    style GamificationSvc fill:#512BD4,stroke:#3a1d9e,color:#fff
+    style NAuth fill:#28a745,stroke:#1e7e34,color:#fff
+    style ProxyPay fill:#28a745,stroke:#1e7e34,color:#fff
+    style BazzucaMedia fill:#28a745,stroke:#1e7e34,color:#fff
+    style zTools fill:#28a745,stroke:#1e7e34,color:#fff
     style DB fill:#336791,stroke:#264d6e,color:#fff
 
     style Frontend fill:#e8f4fd,stroke:#61DAFB,color:#000
     style API fill:#ede7f6,stroke:#512BD4,color:#000
-    style External fill:#d4edda,stroke:#28a745,color:#000
+    style External fill:#f8d7da,stroke:#dc3545,color:#000
 
     linkStyle default stroke:#999,stroke-width:2px
