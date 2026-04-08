@@ -74,9 +74,29 @@ jobs:
             timeout 60 bash -c 'until docker inspect --format="{{.State.Health.Status}}" emagine-rabbitmq 2>/dev/null | grep -q healthy; do sleep 2; done'
             echo "RabbitMQ is healthy."
 
+  deploy-elasticsearch:
+    name: Deploy Elasticsearch
+    needs: [deploy-rabbitmq]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Elasticsearch
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.PROD_SSH_HOST }}
+          username: ${{ secrets.PROD_SSH_USER }}
+          password: ${{ secrets.PROD_SSH_PASSWORD }}
+          port: ${{ secrets.PROD_SSH_PORT || 22 }}
+          script: |
+            set -e
+            cd /opt/emagine-deploy
+            docker compose -f docker-compose-infra.yml up -d --force-recreate elasticsearch
+            echo "Waiting for Elasticsearch health check..."
+            timeout 120 bash -c 'until docker inspect --format="{{.State.Health.Status}}" emagine-elasticsearch 2>/dev/null | grep -q healthy; do sleep 2; done'
+            echo "Elasticsearch is healthy."
+
   deploy-node-exporter:
     name: Deploy Node Exporter
-    needs: [deploy-rabbitmq]
+    needs: [deploy-elasticsearch]
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Node Exporter
@@ -147,7 +167,7 @@ jobs:
             docker compose -f docker-compose-infra.yml ps
             echo ""
             echo "=== Container Health ==="
-            for container in emagine-rabbitmq prometheus grafana node-exporter; do
+            for container in emagine-rabbitmq emagine-elasticsearch prometheus grafana node-exporter; do
               status=$(docker inspect --format='{{.State.Status}}' "$container" 2>/dev/null || echo "not found")
               echo "$container: $status"
             done
@@ -161,6 +181,7 @@ jobs:
           echo "| RabbitMQ | 5672 (AMQP) / 15672 (Management) |" >> $GITHUB_STEP_SUMMARY
           echo "| Prometheus | 9090 |" >> $GITHUB_STEP_SUMMARY
           echo "| Grafana | 3000 |" >> $GITHUB_STEP_SUMMARY
+          echo "| Elasticsearch | 9200 |" >> $GITHUB_STEP_SUMMARY
           echo "| Node Exporter | 9100 |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- Server: \`${{ secrets.PROD_SSH_HOST }}\`" >> $GITHUB_STEP_SUMMARY
