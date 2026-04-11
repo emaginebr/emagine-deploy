@@ -16,7 +16,7 @@ Write-Host "=========================================================" -Foregrou
 & "$ScriptDir/build-bazzucamedia.ps1"
 & "$ScriptDir/build-proxypay.ps1"
 & "$ScriptDir/build-devblog.ps1"
-& "$ScriptDir/build-avachat.ps1"
+& "$ScriptDir/build-avabot.ps1"
 
 Write-Host "=========================================================" -ForegroundColor Green
 Write-Host "  All builds completed!" -ForegroundColor Green
