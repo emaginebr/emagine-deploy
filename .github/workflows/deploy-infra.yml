@@ -17,12 +17,13 @@ jobs:
         env:
           RABBITMQ_USER: ${{ secrets.RABBITMQ_USER }}
           RABBITMQ_PASSWORD: ${{ secrets.RABBITMQ_PASSWORD }}
+          WPP_SECRET_KEY: ${{ secrets.WPP_SECRET_KEY }}
         with:
           host: ${{ secrets.PROD_SSH_HOST }}
           username: ${{ secrets.PROD_SSH_USER }}
           password: ${{ secrets.PROD_SSH_PASSWORD }}
           port: ${{ secrets.PROD_SSH_PORT || 22 }}
-          envs: RABBITMQ_USER,RABBITMQ_PASSWORD
+          envs: RABBITMQ_USER,RABBITMQ_PASSWORD,WPP_SECRET_KEY
           script: |
             set -e
 
@@ -47,6 +48,7 @@ jobs:
             {
               echo "RABBITMQ_USER=$RABBITMQ_USER"
               echo "RABBITMQ_PASSWORD=$RABBITMQ_PASSWORD"
+              echo "WPP_SECRET_KEY=$WPP_SECRET_KEY"
             } > "$DEPLOY_DIR/.env"
 
   deploy-rabbitmq:
@@ -90,9 +92,27 @@ jobs:
             timeout 120 bash -c 'until docker inspect --format="{{.State.Health.Status}}" emagine-elasticsearch 2>/dev/null | grep -q healthy; do sleep 2; done'
             echo "Elasticsearch is healthy."
 
+  deploy-wppconnect:
+    name: Deploy WPP Connect
+    needs: [deploy-elasticsearch]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy WPP Connect
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.PROD_SSH_HOST }}
+          username: ${{ secrets.PROD_SSH_USER }}
+          password: ${{ secrets.PROD_SSH_PASSWORD }}
+          port: ${{ secrets.PROD_SSH_PORT || 22 }}
+          script: |
+            set -e
+            cd /opt/emagine-deploy
+            docker compose -f docker-compose-infra.yml up -d --force-recreate wppconnect
+            echo "WPP Connect is running."
+
   verify:
     name: Verify All Services
-    needs: [deploy-elasticsearch]
+    needs: [deploy-wppconnect]
     runs-on: ubuntu-latest
     steps:
       - name: Verify services
@@ -109,7 +129,7 @@ jobs:
             docker compose -f docker-compose-infra.yml ps
             echo ""
             echo "=== Container Health ==="
-            for container in emagine-rabbitmq emagine-elasticsearch; do
+            for container in emagine-rabbitmq emagine-elasticsearch wppconnect; do
               status=$(docker inspect --format='{{.State.Status}}' "$container" 2>/dev/null || echo "not found")
               echo "$container: $status"
             done
@@ -122,6 +142,7 @@ jobs:
           echo "|---------|------|" >> $GITHUB_STEP_SUMMARY
           echo "| RabbitMQ | 5672 (AMQP) / 15672 (Management) |" >> $GITHUB_STEP_SUMMARY
           echo "| Elasticsearch | 9200 |" >> $GITHUB_STEP_SUMMARY
+          echo "| WPP Connect | 21465 (internal) |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- Server: \`${{ secrets.PROD_SSH_HOST }}\`" >> $GITHUB_STEP_SUMMARY
           echo "- Triggered by: \`${{ github.actor }}\`" >> $GITHUB_STEP_SUMMARY
