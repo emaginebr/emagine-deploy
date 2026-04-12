@@ -42,7 +42,7 @@ services:
   wppconnect:
     image: wppconnect/server-cli:latest
     container_name: wppconnect
-    command: ["--secretKey", "${WPP_SECRET_KEY}", "--port", "21465"]
+    command: ["--secretKey", "${WPP_SECRET_KEY}", "--port", "21465", "--log", "silly"]
     expose:
       - "21465"
     volumes:
