@@ -40,9 +40,12 @@ services:
       - emagine-network
 
   wppconnect:
-    image: wppconnect/server-cli:latest
+    build:
+      context: .
+      dockerfile: wppconnect.Dockerfile
+    image: emagine/wppconnect:latest
     container_name: wppconnect
-    command: ["--secretKey", "${WPP_SECRET_KEY}", "--port", "21465", "--log-level", "silly"]
+    command: ["--secretKey", "${WPP_SECRET_KEY}", "--port", "21465"]
     expose:
       - "21465"
     volumes:
