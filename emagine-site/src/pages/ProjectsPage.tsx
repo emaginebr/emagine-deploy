@@ -2,7 +2,6 @@
 import Header from '@/components/Header';
 import Projects from '@/components/Projects';
 import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
 
 const ProjectsPage = () => {
   return (
@@ -12,7 +11,6 @@ const ProjectsPage = () => {
         <Projects />
       </div>
       <Footer />
-      <WhatsAppButton />
     </div>
   );
 };
