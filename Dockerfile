@@ -13,6 +13,7 @@ COPY builds/pandoravault /var/www/pandoravault.com/home
 COPY builds/bazzuca-media /var/www/bazzuca.media/home
 COPY builds/devblog /var/www/emagine.com.br/rodrigolandim
 COPY builds/avabot /var/www/avabot.net/home
+COPY builds/proxypay /var/www/proxypay.online/home
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 

@@ -1,4 +1,4 @@
-﻿# CLAUDE.md
+# CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
@@ -20,7 +20,7 @@ emagine-deploy/
 └── nginx.conf       # Virtual host config for all 8 domains
 ```
 
-**Hosted domains:** emagine.com.br, easysla.com, goblinwars.net, monexup.com, slaproyale.com, nochainswap.org, pandoravault.com, bazzuca.media
+**Hosted domains:** emagine.com.br, easysla.com, goblinwars.net, monexup.com, slaproyale.com, nochainswap.org, pandoravault.com, bazzuca.media, avabot.net, proxypay.online
 
 All other projects (EasySLA, NAuth, NoChainSwap, etc.) live in sibling repositories. The build scripts pull, build, and copy their outputs into `builds/`.
 
