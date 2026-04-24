@@ -20,7 +20,7 @@ emagine-deploy/
 └── nginx.conf       # Virtual host config for all 8 domains
 ```
 
-**Hosted domains:** emagine.com.br, easysla.com, goblinwars.net, monexup.com, slaproyale.com, nochainswap.org, pandoravault.com, bazzuca.media, avabot.net, proxypay.online
+**Hosted domains:** emagine.com.br, easysla.com, goblinwars.net, monexup.com, slaproyale.com, nochainswap.org, pandoravault.com, bazzuca.media, avabot.net, proxypay.online, fortuno.online
 
 All other projects (EasySLA, NAuth, NoChainSwap, etc.) live in sibling repositories. The build scripts pull, build, and copy their outputs into `builds/`.
 
@@ -46,6 +46,7 @@ npm run preview  # Preview production build
 ./scripts/build-bazzucamedia.ps1  # Pulls from ../BazzucaMedia
 ./scripts/build-slaproyale.ps1    # Pulls from ../SlapRoyale
 ./scripts/build-monexup.ps1       # Pulls from ../MonexUp
+./scripts/build-fortuno.ps1       # Pulls from ../Fortuno/fortuno-app
 ./scripts/build-all.ps1           # Runs all of the above
 ```
 
