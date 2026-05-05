@@ -21,7 +21,8 @@ services:
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.17.0
-    container_name: emagine-elasticsearch
+    container_name: elasticsearch
+    restart: unless-stopped
     ports:
       - "9200:9200"
     environment:
@@ -51,8 +52,28 @@ services:
     volumes:
       - wpp_tokens:/usr/src/wpp-server/tokens
     restart: unless-stopped
+    labels:
+      - "autoheal=true"
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:21465/api-docs/', (r) => process.exit(r.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
     networks:
       - emagine-network
+
+  autoheal:
+    image: willfarrell/autoheal:latest
+    container_name: autoheal
+    restart: unless-stopped
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=autoheal
+      - AUTOHEAL_INTERVAL=30
+      - AUTOHEAL_START_PERIOD=60
+      - DOCKER_SOCK=/var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   rabbitmq_data:
