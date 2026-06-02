@@ -58,6 +58,21 @@ jobs:
           sleep 10
           docker compose ps
 
+          # Aplica restricoes Cloudflare em 80/443 (idempotente; cobre IPv4 e IPv6).
+          # O script faz guard da regra SSH (22/tcp), valida o download das faixas
+          # antes de tocar no firewall e sai com aviso (exit 0) se o hook do
+          # ufw-docker ainda nao tiver sido instalado — nesse caso o deploy nao
+          # eh interrompido. Bootstrap do hook eh manual:
+          # docs/CF_FIREWALL.md.
+          if [ -f scripts/cf-firewall-docker.sh ]; then
+            echo "Applying Cloudflare firewall rules..."
+            bash scripts/cf-firewall-docker.sh || {
+              echo "WARN: cf-firewall-docker.sh falhou (exit $?). Deploy segue."
+            }
+          else
+            echo "WARN: scripts/cf-firewall-docker.sh ausente — pulando."
+          fi
+
           echo "Deployment completed successfully."
 
     - name: Summary

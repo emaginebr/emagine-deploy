@@ -23,6 +23,7 @@ SSL certificates are stored externally in a separate `emagine-secrets` repositor
 - 🔒 **SSL/TLS Termination** - Per-domain SSL certificates with automatic HTTP→HTTPS redirect
 - 🐳 **Single-Container Deployment** - All sites bundled into one lightweight Nginx Alpine image
 - 🔄 **Automated Build Pipelines** - PowerShell scripts to build each project independently or all at once
+- 🛡️ **Cloudflare Origin Protection** - 80/443 restricted to Cloudflare IP ranges via `ufw-docker` + `ufw route` (applied automatically on every deploy)
 - 📦 **SPA Routing** - All server blocks use `try_files` for single-page application support
 - 🔀 **Reverse Proxy** - API routing for NAuth, NNews, and Bazzuca backend services
 - 🏷️ **Semantic Versioning** - GitVersion-based automatic tagging and release creation
@@ -345,6 +346,94 @@ Build outputs are always placed in the `builds/` directory.
 - **SPA fallback** - All routes fall back to `index.html` for client-side routing
 - **CORS headers** - Configured for API proxy locations with preflight support
 
+### Cloudflare Origin (proxied)
+- **Origin certificates** - All domains use Cloudflare Origin Certificates (`*.pem`) — only the Cloudflare edge can validate them, hiding the real cert chain
+- **Real-client IP** - Each server block restores the visitor IP from `CF-Connecting-IP` via `set_real_ip_from` (Cloudflare IPv4 + IPv6 ranges), so backend services see the real address in `X-Real-IP`/`X-Forwarded-For`
+
+---
+
+## 🛡️ Cloudflare Firewall (80/443 origin protection)
+
+Once domains sit behind the Cloudflare proxy (orange cloud), ports **80** and **443** on the origin should accept connections **only** from Cloudflare's IP ranges. This hides the origin from direct scans, drive-by exploits and DDoS attempts that bypass Cloudflare by hitting the IP directly.
+
+### Why a dedicated script (and not just `ufw allow`)
+
+`ufw` does **not** filter traffic destined to Docker-published ports — Docker installs its own DNAT rules in the `DOCKER` chain that bypass `ufw`'s `INPUT` chain. The correct filter point is the **`DOCKER-USER`** chain, reached via:
+
+1. the hook from [`chaifeng/ufw-docker`](https://github.com/chaifeng/ufw-docker) installed in `/etc/ufw/after.rules`, plus
+2. rules added with `ufw route allow proto tcp from <cidr> to any port 80,443` (not `ufw allow`).
+
+Two scripts in `scripts/` encapsulate this:
+
+| Script | Purpose | When it runs |
+|--------|---------|--------------|
+| [`scripts/cf-firewall-bootstrap.sh`](scripts/cf-firewall-bootstrap.sh) | Installs the `ufw-docker` hook + `systemctl restart ufw` | **Manual**, one-off (or after Docker networks change) |
+| [`scripts/cf-firewall-docker.sh`](scripts/cf-firewall-docker.sh) | Downloads Cloudflare ranges and rewrites `ufw route allow` rules tagged `cf-proxy` (idempotent, IPv4 + IPv6) | **Automatic** on every `deploy-prod.yml`, optional weekly cron |
+
+### Implementation process
+
+#### Step 1 — Prerequisite (one-off, in Cloudflare dashboard)
+
+For each domain in [`nginx.conf`](nginx.conf):
+- DNS record set to **proxied** (orange cloud)
+- SSL/TLS encryption mode: **Full (strict)**
+- Origin certificate (`*.pem`) placed in `/root/emagine-secrets/SSL/` on the server
+
+The current `nginx.conf` already assumes these are in place for all 9 hosted domains.
+
+#### Step 2 — Bootstrap (manual, one-off per server)
+
+The bootstrap reboots `ufw`, creating a few seconds of blocked 80/443. By design it never runs from CI. SSH into the server and run:
+
+```bash
+cd /opt/emagine-deploy
+git pull
+
+# Install the ufw-docker hook + restart ufw (brief 80/443 blip)
+sudo CF_FW_BOOTSTRAP=1 bash scripts/cf-firewall-bootstrap.sh
+
+# Apply Cloudflare ranges immediately afterward
+sudo bash scripts/cf-firewall-docker.sh
+```
+
+Re-run **both** commands whenever Docker networks are created or removed on the host — the `ufw-docker install` regenerates `after.rules` based on the networks present at run time.
+
+#### Step 3 — Apply (automatic, on every deploy)
+
+`deploy-prod.yml` calls `scripts/cf-firewall-docker.sh` right after `docker compose up -d`. The script:
+
+- **Aborts** if the SSH rule (`22/tcp`) is missing — anti-lockout guard before any change.
+- **Aborts** if the Cloudflare IP lists fail to download or come back malformed — fail-safe so 80/443 are never accidentally opened to the world or left without protection.
+- **Does not fail the deploy** if the `ufw-docker` hook is absent — it logs a warning and exits 0, so deploys keep working until the bootstrap is run.
+- Regenerates rules tagged `cf-proxy` (IPv4 + IPv6, both ports) — no duplicates across reruns.
+
+#### Optional — weekly cron as a safety net
+
+Cloudflare ranges change rarely, but a cron captures updates between deploys. On the server:
+
+```cron
+# /etc/cron.d/cf-firewall
+17 4 * * 1 root /usr/bin/bash /opt/emagine-deploy/scripts/cf-firewall-docker.sh >> /var/log/cf-firewall.log 2>&1
+```
+
+### Verification
+
+After bootstrap + apply, on the server:
+
+```bash
+sudo ufw status | grep -w 22/tcp        # must remain LIMIT IN Anywhere
+sudo ufw status | grep cf-proxy | wc -l # ~44 rules expected (~22 ranges × 2 ports)
+```
+
+From a host **outside** Cloudflare's network:
+
+```bash
+curl -m5 -I http://<server_public_ip>   # should time out / connection refused
+curl -m5 -I https://emagine.com.br      # should respond 200/301 via Cloudflare
+```
+
+> 📄 **Full reference (invariants, troubleshooting, rollback):** [`docs/CF_FIREWALL.md`](docs/CF_FIREWALL.md)
+
 ---
 
 ## 🔄 CI/CD
@@ -368,6 +457,7 @@ Four workflows automate versioning, deployment, and infrastructure:
 - Verifies SSL directory exists on the server (`/root/emagine-secrets/SSL`)
 - Connects via SSH to the production server
 - Pulls latest code and runs `docker compose up --build -d`
+- Reapplies Cloudflare firewall rules via `scripts/cf-firewall-docker.sh` — idempotent; warns and continues if the `ufw-docker` hook hasn't been installed yet (see [Cloudflare Firewall](#-cloudflare-firewall-80443-origin-protection))
 
 **4. Deploy Infrastructure** (`deploy-infra.yml`)
 - **Triggers:** Manual dispatch only (`workflow_dispatch`)
