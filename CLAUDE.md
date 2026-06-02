@@ -20,9 +20,9 @@ emagine-deploy/
 └── nginx.conf       # Virtual host config for all 8 domains
 ```
 
-**Hosted domains:** emagine.com.br, easysla.com, goblinwars.net, monexup.com, slaproyale.com, nochainswap.org, pandoravault.com, bazzuca.media, avabot.net, proxypay.online, fortuno.online
+**Hosted domains:** emagine.com.br, goblinwars.net, monexup.com, slaproyale.com, pandoravault.com, bazzuca.media, avabot.net, proxypay.online, fortuno.online
 
-All other projects (EasySLA, NAuth, NoChainSwap, etc.) live in sibling repositories. The build scripts pull, build, and copy their outputs into `builds/`.
+All other projects (NAuth, etc.) live in sibling repositories. The build scripts pull, build, and copy their outputs into `builds/`.
 
 ## Commands
 
@@ -38,10 +38,8 @@ npm run preview  # Preview production build
 ### Build individual projects
 ```powershell
 ./scripts/build-emagine.ps1       # Builds from local emagine-site/
-./scripts/build-easysla.ps1       # Pulls from ../EasySLA
 ./scripts/build-nauth.ps1         # Pulls from ../NAuth/nauth-react
 ./scripts/build-goblinwars.ps1    # Pulls from ../gwr-website
-./scripts/build-nochainswap.ps1   # Pulls from ../NoChainSwap
 ./scripts/build-pandoravault.ps1  # Pulls from ../PandoraVault
 ./scripts/build-bazzucamedia.ps1  # Pulls from ../BazzucaMedia
 ./scripts/build-slaproyale.ps1    # Pulls from ../SlapRoyale
@@ -74,4 +72,3 @@ docker-compose up -d --build --force-recreate  # Full rebuild
 - SPA routing: all nginx server blocks use `try_files $uri $uri/ /index.html`
 - Network name: `emagine-network` (external Docker network)
 - NAuth is served as a subpath under emagine.com.br/nauth/
-- EasySLA has two builds: site (root) and app (/app subpath)
