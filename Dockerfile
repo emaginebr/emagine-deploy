@@ -13,6 +13,7 @@ COPY builds/avabot /var/www/avabot.net/home
 COPY builds/proxypay /var/www/proxypay.online/home
 COPY builds/fortuno /var/www/fortuno.online/home
 COPY builds/filhosdonada /var/www/filhosdonada.com/home
+COPY builds/jogodaeleicao /var/www/jogodaeleicao.com/home
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
