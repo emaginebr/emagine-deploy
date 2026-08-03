@@ -571,8 +571,13 @@
       "active": "Activo",
       "blocked": "Bloqueado",
       "inactive": "Inactivo",
-      "waitForApproval": "Esperando Aprobación"
+      "waitForApproval": "Esperando Aprobación",
+      "invitePending": "Invitación pendiente"
     },
+    "badges": {
+      "invited": "Invitado"
+    },
+    "invitedBy": "Invitado por {{name}}",
     "actions": {
       "remove": "Eliminar",
       "reactivate": "Reactivar",
@@ -585,7 +590,9 @@
       "next": "Siguiente",
       "viewStorefront": "Ver tienda",
       "viewStorefrontMissingNetwork": "Red sin slug — no se puede abrir la tienda",
-      "viewStorefrontMissingSeller": "Vendedor sin slug — no se puede abrir la tienda"
+      "viewStorefrontMissingSeller": "Vendedor sin slug — no se puede abrir la tienda",
+      "copyInviteLink": "Copiar enlace de invitación",
+      "cancelInvite": "Cancelar invitación"
     },
     "messages": {
       "userAccessRemoved": "Acceso de usuario eliminado",
@@ -594,7 +601,10 @@
       "userApproved": "Usuario aprobado",
       "userReproved": "Usuario reprobado",
       "userPromoted": "Usuario promovido",
-      "userDemoted": "Usuario degradado"
+      "userDemoted": "Usuario degradado",
+      "inviteLinkCopied": "Enlace de invitación copiado",
+      "inviteCancelled": "Invitación cancelada",
+      "inviteCopyError": "No se pudo copiar el enlace"
     },
     "pageOf": "Página {{current}} de {{total}}",
     "emptyTitle": "Tu equipo aún está vacío",

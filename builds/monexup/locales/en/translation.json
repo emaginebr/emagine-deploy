@@ -618,8 +618,13 @@
       "active": "Active",
       "blocked": "Blocked",
       "inactive": "Inactive",
-      "waitForApproval": "Wait For Approval"
+      "waitForApproval": "Wait For Approval",
+      "invitePending": "Pending invite"
     },
+    "badges": {
+      "invited": "Invited"
+    },
+    "invitedBy": "Invited by {{name}}",
     "actions": {
       "remove": "Remove",
       "reactivate": "Reactivate",
@@ -632,7 +637,9 @@
       "next": "Next",
       "viewStorefront": "View store",
       "viewStorefrontMissingNetwork": "Network missing slug — store cannot be opened",
-      "viewStorefrontMissingSeller": "Seller missing slug — store cannot be opened"
+      "viewStorefrontMissingSeller": "Seller missing slug — store cannot be opened",
+      "copyInviteLink": "Copy invite link",
+      "cancelInvite": "Cancel invite"
     },
     "messages": {
       "userAccessRemoved": "User access removed",
@@ -641,7 +648,10 @@
       "userApproved": "User approved",
       "userReproved": "User reproved",
       "userPromoted": "User promoted",
-      "userDemoted": "User demoted"
+      "userDemoted": "User demoted",
+      "inviteLinkCopied": "Invite link copied",
+      "inviteCancelled": "Invite cancelled",
+      "inviteCopyError": "Could not copy the link"
     },
     "pageOf": "Page {{current}} of {{total}}",
     "emptyTitle": "No team members yet",
