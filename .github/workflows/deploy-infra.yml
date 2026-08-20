@@ -107,6 +107,7 @@ jobs:
           script: |
             set -e
             cd /opt/emagine-deploy
+            docker compose -f docker-compose-infra.yml build wppconnect
             docker compose -f docker-compose-infra.yml up -d --force-recreate wppconnect
             echo "WPP Connect is running."
 
