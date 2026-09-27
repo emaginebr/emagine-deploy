@@ -14,6 +14,7 @@ COPY builds/proxypay /var/www/proxypay.online/home
 COPY builds/fortuno /var/www/fortuno.online/home
 COPY builds/filhosdonada /var/www/filhosdonada.com/home
 COPY builds/jogodaeleicao /var/www/jogodaeleicao.com/home
+COPY builds/roll6 /var/www/roll6.site/home
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 

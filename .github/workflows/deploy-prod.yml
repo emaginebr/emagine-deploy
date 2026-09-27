@@ -15,11 +15,14 @@ jobs:
     steps:
     - name: Deploy via SSH
       uses: appleboy/ssh-action@v1
+      env:
+        SECRETS_REPO_TOKEN: ${{ secrets.SECRETS_REPO_TOKEN }}
       with:
         host: ${{ secrets.PROD_SSH_HOST }}
         username: ${{ secrets.PROD_SSH_USER }}
         password: ${{ secrets.PROD_SSH_PASSWORD }}
         port: ${{ secrets.PROD_SSH_PORT || 22 }}
+        envs: SECRETS_REPO_TOKEN
         script: |
           set -e
 
@@ -39,6 +42,34 @@ jobs:
             git clone --branch "$BRANCH" --single-branch "$REPO_URL" "$DEPLOY_DIR"
             cd "$DEPLOY_DIR"
           fi
+
+          # Clone or update emagine-secrets (repositorio privado — autentica com o token
+          # SECRETS_REPO_TOKEN, que so eh usado na URL do comando e nunca fica salvo no .git/config)
+          SECRETS_DIR="/root/emagine-secrets"
+          SECRETS_BRANCH="main"
+          if [ -z "$SECRETS_REPO_TOKEN" ]; then
+            echo "ERROR: secret SECRETS_REPO_TOKEN nao configurado"
+            exit 1
+          fi
+          SECRETS_AUTH_URL="https://x-access-token:${SECRETS_REPO_TOKEN}@github.com/emaginebr/emagine-secrets.git"
+
+          if [ -d "$SECRETS_DIR" ] && [ ! -d "$SECRETS_DIR/.git" ]; then
+            SECRETS_BACKUP="${SECRETS_DIR}.bak-$(date +%Y%m%d%H%M%S)"
+            echo "$SECRETS_DIR existe mas nao eh um repositorio git — movendo para $SECRETS_BACKUP"
+            mv "$SECRETS_DIR" "$SECRETS_BACKUP"
+          fi
+
+          if [ -d "$SECRETS_DIR/.git" ]; then
+            echo "Updating emagine-secrets..."
+            git -C "$SECRETS_DIR" fetch --quiet "$SECRETS_AUTH_URL" "$SECRETS_BRANCH"
+            git -C "$SECRETS_DIR" reset --hard FETCH_HEAD
+          else
+            echo "Cloning emagine-secrets..."
+            git clone --quiet --branch "$SECRETS_BRANCH" --single-branch "$SECRETS_AUTH_URL" "$SECRETS_DIR"
+            git -C "$SECRETS_DIR" remote set-url origin "https://github.com/emaginebr/emagine-secrets.git"
+          fi
+          unset SECRETS_AUTH_URL SECRETS_REPO_TOKEN
+          chmod 700 "$SECRETS_DIR"
 
           # Verify SSL certificates exist
           if [ ! -d "/root/emagine-secrets/SSL" ]; then
