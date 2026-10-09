@@ -2,19 +2,25 @@
 <html lang="pt-BR" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Roll6</title>
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/brand/favicon-48.png" />
     <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
     <meta name="theme-color" content="#0b1220" />
+    <!-- Installable app (042): manifest + the iOS "Adicionar à Tela de Início" metas. -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Roll6" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <!-- Link previews (040): the nginx (ssi on) replaces the include below with the tags of this page from
          /api/meta/head; without SSI (Vite dev) these are plain comments, and if the API fails the block is used. -->
     <!--# block name="roll6_meta" --><meta property="og:site_name" content="Roll6" /><meta property="og:title" content="Roll6" /><meta property="og:description" content="Mesa virtual simples para RPG com mapas hexagonais." /><meta property="og:image" content="/brand/og-default.png" /><meta name="twitter:card" content="summary_large_image" /><!--# endblock -->
     <!--# include virtual="/api/meta/head$request_uri" stub="roll6_meta" -->
-    <script type="module" crossorigin src="/assets/index-DxiCUKHe.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CR_2gh-v.css">
+    <script type="module" crossorigin src="/assets/index-CEREPrRH.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BHcGjqMR.css">
   </head>
   <body>
     <div id="root"></div>
