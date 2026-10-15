@@ -18,8 +18,9 @@ self.addEventListener('activate', (event) => {
   })());
 });
 
-// A notice from the server (043): { title, body, icon, tag, url, kind, renotify }. Messages of a campaign share one tag,
-// so they replace each other instead of piling up.
+// A notice from the server (043, 074): { title, body, icon, tag, url, kind, renotify }. Every notice of a campaign and kind
+// shares a tag (campaign:{id}:{kind}), so they replace each other instead of piling up, and renotify is always true, so a
+// replacing notice still sounds. Every push is shown: browsers revoke subscriptions that receive pushes and show nothing.
 self.addEventListener('push', (event) => {
   let data = {};
   try {
