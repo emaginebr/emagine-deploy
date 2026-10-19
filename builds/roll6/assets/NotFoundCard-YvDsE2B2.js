@@ -1,0 +1,1 @@
+import{u as n,j as s,L as i}from"./index-B9fHP5o1.js";const c=({message:r,backTo:a})=>{const{t}=n();return s.jsxs("div",{className:"card p-4 stm-library-empty",children:[s.jsx("p",{className:"mb-3",children:r}),s.jsx("div",{children:s.jsx(i,{to:a,className:"btn btn-primary btn-sm",children:t("library.backToList")})})]})};export{c as N};
