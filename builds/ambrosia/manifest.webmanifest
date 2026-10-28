@@ -1,0 +1,17 @@
+{
+  "name": "Ambrosio",
+  "short_name": "Ambrosio",
+  "description": "Clientes e pedidos da sua loja, na palma da mão.",
+  "lang": "pt-BR",
+  "start_url": "/clientes",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070a14",
+  "theme_color": "#070a14",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
