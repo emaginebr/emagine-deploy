@@ -47,7 +47,7 @@ npm run preview  # Preview production build
 ./scripts/build-fortuno.ps1       # Pulls from ../Fortuno/fortuno-app
 ./scripts/build-jogodaeleicao.ps1 # Pulls from ../jogo-da-eleicao/frontend
 ./scripts/build-roll6.ps1         # Pulls from ../Roll6/frontend
-./scripts/build-ambrosia.ps1      # Pulls from ../ambrosia/frontend (needs VITE_GOOGLE_CLIENT_ID)
+./scripts/build-ambrosio.ps1      # Pulls from ../ambrosio/frontend (needs VITE_GOOGLE_CLIENT_ID)
 ./scripts/build-all.ps1           # Runs all of the above
 ```
 
