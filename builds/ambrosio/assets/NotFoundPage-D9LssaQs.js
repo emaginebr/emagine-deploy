@@ -1,0 +1,1 @@
+import{u as s,j as o}from"./index-BLr972ld.js";import{N as e}from"./NotFound-kGjxqzva.js";const a=()=>{const{t}=s();return o.jsx("div",{className:"py-10",children:o.jsx(e,{title:t("errors.notFoundPage"),linkTo:"/clientes"})})};export{a as NotFoundPage,a as default};
