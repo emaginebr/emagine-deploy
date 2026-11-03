@@ -20,6 +20,7 @@ Write-Host "=========================================================" -Foregrou
 & "$ScriptDir/build-jogodaeleicao.ps1"
 & "$ScriptDir/build-roll6.ps1"
 & "$ScriptDir/build-ambrosio.ps1"
+& "$ScriptDir/build-finami.ps1"
 
 Write-Host "=========================================================" -ForegroundColor Green
 Write-Host "  All builds completed!" -ForegroundColor Green

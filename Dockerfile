@@ -16,6 +16,7 @@ COPY builds/filhosdonada /var/www/filhosdonada.com/home
 COPY builds/jogodaeleicao /var/www/jogodaeleicao.com/home
 COPY builds/roll6 /var/www/roll6.site/home
 COPY builds/ambrosio /var/www/ambrosioai.site/home
+COPY builds/finami /var/www/finami.site/home
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
