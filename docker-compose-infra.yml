@@ -47,6 +47,10 @@ services:
     image: emagine/wppconnect:latest
     container_name: wppconnect
     command: ["--secretKey", "${WPP_SECRET_KEY}", "--port", "21465"]
+    environment:
+      # Desde o wppconnect-server 2.10.x o webhook definido por sessao (start-session) so e chamado
+      # se estiver nesta lista (URL exata, separada por virgula). Um agente novo no WhatsApp precisa entrar aqui.
+      - WEBHOOK_ALLOWED_URLS=http://avabot-api:80/whatsapp/biia/webhook
     expose:
       - "21465"
     volumes:

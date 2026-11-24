@@ -1,4 +1,4 @@
-FROM wppconnect/server-cli:latest
+FROM wppconnect/server-cli:1.3.78
 
 WORKDIR /usr/src/wpp-server
 
