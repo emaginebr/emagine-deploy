@@ -1,2 +1,6 @@
 .env
 .env.prod
+
+# kubeconfigs (nunca versionar)
+*.kubeconfig
+kubeconfig*

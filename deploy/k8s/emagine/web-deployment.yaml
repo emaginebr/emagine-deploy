@@ -1,0 +1,53 @@
+# Frontend do emagine.com.br (SPA de emagine-site/, servida por nginx na porta 80). O site não
+# usa variáveis de build; o nginx.conf da imagem (emagine-site/nginx.conf) responde /healthz.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emagine-web
+  labels:
+    app: emagine-web
+spec:
+  replicas: 1
+  progressDeadlineSeconds: 300
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: emagine-web
+  template:
+    metadata:
+      labels:
+        app: emagine-web
+    spec:
+      automountServiceAccountToken: false
+      imagePullSecrets:
+        - name: ghcr-pull
+      containers:
+        - name: web
+          # Tag definida pela pipeline (kustomization.yaml → images)
+          image: ghcr.io/emaginebr/emagine-web
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi

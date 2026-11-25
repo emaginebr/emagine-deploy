@@ -1,0 +1,24 @@
+# Recursos do emagine.com.br no namespace emagine, aplicados pela pipeline
+# "Deploy emagine.com.br (Kubernetes)" com `kubectl apply -k deploy/k8s/emagine`.
+# Projeto só com frontend (SPA de emagine-site/). O Secret ghcr-pull NÃO fica aqui: a pipeline o
+# cria a partir dos secrets do GitHub.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: emagine
+
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: emagine
+    includeSelectors: false
+    includeTemplates: true
+
+resources:
+  - web-deployment.yaml
+  - web-service.yaml
+  - ingress.yaml
+
+# `latest` é só um marcador: a pipeline troca a tag por `sha-<commit>` antes do apply.
+images:
+  - name: ghcr.io/emaginebr/emagine-web
+    newTag: latest

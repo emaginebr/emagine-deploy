@@ -1,0 +1,61 @@
+# Credencial da pipeline: ServiceAccount com permissões SÓ no namespace emagine.
+# O kubeconfig gerado por make-kubeconfig.sh a partir desta conta vai para o secret KUBECONFIG do
+# environment `production` no GitHub. O kubeconfig de admin do cluster nunca sai da máquina do admin.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: emagine-deployer
+  namespace: emagine
+  labels:
+    app.kubernetes.io/part-of: emagine
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: emagine-deployer
+  namespace: emagine
+  labels:
+    app.kubernetes.io/part-of: emagine
+rules:
+  - apiGroups: ["apps"]
+    resources: ["deployments", "replicasets"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["services", "configmaps", "secrets", "pods", "events"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["networking.k8s.io"]
+    resources: ["ingresses"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["pods/log"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: emagine-deployer
+  namespace: emagine
+  labels:
+    app.kubernetes.io/part-of: emagine
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: emagine-deployer
+subjects:
+  - kind: ServiceAccount
+    name: emagine-deployer
+    namespace: emagine
+---
+# Token de longa duração da ServiceAccount. Sem `data`: o próprio cluster preenche o token e o
+# ca.crt depois do apply. Para rotacionar: apagar este Secret, aplicar de novo e gerar outro
+# kubeconfig.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: emagine-deployer-token
+  namespace: emagine
+  labels:
+    app.kubernetes.io/part-of: emagine
+  annotations:
+    kubernetes.io/service-account.name: emagine-deployer
+type: kubernetes.io/service-account-token

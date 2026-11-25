@@ -1,0 +1,318 @@
+name: Deploy emagine.com.br (Kubernetes)
+
+# Publica o emagine.com.br (SPA de emagine-site/) no cluster Kubernetes da DigitalOcean
+# (do-nyc2-emagine-k8s, namespace emagine):
+#   test → images (GHCR, tag sha-<commit>) → deploy (kubectl apply -k + rollout status)
+# A entrada pública (Cloudflare Tunnel + ingress-nginx compartilhados) é infra do cluster, aplicada
+# pelo admin; esta pipeline só toca no namespace emagine (credencial: ServiceAccount emagine-deployer).
+# O job `manifests` valida os manifestos de deploy/k8s/ (roda mesmo com skip_tests).
+# Os demais sites continuam no servidor Docker (workflow deploy-prod.yml).
+#
+# Segurança: secrets entram nos passos só por `env:` (nunca interpolados em `run:`), nenhum passo
+# usa `set -x` nem imprime valores, e arquivos temporários ficam em $RUNNER_TEMP com umask 077.
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Branch ou tag a publicar (ex.: main ou v1.2.0)"
+        required: true
+        default: main
+      skip_tests:
+        description: "Pular o build de verificação (só para rollback de uma ref já testada)"
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: deploy-emagine-k8s
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  NAMESPACE: emagine
+  WEB_IMAGE: ghcr.io/emaginebr/emagine-web
+
+jobs:
+  # O site não tem testes automatizados: valida que as dependências instalam e o build do Vite passa.
+  test:
+    name: Build do frontend
+    if: ${{ !inputs.skip_tests }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: emagine-site/package-lock.json
+
+      - name: Frontend — build
+        working-directory: emagine-site
+        run: |
+          npm ci
+          npm run build
+
+  manifests:
+    name: Validação dos manifestos
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Renderizar o Kustomize
+        run: kubectl kustomize "deploy/k8s/$NAMESPACE" > /dev/null
+
+      - name: Sintaxe dos scripts
+        run: |
+          shopt -s nullglob
+          for script in deploy/k8s/*/*.sh; do
+            bash -n "$script"
+          done
+
+      - name: Nenhuma credencial em deploy/k8s/
+        run: |
+          set -euo pipefail
+          failed=0
+
+          # Padrões de credenciais conhecidos (token da DigitalOcean, chave privada, senha em
+          # connection string). Só os nomes dos arquivos/linhas são mostrados.
+          if grep -rnE 'dop_v1_|BEGIN .*PRIVATE KEY|Password=' deploy/k8s/; then
+            echo "::error::deploy/k8s/ contém um padrão de credencial (dop_v1_, chave privada ou Password=)."
+            failed=1
+          fi
+
+          # Nenhum Secret com dados versionado. O token da ServiceAccount em
+          # bootstrap/deployer-rbac.yaml não tem `data`/`stringData` (o cluster preenche).
+          while IFS= read -r -d '' file; do
+            if awk '
+              /^---/ { if (secret && hasdata) bad = 1; secret = 0; hasdata = 0; next }
+              /^kind:[[:space:]]*Secret[[:space:]]*$/ { secret = 1 }
+              /^(data|stringData):/ { hasdata = 1 }
+              END { if (secret && hasdata) bad = 1; exit (bad ? 1 : 0) }
+            ' "$file"; then
+              :
+            else
+              echo "::error file=$file::Secret com data/stringData versionado em $file."
+              failed=1
+            fi
+          done < <(find deploy/k8s -type f \( -name '*.yaml' -o -name '*.yml' \) -print0)
+
+          exit "$failed"
+
+  images:
+    name: Imagem (GHCR)
+    needs: test
+    # Roda também quando `test` foi pulado (skip_tests), mas não quando falhou.
+    if: ${{ !cancelled() && (needs.test.result == 'success' || needs.test.result == 'skipped') }}
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.meta.outputs.sha }}
+      reftag: ${{ steps.meta.outputs.reftag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Commit e tags
+        id: meta
+        env:
+          INPUT_REF: ${{ inputs.ref }}
+        run: |
+          set -euo pipefail
+          sha="$(git rev-parse --short=7 HEAD)"
+          # Tag a partir da ref: '/' vira '-', só [A-Za-z0-9._-], sem começar com '.' ou '-',
+          # no máximo 128 caracteres (regras de tag do registro).
+          reftag="$(printf '%s' "$INPUT_REF" | tr '/' '-' | tr -cd 'A-Za-z0-9._-')"
+          reftag="${reftag#"${reftag%%[!.-]*}"}"
+          reftag="${reftag:0:128}"
+          [[ -n "$reftag" ]] || reftag="ref-$sha"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "reftag=$reftag" >> "$GITHUB_OUTPUT"
+          echo "Commit: $sha · tag da ref: $reftag"
+
+      - name: Login no GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Rollback rápido: se a imagem sha-<commit> já existe, o build é pulado.
+      - name: Imagem já publicada?
+        id: exists
+        env:
+          SHA: ${{ steps.meta.outputs.sha }}
+        run: |
+          set -euo pipefail
+          if docker manifest inspect "$WEB_IMAGE:sha-$SHA" > /dev/null 2>&1; then
+            echo "$WEB_IMAGE:sha-$SHA já existe — build pulado."
+            echo "web=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "web=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Buildx
+        if: ${{ steps.exists.outputs.web != 'true' }}
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build e push — frontend
+        if: ${{ steps.exists.outputs.web != 'true' }}
+        uses: docker/build-push-action@v6
+        with:
+          context: emagine-site
+          push: true
+          # Vincula o pacote do GHCR a este repositório (permissões e visibilidade)
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+          tags: |
+            ${{ env.WEB_IMAGE }}:sha-${{ steps.meta.outputs.sha }}
+            ${{ env.WEB_IMAGE }}:${{ steps.meta.outputs.reftag }}
+          cache-from: type=gha,scope=emagine-web
+          cache-to: type=gha,mode=max,scope=emagine-web
+
+  deploy:
+    name: Deploy no Kubernetes
+    needs: [images, manifests]
+    if: ${{ !cancelled() && needs.images.result == 'success' && needs.manifests.result == 'success' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://emagine.com.br
+    env:
+      SHA: ${{ needs.images.outputs.sha }}
+      REFTAG: ${{ needs.images.outputs.reftag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v4
+
+      # Antes de qualquer kubectl: falha cedo, com o nome do que falta, sem imprimir valores.
+      - name: Validar secrets
+        env:
+          KUBECONFIG_CONTENT: ${{ secrets.KUBECONFIG }}
+          GHCR_PULL_USER: ${{ secrets.GHCR_PULL_USER || vars.GHCR_PULL_USER }}
+          GHCR_PULL_TOKEN: ${{ secrets.GHCR_PULL_TOKEN }}
+        run: |
+          set -euo pipefail
+          missing=0
+          # "NOME_NO_GITHUB:VARIÁVEL_DE_AMBIENTE" (o KUBECONFIG usa outro nome no env para não
+          # ser lido pelo kubectl como caminho de arquivo)
+          for pair in \
+            KUBECONFIG:KUBECONFIG_CONTENT; do
+            name="${pair%%:*}"
+            var="${pair#*:}"
+            if [[ -z "${!var:-}" ]]; then
+              echo "::error::Secret/Variable $name não definido no environment production."
+              missing=1
+            fi
+          done
+          # Opcionais: sem eles a imagem precisa ser pública no GHCR (pull anônimo).
+          if [[ -z "${GHCR_PULL_USER:-}" || -z "${GHCR_PULL_TOKEN:-}" ]]; then
+            echo "::warning::GHCR_PULL_USER/GHCR_PULL_TOKEN não definidos: o cluster baixa a imagem sem credencial (o pacote emagine-web precisa ser público)."
+          fi
+          exit "$missing"
+
+      - name: Kubeconfig
+        env:
+          KUBECONFIG_CONTENT: ${{ secrets.KUBECONFIG }}
+        run: |
+          set -euo pipefail
+          umask 077
+          printf '%s\n' "$KUBECONFIG_CONTENT" > "$RUNNER_TEMP/kubeconfig"
+          echo "KUBECONFIG=$RUNNER_TEMP/kubeconfig" >> "$GITHUB_ENV"
+
+      # Idempotente: create --dry-run=client -o yaml | apply. Valores só via env, nunca impressos.
+      # Sem as credenciais o passo é pulado; o imagePullSecret ausente é ignorado pelo kubelet.
+      - name: Secret de pull do GHCR
+        env:
+          GHCR_PULL_USER: ${{ secrets.GHCR_PULL_USER || vars.GHCR_PULL_USER }}
+          GHCR_PULL_TOKEN: ${{ secrets.GHCR_PULL_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${GHCR_PULL_USER:-}" || -z "${GHCR_PULL_TOKEN:-}" ]]; then
+            echo "Sem credenciais de pull: imagem pública, Secret ghcr-pull não criado."
+            exit 0
+          fi
+          kubectl -n "$NAMESPACE" create secret docker-registry ghcr-pull \
+            --docker-server=ghcr.io \
+            --docker-username="$GHCR_PULL_USER" \
+            --docker-password="$GHCR_PULL_TOKEN" \
+            --dry-run=client -o yaml | kubectl apply -f -
+
+      # `kustomize edit set image` quando o kustomize está no runner; senão, sed sobre o bloco
+      # `images` do kustomization.yaml (formato fixo). O resultado é conferido antes do apply.
+      - name: Definir a imagem (sha-${{ needs.images.outputs.sha }})
+        working-directory: deploy/k8s/emagine
+        run: |
+          set -euo pipefail
+          if command -v kustomize > /dev/null 2>&1; then
+            kustomize edit set image "$WEB_IMAGE=$WEB_IMAGE:sha-$SHA"
+          else
+            echo "kustomize não encontrado no runner; usando sed no kustomization.yaml."
+            sed -i "\#- name: ${WEB_IMAGE}\$#{n;s#newTag: .*#newTag: sha-${SHA}#}" kustomization.yaml
+          fi
+          rendered="$(kubectl kustomize .)"
+          if ! grep -qF "image: $WEB_IMAGE:sha-$SHA" <<< "$rendered"; then
+            echo "::error::A imagem $WEB_IMAGE:sha-$SHA não aparece nos manifestos renderizados."
+            exit 1
+          fi
+          grep -E '^\s+image:' <<< "$rendered"
+
+      - name: Aplicar os manifestos
+        run: kubectl apply -k "deploy/k8s/$NAMESPACE"
+
+      - name: Rollout — frontend
+        run: kubectl -n "$NAMESPACE" rollout status deployment/emagine-web --timeout=10m
+
+      # Diagnóstico do pod novo; o anterior segue atendendo (maxUnavailable: 0). Sem Secrets.
+      - name: Diagnóstico da falha
+        if: ${{ failure() }}
+        run: |
+          if [[ -z "${KUBECONFIG:-}" || ! -f "${KUBECONFIG}" ]]; then
+            echo "Sem kubeconfig (a falha ocorreu antes do acesso ao cluster)."
+            exit 0
+          fi
+          kubectl -n "$NAMESPACE" get pods -o wide || true
+          kubectl -n "$NAMESPACE" describe deploy emagine-web || true
+          kubectl -n "$NAMESPACE" describe pods -l app=emagine-web || true
+          kubectl -n "$NAMESPACE" logs -l app=emagine-web --tail=100 --all-containers --prefix || true
+
+      - name: Resumo e limpeza
+        if: ${{ always() }}
+        env:
+          INPUT_REF: ${{ inputs.ref }}
+          JOB_STATUS: ${{ job.status }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          rm -f "$RUNNER_TEMP/kubeconfig"
+          {
+            echo "## Deploy de produção (Kubernetes) — emagine.com.br"
+            echo ""
+            echo "- Resultado: \`$JOB_STATUS\`"
+            echo "- URL: https://emagine.com.br"
+            echo "- Ref: \`$INPUT_REF\`"
+            echo "- Commit: \`$SHA\`"
+            echo "- Imagem: \`$WEB_IMAGE:sha-$SHA\`"
+            echo "- Tag da ref (aplicada quando a imagem foi gerada nesta execução): \`$REFTAG\`"
+            echo "- Disparado por: \`$ACTOR\`"
+          } >> "$GITHUB_STEP_SUMMARY"

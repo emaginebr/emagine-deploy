@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: emagine-web
+  labels:
+    app: emagine-web
+spec:
+  type: ClusterIP
+  selector:
+    app: emagine-web
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP
