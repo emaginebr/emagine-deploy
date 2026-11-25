@@ -1,0 +1,41 @@
+# Headlamp (painel web do cluster) em https://rancher.emagine.com.br
+# Chart: headlamp/headlamp (https://kubernetes-sigs.github.io/headlamp/), instalado por install.sh.
+# - Sem TLS no Ingress: o HTTPS termina na Cloudflare e o túnel emagine-k8s chega aqui por HTTP.
+# - O pod NÃO recebe cluster-admin (clusterRoleBinding.create=false): cada pessoa entra com o
+#   token da própria ServiceAccount (ver admin-rbac.yaml e README.md).
+replicaCount: 1
+
+config:
+  inCluster: true
+  inClusterContextName: do-nyc2-emagine-k8s
+  baseURL: ""
+
+serviceAccount:
+  create: true
+
+clusterRoleBinding:
+  create: false
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # Logs e exec usam websocket: sem buffer e com timeout longo
+    nginx.ingress.kubernetes.io/proxy-buffering: "off"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+  hosts:
+    - host: rancher.emagine.com.br
+      paths:
+        - path: /
+          type: Prefix
+  tls: []

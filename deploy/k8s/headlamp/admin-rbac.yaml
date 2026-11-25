@@ -1,0 +1,26 @@
+# Conta de login no Headlamp com acesso total ao cluster (cluster-admin).
+# O token NÃO fica em Secret: é emitido sob demanda, com validade curta:
+#   kubectl -n headlamp create token headlamp-admin --duration=12h
+# Para revogar todos os tokens emitidos: apagar e recriar a ServiceAccount.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: headlamp-admin
+  namespace: headlamp
+  labels:
+    app.kubernetes.io/part-of: headlamp
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: headlamp-admin
+  labels:
+    app.kubernetes.io/part-of: headlamp
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: headlamp-admin
+    namespace: headlamp
