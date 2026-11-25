@@ -276,7 +276,8 @@ jobs:
             echo "::error::A imagem $WEB_IMAGE:sha-$SHA não aparece nos manifestos renderizados."
             exit 1
           fi
-          grep -E '^\s+image:' <<< "$rendered"
+          # `image` pode ser a 1ª chave do container (linha `- image:`)
+          grep -E '^\s+(- )?image:' <<< "$rendered"
 
       - name: Aplicar os manifestos
         run: kubectl apply -k "deploy/k8s/$NAMESPACE"
