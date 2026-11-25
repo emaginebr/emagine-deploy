@@ -37,8 +37,6 @@ npm run preview  # Preview production build
 
 ### Build individual projects
 ```powershell
-./scripts/build-emagine.ps1       # Builds from local emagine-site/
-./scripts/build-nauth.ps1         # Pulls from ../NAuth/nauth-react
 ./scripts/build-goblinwars.ps1    # Pulls from ../gwr-website
 ./scripts/build-pandoravault.ps1  # Pulls from ../PandoraVault
 ./scripts/build-bazzucamedia.ps1  # Pulls from ../BazzucaMedia

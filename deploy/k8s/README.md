@@ -118,8 +118,9 @@ registro A/AAAA (proxied) com o IP anotado. O efeito é quase imediato.
 
 ## Desligar o ambiente antigo
 
-Só depois da troca validada: retirar o server block de `emagine.com.br` do `nginx.conf` e o
-`COPY builds/emagine` do `Dockerfile` da raiz (o servidor Docker segue com os outros sites).
+Feito em 2026-11-25, depois da troca validada: o server block de `emagine.com.br` saiu do
+`nginx.conf`, e os `COPY` e os scripts de build do emagine (e dos subcaminhos nauth, lofn e
+devblog) saíram do repositório. O servidor Docker segue com os outros sites.
 
 ## Operação
 

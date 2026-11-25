@@ -442,8 +442,6 @@ docker-compose up -d --build --force-recreate  # Rebuild completo
 ### Build de Projetos Individuais
 
 ```powershell
-./scripts/build-emagine.ps1       # emagine-site local
 ./scripts/build-easysla.ps1       # ../EasySLA
-./scripts/build-nauth.ps1        # ../NAuth/nauth-react
 ./scripts/build-all.ps1          # Todos os projetos
 ```

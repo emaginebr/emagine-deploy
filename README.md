@@ -31,7 +31,6 @@ SSL certificates are stored externally in a separate `emagine-secrets` repositor
 - 💻 **Local Development** - Dedicated `docker-compose-local.yml` with no SSL dependency
 - 📊 **Monitoring** - Prometheus + Grafana + Node Exporter for metrics and dashboards
 - 🐇 **Message Broker** - Centralized RabbitMQ shared across projects
-- 📝 **DevBlog** - Developer blog served at `emagine.com.br/rodrigolandim/`
 
 ---
 
@@ -71,13 +70,10 @@ SSL certificates are stored externally in a separate `emagine-secrets` repositor
 emagine-deploy/
 ├── builds/                  # Built outputs for each project
 │   ├── bazzuca-media/       # bazzuca.media
-│   ├── devblog/             # emagine.com.br/rodrigolandim
 │   ├── easysla-app/         # easysla.com/app
 │   ├── easysla-site/        # easysla.com
-│   ├── emagine/             # emagine.com.br
 │   ├── goblinwars-reborn/   # goblinwars.net
 │   ├── monexup/             # monexup.com
-│   ├── nauth/               # emagine.com.br/nauth
 │   ├── nochainswap/         # nochainswap.org
 │   ├── pandoravault/        # pandoravault.com
 │   └── slaproyale/          # slaproyale.com
@@ -116,9 +112,7 @@ emagine-deploy/
 
 | Domain | Project | Path |
 |--------|---------|------|
-| **emagine.com.br** | Emagine Portfolio | `/` |
-| **emagine.com.br/nauth/** | NAuth | Subpath |
-| **emagine.com.br/rodrigolandim/** | DevBlog | Subpath |
+| **emagine.com.br** | Emagine Portfolio | `/` (cluster Kubernetes — `deploy/k8s/`) |
 | **easysla.com** | EasySLA Site | `/` |
 | **easysla.com/app** | EasySLA App | Subpath |
 | **goblinwars.net** | Goblin Wars Reborn | `/` |
@@ -134,16 +128,13 @@ All projects except emagine-site live in sibling repositories:
 
 | Project | Source Repository | Build Script |
 |---------|-------------------|--------------|
-| **Emagine** | Local `emagine-site/` | `build-emagine.ps1` |
 | **EasySLA** | `../EasySLA` | `build-easysla.ps1` |
-| **NAuth** | `../NAuth/nauth-react` | `build-nauth.ps1` |
 | **Goblin Wars** | `../gwr-website` | `build-goblinwars.ps1` |
 | **NoChainSwap** | `../NoChainSwap` | `build-nochainswap.ps1` |
 | **PandoraVault** | `../PandoraVault` | `build-pandoravault.ps1` |
 | **Bazzuca Media** | `../BazzucaMedia` | `build-bazzucamedia.ps1` |
 | **Slap Royale** | `../SlapRoyale` | `build-slaproyale.ps1` |
 | **MonexUp** | `../MonexUp` | `build-monexup.ps1` |
-| **DevBlog** | `../devblog` | `build-devblog.ps1` |
 
 ---
 
@@ -257,9 +248,7 @@ docker compose -f docker-compose-local.yml up -d --build
 
 | Site | Local URL |
 |------|-----------|
-| **Emagine** | http://localhost/ |
-| **NAuth** | http://localhost/nauth/ |
-| **DevBlog** | http://localhost/rodrigolandim/ |
+| **Emagine** | `npm run dev` em `emagine-site/` |
 | **Goblin Wars** | http://localhost/goblinwars/ |
 | **MonexUp** | http://localhost/monexup/ |
 | **EasySLA Site** | http://localhost/easysla/ |
@@ -314,16 +303,13 @@ Build individual projects or all at once using PowerShell:
 
 ```powershell
 # Build a single project
-./scripts/build-emagine.ps1       # Builds from local emagine-site/
 ./scripts/build-easysla.ps1       # Pulls from ../EasySLA
-./scripts/build-nauth.ps1         # Pulls from ../NAuth/nauth-react
 ./scripts/build-goblinwars.ps1    # Pulls from ../gwr-website
 ./scripts/build-nochainswap.ps1   # Pulls from ../NoChainSwap
 ./scripts/build-pandoravault.ps1  # Pulls from ../PandoraVault
 ./scripts/build-bazzucamedia.ps1  # Pulls from ../BazzucaMedia
 ./scripts/build-slaproyale.ps1    # Pulls from ../SlapRoyale
 ./scripts/build-monexup.ps1       # Pulls from ../MonexUp
-./scripts/build-devblog.ps1       # Pulls from ../devblog
 
 # Build everything
 ./scripts/build-all.ps1
@@ -573,8 +559,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - SSL certs stored externally in `../emagine-secrets/SSL/` (mounted as volume)
 - `nginx.conf` is mounted as a read-only volume
 - SPA routing: all nginx server blocks use `try_files $uri $uri/ /index.html`
-- NAuth is served as a subpath under `emagine.com.br/nauth/`
-- DevBlog is served as a subpath under `emagine.com.br/rodrigolandim/`
 - EasySLA has two builds: site (root) and app (`/app` subpath)
 
 ---
