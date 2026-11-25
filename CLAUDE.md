@@ -20,7 +20,7 @@ emagine-deploy/
 └── nginx.conf       # Virtual host config for all 8 domains
 ```
 
-**Hosted domains:** emagine.com.br, goblinwars.net, monexup.com, slaproyale.com, pandoravault.com, bazzuca.media, avabot.net, proxypay.online, fortuno.online, filhosdonada.com, jogodaeleicao.com, roll6.site, ambrosioai.site
+**Hosted domains:** goblinwars.net, monexup.com, slaproyale.com, pandoravault.com, bazzuca.media, avabot.net, proxypay.online, fortuno.online, filhosdonada.com, jogodaeleicao.com, roll6.site, ambrosioai.site
 
 All other projects (NAuth, etc.) live in sibling repositories. The build scripts pull, build, and copy their outputs into `builds/`.
 
@@ -74,4 +74,4 @@ docker-compose up -d --build --force-recreate  # Full rebuild
 - nginx.conf is mounted as read-only volume in docker-compose
 - SPA routing: all nginx server blocks use `try_files $uri $uri/ /index.html`
 - Network name: `emagine-network` (external Docker network)
-- NAuth is served as a subpath under emagine.com.br/nauth/
+- emagine.com.br (emagine-site) runs on the Kubernetes cluster, not in this nginx: see `deploy/k8s/README.md` and the `deploy-emagine-k8s.yml` workflow
