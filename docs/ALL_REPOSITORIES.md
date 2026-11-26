@@ -17,32 +17,32 @@ A Emagine é um ecossistema de microserviços composto por APIs .NET 8, pacotes 
 
 - **Repositório:** https://github.com/emaginebr/emagine-deploy
 - **Linguagem:** TypeScript / Docker / Nginx
-- **Última atualização:** 2026-03-21
-- **Descrição:** Sistema de deploy multi-site via Docker. Serve 8+ aplicações web através de um único container Nginx Alpine com SSL e virtual hosting.
+- **Última atualização:** 2026-11-26
+- **Descrição:** Sistema de deploy multi-site via Docker. Serve 8 aplicações web através de um único container Nginx Alpine com SSL e virtual hosting. O emagine.com.br e o Headlamp rodam no cluster Kubernetes (`deploy/k8s/`).
 
 ### Domínios Hospedados
 | Domínio | Projeto |
 |---------|---------|
-| emagine.com.br | emagine-site (home) |
-| emagine.com.br/nauth | NAuth React (example-app) |
-| emagine.com.br/lofn | Lofn React (example-app) |
-| emagine.com.br/rodrigolandim | DevBlog |
-| easysla.com | EasySLA (site + /app) |
+| emagine.com.br | emagine-site (cluster Kubernetes) |
+| rancher.emagine.com.br | Headlamp (cluster Kubernetes, Cloudflare Access) |
 | goblinwars.net | Goblin Wars Reborn |
 | monexup.com | MonexUp |
-| nochainswap.org | NoChainSwap |
 | pandoravault.com | PandoraVault |
 | bazzuca.media | Bazzuca Media |
+| proxypay.online | ProxyPay |
+| fortuno.online | Fortuno |
+| jogodaeleicao.com | Jogo da Eleição |
+| ambrosioai.site | Ambrosio |
 
 ### APIs Expostas via Proxy Reverso
-| Path | Container | Porta |
-|------|-----------|-------|
-| /auth-api/ | nauth-api | 80 |
-| /lofn-api/ | lofn-api | 80 |
-| /news-api/ | nnews-api | 80 |
-| /bazzuca-api/ | bazzuca-api | 80 |
-| /grafana/ | grafana | 3000 |
-| /rabbitmq/ | emagine-rabbitmq | 15672 |
+| Domínio / Path | Container | Porta |
+|----------------|-----------|-------|
+| monexup.com/api/ | monexup-api | 80 |
+| proxypay.online/api/ | proxypay-api | 80 |
+| fortuno.online/api/ | fortuno-api | 80 |
+| jogodaeleicao.com/api/ | jogoeleicao-api | 80 |
+| ambrosioai.site/api/ | ambrosio-api | 8080 |
+| ambrosioai.site/mcp, /auth/, /.well-known/oauth-* | ambrosio-mcp | 8080 |
 
 ### Dependências
 - Docker + Docker Compose

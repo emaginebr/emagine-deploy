@@ -7,11 +7,11 @@
 
 ## Overview
 
-**emagine-deploy** is a Docker-based multi-site deployment system that serves 8+ web applications through a single Nginx Alpine container with SSL termination and virtual hosting. Each site has its own domain, SSL certificate, and build pipeline. Built using **Nginx**, **Docker**, and **PowerShell** build scripts.
+**emagine-deploy** is a Docker-based multi-site deployment system that serves 8 web applications through a single Nginx Alpine container with SSL termination and virtual hosting. Each site has its own domain, SSL certificate, and build pipeline. Built using **Nginx**, **Docker**, and **PowerShell** build scripts.
 
-The only project with source code in this repository is **emagine-site** (the main Emagine portfolio). All other projects (EasySLA, NAuth, NoChainSwap, DevBlog, etc.) live in sibling repositories — the build scripts pull, build, and copy their outputs into the `builds/` directory.
+The only project with source code in this repository is **emagine-site** (the main Emagine portfolio), which runs on the **Kubernetes cluster** (`deploy/k8s/`), not in this Nginx. All other projects live in sibling repositories — the build scripts pull, build, and copy their outputs into the `builds/` directory.
 
-Infrastructure services (Prometheus, Grafana, Node Exporter, RabbitMQ) are managed through a separate `docker-compose-infra.yml` and deployed via a dedicated GitHub Actions workflow.
+Infrastructure services (RabbitMQ) are managed through a separate `docker-compose-infra.yml` and deployed via a dedicated GitHub Actions workflow.
 
 SSL certificates are stored externally in a separate `emagine-secrets` repository and mounted as a Docker volume — they are **not** included in this repository.
 
@@ -19,17 +19,17 @@ SSL certificates are stored externally in a separate `emagine-secrets` repositor
 
 ## 🚀 Features
 
-- 🌐 **Multi-Domain Hosting** - Serves 8+ domains from a single Nginx container
+- 🌐 **Multi-Domain Hosting** - Serves 8 domains from a single Nginx container
 - 🔒 **SSL/TLS Termination** - Per-domain SSL certificates with automatic HTTP→HTTPS redirect
 - 🐳 **Single-Container Deployment** - All sites bundled into one lightweight Nginx Alpine image
 - 🔄 **Automated Build Pipelines** - PowerShell scripts to build each project independently or all at once
 - 🛡️ **Cloudflare Origin Protection** - 80/443 restricted to Cloudflare IP ranges via `ufw-docker` + `ufw route` (applied automatically on every deploy)
 - 📦 **SPA Routing** - All server blocks use `try_files` for single-page application support
-- 🔀 **Reverse Proxy** - API routing for NAuth, NNews, and Bazzuca backend services
+- 🔀 **Reverse Proxy** - API routing (`/api/`) for the MonexUp, ProxyPay, Fortuno, Jogo da Eleição and Ambrosio backends
 - 🏷️ **Semantic Versioning** - GitVersion-based automatic tagging and release creation
 - 🚀 **Auto Deployment** - GitHub Actions deploys automatically on push to `main`
 - 💻 **Local Development** - Dedicated `docker-compose-local.yml` with no SSL dependency
-- 📊 **Monitoring** - Prometheus + Grafana + Node Exporter for metrics and dashboards
+- ☸️ **Kubernetes** - emagine.com.br and Headlamp (rancher.emagine.com.br) on the DOKS cluster
 - 🐇 **Message Broker** - Centralized RabbitMQ shared across projects
 
 ---
@@ -40,11 +40,10 @@ SSL certificates are stored externally in a separate `emagine-secrets` repositor
 - **Nginx Alpine** - Lightweight web server and reverse proxy
 - **Docker / Docker Compose** - Containerization and orchestration
 
-### Monitoring & Observability
-- **Prometheus** - Metrics collection and storage (30-day retention)
-- **Grafana** - Dashboards and visualization
-- **Node Exporter** - Linux server metrics (CPU, memory, disk, network)
-- **prometheus-net** - .NET application metrics (scraped from NNews API)
+### Kubernetes
+- **DigitalOcean Kubernetes** (`do-nyc2-emagine-k8s`) behind a Cloudflare Tunnel and ingress-nginx
+- **Kustomize** manifests and **GHCR** images for emagine-site
+- **Headlamp** - Cluster dashboard (Helm)
 
 ### Message Broker
 - **RabbitMQ** - Centralized AMQP message broker with management UI
@@ -69,40 +68,32 @@ SSL certificates are stored externally in a separate `emagine-secrets` repositor
 ```
 emagine-deploy/
 ├── builds/                  # Built outputs for each project
+│   ├── ambrosio/            # ambrosioai.site
 │   ├── bazzuca-media/       # bazzuca.media
-│   ├── easysla-app/         # easysla.com/app
-│   ├── easysla-site/        # easysla.com
+│   ├── fortuno/             # fortuno.online
 │   ├── goblinwars-reborn/   # goblinwars.net
+│   ├── jogodaeleicao/       # jogodaeleicao.com
 │   ├── monexup/             # monexup.com
-│   ├── nochainswap/         # nochainswap.org
 │   ├── pandoravault/        # pandoravault.com
-│   └── slaproyale/          # slaproyale.com
-├── emagine-site/            # React/TypeScript source (only source in this repo)
-│   └── src/
-│       ├── components/      # React components
-│       ├── pages/           # Page components
-│       ├── locales/         # i18n translation files
-│       ├── hooks/           # Custom React hooks
-│       └── lib/             # Utility functions
-├── monitoring/              # Prometheus & Grafana configuration
-│   ├── prometheus.yml       # Scrape configs (nnews-api, node-exporter)
-│   └── grafana/
-│       ├── dashboards/      # Pre-configured JSON dashboards
-│       │   ├── nnews-api.json
-│       │   └── node-exporter.json
-│       └── provisioning/    # Grafana auto-provisioning
-│           ├── datasources/
-│           └── dashboards/
-├── scripts/                 # PowerShell build scripts (.ps1)
-├── docs/                    # System design diagrams
+│   └── proxypay/            # proxypay.online
+├── emagine-site/            # React/TypeScript source (emagine.com.br, runs on Kubernetes)
+│   ├── src/
+│   ├── Dockerfile           # Image ghcr.io/emaginebr/emagine-web (nginx + SPA)
+│   └── nginx.conf
+├── deploy/k8s/              # Kubernetes manifests
+│   ├── bootstrap/           # Namespace + pipeline ServiceAccount (admin, once)
+│   ├── emagine/             # Deployment, Service, Ingress (Kustomize)
+│   └── headlamp/            # Headlamp at rancher.emagine.com.br (Helm values + RBAC)
+├── scripts/                 # PowerShell build scripts (.ps1) + Cloudflare firewall scripts
+├── docs/                    # Diagrams and technical docs
 ├── assets/                  # Brand images and logos
 ├── .github/workflows/       # CI/CD workflows
 ├── Dockerfile               # Nginx Alpine container definition
 ├── docker-compose.yml       # Production web server
-├── docker-compose-infra.yml # Infrastructure (Prometheus, Grafana, RabbitMQ, Node Exporter)
+├── docker-compose-infra.yml # Infrastructure (RabbitMQ, autoheal)
 ├── docker-compose-local.yml # Local development (no SSL, HTTP only)
 ├── nginx.conf               # Production virtual host config (multi-domain, SSL)
-├── nginx-local.conf         # Local config (all sites on localhost via subpaths)
+├── nginx-local.conf         # Local config (sites on localhost via subpaths)
 ├── .env.example             # Environment variables template
 ├── GitVersion.yml           # Semantic versioning configuration
 └── README.md                # This file
@@ -110,17 +101,18 @@ emagine-deploy/
 
 ### Hosted Domains
 
-| Domain | Project | Path |
-|--------|---------|------|
-| **emagine.com.br** | Emagine Portfolio | `/` (cluster Kubernetes — `deploy/k8s/`) |
-| **easysla.com** | EasySLA Site | `/` |
-| **easysla.com/app** | EasySLA App | Subpath |
-| **goblinwars.net** | Goblin Wars Reborn | `/` |
-| **monexup.com** | MonexUp | `/` |
-| **slaproyale.com** | Slap Royale | `/` |
-| **nochainswap.org** | NoChainSwap | `/` |
-| **pandoravault.com** | PandoraVault | `/` |
-| **bazzuca.media** | Bazzuca Media | `/` |
+| Domain | Project | Where |
+|--------|---------|-------|
+| **emagine.com.br** | Emagine Portfolio | Kubernetes (`deploy/k8s/emagine`) |
+| **rancher.emagine.com.br** | Headlamp (cluster dashboard) | Kubernetes (`deploy/k8s/headlamp`), behind Cloudflare Access |
+| **goblinwars.net** | Goblin Wars Reborn | Docker / Nginx |
+| **monexup.com** | MonexUp (+ `/api/` → `monexup-api`) | Docker / Nginx |
+| **pandoravault.com** | PandoraVault | Docker / Nginx |
+| **bazzuca.media** | Bazzuca Media | Docker / Nginx |
+| **proxypay.online** | ProxyPay (+ `/api/` → `proxypay-api`) | Docker / Nginx |
+| **fortuno.online** | Fortuno (+ `/api/` → `fortuno-api`) | Docker / Nginx |
+| **jogodaeleicao.com** | Jogo da Eleição (+ `/api/` → `jogoeleicao-api`) | Docker / Nginx |
+| **ambrosioai.site** | Ambrosio (+ `/api/` → `ambrosio-api`, MCP/OAuth → `ambrosio-mcp`) | Docker / Nginx |
 
 ### Ecosystem
 
@@ -128,13 +120,14 @@ All projects except emagine-site live in sibling repositories:
 
 | Project | Source Repository | Build Script |
 |---------|-------------------|--------------|
-| **EasySLA** | `../EasySLA` | `build-easysla.ps1` |
 | **Goblin Wars** | `../gwr-website` | `build-goblinwars.ps1` |
-| **NoChainSwap** | `../NoChainSwap` | `build-nochainswap.ps1` |
-| **PandoraVault** | `../PandoraVault` | `build-pandoravault.ps1` |
-| **Bazzuca Media** | `../BazzucaMedia` | `build-bazzucamedia.ps1` |
-| **Slap Royale** | `../SlapRoyale` | `build-slaproyale.ps1` |
 | **MonexUp** | `../MonexUp` | `build-monexup.ps1` |
+| **PandoraVault** | `../PandoraVault` | `build-pandoravault.ps1` |
+| **Bazzuca Media** | `../Bazzuca/bazzuca-react` | `build-bazzucamedia.ps1` |
+| **ProxyPay** | `../ProxyPay/proxypay-react` | `build-proxypay.ps1` |
+| **Fortuno** | `../Fortuno/fortuno-app` | `build-fortuno.ps1` |
+| **Jogo da Eleição** | `../jogo-da-eleicao/frontend` | `build-jogodaeleicao.ps1` |
+| **Ambrosio** | `../ambrosio/frontend` | `build-ambrosio.ps1` (needs `VITE_GOOGLE_CLIENT_ID`) |
 
 ---
 
@@ -146,8 +139,9 @@ The following diagram illustrates the high-level architecture of **emagine-deplo
 
 The system is composed of three layers:
 
-- **Web Server** — A single Nginx Alpine container serves all static sites and proxies API requests to backend containers (`nauth-api`, `nnews-api`, `bazzuca-api`) on the shared `emagine-network`.
-- **Infrastructure Services** — Managed via `docker-compose-infra.yml`: Prometheus scrapes metrics from NNews API (prometheus-net) and Node Exporter; Grafana provides dashboards; RabbitMQ serves as a centralized message broker.
+- **Web Server** — A single Nginx Alpine container serves the static sites and proxies `/api/` requests to backend containers (`monexup-api`, `proxypay-api`, `fortuno-api`, `jogoeleicao-api`, `ambrosio-api`, `ambrosio-mcp`) on the shared `emagine-network`.
+- **Infrastructure Services** — Managed via `docker-compose-infra.yml`: RabbitMQ serves as a centralized message broker.
+- **Kubernetes** — emagine.com.br and Headlamp run on the DOKS cluster, reached through the Cloudflare Tunnel `emagine-k8s` (see [`deploy/k8s/README.md`](deploy/k8s/README.md)).
 - **External** — SSL certificates are stored outside the repository and mounted as a read-only volume.
 
 > 📄 **Source:** The editable Mermaid source is available at [`docs/system-design.mmd`](docs/system-design.mmd).
@@ -170,10 +164,6 @@ cp .env.example .env
 # RabbitMQ
 RABBITMQ_USER=guest
 RABBITMQ_PASSWORD=your_secure_rabbitmq_password_here
-
-# Grafana
-GRAFANA_USER=admin
-GRAFANA_PASSWORD=your_secure_grafana_password_here
 ```
 
 ⚠️ **IMPORTANT**:
@@ -216,27 +206,15 @@ docker compose ps
 docker compose logs -f
 ```
 
-### Infrastructure (Monitoring & RabbitMQ)
+### Infrastructure (RabbitMQ)
 
-Infrastructure uses `docker-compose-infra.yml` for Prometheus, Grafana, Node Exporter, and RabbitMQ.
+Infrastructure uses `docker-compose-infra.yml` for RabbitMQ (and autoheal).
 
 ```bash
 docker compose -f docker-compose-infra.yml up -d
 ```
 
-| Service | URL | Description |
-|---------|-----|-------------|
-| **Grafana** | http://localhost:3000 | Dashboards and visualization |
-| **Prometheus** | http://localhost:9090 | Metrics query interface |
-| **RabbitMQ Management** | http://localhost:15672 | Message broker management UI |
-| **Node Exporter** | http://localhost:9100 | Linux server metrics |
-
-#### Pre-configured Grafana Dashboards
-
-| Dashboard | Metrics |
-|-----------|---------|
-| **NNews API** | Request rate, duration (p50/p95/p99), HTTP status codes, error rate, .NET GC, thread pool, process CPU/memory |
-| **Linux Server** | CPU usage, memory, swap, disk usage/IO, network traffic, system load, uptime |
+RabbitMQ (`emagine-rabbitmq`) exposes AMQP on 5672 and the management UI on 15672 inside `emagine-network` only.
 
 ### Local Development
 
@@ -248,12 +226,9 @@ docker compose -f docker-compose-local.yml up -d --build
 
 | Site | Local URL |
 |------|-----------|
-| **Emagine** | `npm run dev` em `emagine-site/` |
+| **Emagine** | `npm run dev` in `emagine-site/` |
 | **Goblin Wars** | http://localhost/goblinwars/ |
 | **MonexUp** | http://localhost/monexup/ |
-| **EasySLA Site** | http://localhost/easysla/ |
-| **EasySLA App** | http://localhost/easysla-app/ |
-| **NoChainSwap** | http://localhost/nochainswap/ |
 | **PandoraVault** | http://localhost/pandoravault/ |
 | **Bazzuca Media** | http://localhost/bazzuca/ |
 
@@ -303,13 +278,14 @@ Build individual projects or all at once using PowerShell:
 
 ```powershell
 # Build a single project
-./scripts/build-easysla.ps1       # Pulls from ../EasySLA
 ./scripts/build-goblinwars.ps1    # Pulls from ../gwr-website
-./scripts/build-nochainswap.ps1   # Pulls from ../NoChainSwap
-./scripts/build-pandoravault.ps1  # Pulls from ../PandoraVault
-./scripts/build-bazzucamedia.ps1  # Pulls from ../BazzucaMedia
-./scripts/build-slaproyale.ps1    # Pulls from ../SlapRoyale
 ./scripts/build-monexup.ps1       # Pulls from ../MonexUp
+./scripts/build-pandoravault.ps1  # Pulls from ../PandoraVault
+./scripts/build-bazzucamedia.ps1  # Pulls from ../Bazzuca/bazzuca-react
+./scripts/build-proxypay.ps1      # Pulls from ../ProxyPay/proxypay-react
+./scripts/build-fortuno.ps1       # Pulls from ../Fortuno/fortuno-app
+./scripts/build-jogodaeleicao.ps1 # Pulls from ../jogo-da-eleicao/frontend
+./scripts/build-ambrosio.ps1      # Pulls from ../ambrosio/frontend (needs VITE_GOOGLE_CLIENT_ID)
 
 # Build everything
 ./scripts/build-all.ps1
@@ -365,7 +341,7 @@ For each domain in [`nginx.conf`](nginx.conf):
 - SSL/TLS encryption mode: **Full (strict)**
 - Origin certificate (`*.pem`) placed in `/root/emagine-secrets/SSL/` on the server
 
-The current `nginx.conf` already assumes these are in place for all 9 hosted domains.
+The current `nginx.conf` already assumes these are in place for all 8 hosted domains.
 
 #### Step 2 — Bootstrap (manual, one-off per server)
 
@@ -415,7 +391,7 @@ From a host **outside** Cloudflare's network:
 
 ```bash
 curl -m5 -I http://<server_public_ip>   # should time out / connection refused
-curl -m5 -I https://emagine.com.br      # should respond 200/301 via Cloudflare
+curl -m5 -I https://goblinwars.net      # should respond 200/301 via Cloudflare
 ```
 
 > 📄 **Full reference (invariants, troubleshooting, rollback):** [`docs/CF_FIREWALL.md`](docs/CF_FIREWALL.md)
@@ -426,7 +402,7 @@ curl -m5 -I https://emagine.com.br      # should respond 200/301 via Cloudflare
 
 ### GitHub Actions
 
-Four workflows automate versioning, deployment, and infrastructure:
+Five workflows automate versioning, deployment, and infrastructure:
 
 **1. Version and Tag** (`version-tag.yml`)
 - **Triggers:** Push to `main`, manual dispatch
@@ -447,9 +423,14 @@ Four workflows automate versioning, deployment, and infrastructure:
 
 **4. Deploy Infrastructure** (`deploy-infra.yml`)
 - **Triggers:** Manual dispatch only (`workflow_dispatch`)
-- Sequential jobs: Setup → RabbitMQ → Node Exporter → Prometheus → Grafana → Verify
+- Sequential jobs: Setup → RabbitMQ → Verify
 - Creates `.env` on server from GitHub Secrets
 - Deploys all infrastructure services via `docker-compose-infra.yml`
+
+**5. Deploy emagine.com.br (Kubernetes)** (`deploy-emagine-k8s.yml`)
+- **Triggers:** Manual dispatch only (`ref`, `skip_tests`)
+- Builds emagine-site, publishes `ghcr.io/emaginebr/emagine-web:sha-<commit>`, applies `deploy/k8s/emagine` and waits for the rollout
+- Details in [`deploy/k8s/README.md`](deploy/k8s/README.md)
 
 ### Version Convention (GitVersion)
 
@@ -536,7 +517,7 @@ Production deploys automatically on every push to `main`. You can also trigger i
 
 ### Infrastructure (via GitHub Actions)
 
-Infrastructure is deployed manually via the "Deploy Infrastructure" workflow in GitHub Actions. It deploys RabbitMQ, Node Exporter, Prometheus, and Grafana sequentially.
+Infrastructure is deployed manually via the "Deploy Infrastructure" workflow in GitHub Actions. It deploys RabbitMQ.
 
 ---
 
@@ -559,7 +540,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - SSL certs stored externally in `../emagine-secrets/SSL/` (mounted as volume)
 - `nginx.conf` is mounted as a read-only volume
 - SPA routing: all nginx server blocks use `try_files $uri $uri/ /index.html`
-- EasySLA has two builds: site (root) and app (`/app` subpath)
+- emagine.com.br runs on Kubernetes: changes to `emagine-site/` are deployed with the `deploy-emagine-k8s.yml` workflow
 
 ---
 

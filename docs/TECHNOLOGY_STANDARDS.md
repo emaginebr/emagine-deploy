@@ -166,8 +166,7 @@ emagine-deploy/
 2. Certificados SSL ficam em `../emagine-secrets/ssl/` (montados como volume)
 3. `nginx.conf` montado como volume read-only no docker-compose
 4. Todos os server blocks do Nginx usam `try_files $uri $uri/ /index.html` (SPA routing)
-5. NAuth e servido como subpath: `emagine.com.br/nauth/`
-6. EasySLA tem dois builds: site (root) e app (`/app` subpath)
+5. emagine.com.br (emagine-site) roda no cluster Kubernetes (`deploy/k8s/`), fora deste Nginx
 
 ### Padroes Nginx
 
@@ -442,6 +441,13 @@ docker-compose up -d --build --force-recreate  # Rebuild completo
 ### Build de Projetos Individuais
 
 ```powershell
-./scripts/build-easysla.ps1       # ../EasySLA
-./scripts/build-all.ps1          # Todos os projetos
+./scripts/build-goblinwars.ps1    # ../gwr-website
+./scripts/build-monexup.ps1       # ../MonexUp
+./scripts/build-pandoravault.ps1  # ../PandoraVault
+./scripts/build-bazzucamedia.ps1  # ../Bazzuca/bazzuca-react
+./scripts/build-proxypay.ps1      # ../ProxyPay/proxypay-react
+./scripts/build-fortuno.ps1       # ../Fortuno/fortuno-app
+./scripts/build-jogodaeleicao.ps1 # ../jogo-da-eleicao/frontend
+./scripts/build-ambrosio.ps1      # ../ambrosio/frontend
+./scripts/build-all.ps1           # Todos os projetos
 ```

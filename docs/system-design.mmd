@@ -3,70 +3,80 @@ flowchart TD
         Users["Users / Browsers"]
     end
 
+    subgraph Cloudflare["☁️ Cloudflare (proxy, TLS, Access)"]
+        CF["Cloudflare Edge"]
+        Tunnel["Cloudflare Tunnel\nemagine-k8s"]
+    end
+
     subgraph Docker["Docker Host — emagine-network"]
 
         subgraph WebServer["Web Server"]
-            Nginx["🔷 Nginx Alpine\n(emagine-app)\nPorts: 80 / 443"]
+            Nginx["🔷 Nginx Alpine\n(emagine-app1)\nPorts: 80 / 443"]
         end
 
         subgraph Sites["Static Sites (8 domains)"]
-            Emagine["emagine.com.br"]
-            EasySLA["easysla.com"]
             GoblinWars["goblinwars.net"]
             MonexUp["monexup.com"]
-            NoChainSwap["nochainswap.org"]
             PandoraVault["pandoravault.com"]
             Bazzuca["bazzuca.media"]
-            SlapRoyale["slaproyale.com"]
+            ProxyPay["proxypay.online"]
+            Fortuno["fortuno.online"]
+            JogoEleicao["jogodaeleicao.com"]
+            Ambrosio["ambrosioai.site"]
         end
 
-        subgraph Subpaths["Subpaths (emagine.com.br)"]
-            NAuth["/nauth/\nNAuth"]
-            DevBlog["/rodrigolandim/\nDevBlog"]
-        end
-
-        subgraph APIs["Backend APIs"]
-            NAuthAPI["🔐 NAuth API\n(nauth-api)"]
-            NNewsAPI["📰 NNews API\n(nnews-api)"]
-            BazzucaAPI["🎯 Bazzuca API\n(bazzuca-api)"]
+        subgraph APIs["Backend APIs (other repositories)"]
+            MonexUpAPI["monexup-api"]
+            ProxyPayAPI["proxypay-api"]
+            FortunoAPI["fortuno-api"]
+            JogoAPI["jogoeleicao-api"]
+            AmbrosioAPI["ambrosio-api"]
+            AmbrosioMCP["ambrosio-mcp"]
         end
 
         subgraph Infra["Infrastructure Services\n(docker-compose-infra.yml)"]
-            Prometheus["📊 Prometheus\nPort: 9090"]
-            Grafana["📈 Grafana\nPort: 3000"]
-            NodeExporter["🖥️ Node Exporter\nPort: 9100"]
             RabbitMQ["🐇 RabbitMQ\n(emagine-rabbitmq)\nPorts: 5672 / 15672"]
         end
+    end
+
+    subgraph K8s["☸️ Kubernetes — do-nyc2-emagine-k8s"]
+        Ingress["ingress-nginx"]
+        EmagineWeb["emagine.com.br\n(emagine-web)"]
+        Headlamp["rancher.emagine.com.br\n(Headlamp)"]
     end
 
     subgraph External["External"]
         SSL["🔒 SSL Certificates\n/root/emagine-secrets/SSL"]
     end
 
-    Users -->|HTTPS| Nginx
+    Users -->|HTTPS| CF
+    CF -->|origin| Nginx
+    CF --> Tunnel
+    Tunnel --> Ingress
+    Ingress --> EmagineWeb
+    Ingress --> Headlamp
+
     Nginx --> Sites
-    Nginx --> Subpaths
-    Nginx -->|/auth-api/| NAuthAPI
-    Nginx -->|/news-api/| NNewsAPI
-    Nginx -->|/bazzuca-api/| BazzucaAPI
+    Nginx -->|monexup.com/api/| MonexUpAPI
+    Nginx -->|proxypay.online/api/| ProxyPayAPI
+    Nginx -->|fortuno.online/api/| FortunoAPI
+    Nginx -->|jogodaeleicao.com/api/| JogoAPI
+    Nginx -->|ambrosioai.site/api/| AmbrosioAPI
+    Nginx -->|ambrosioai.site/mcp| AmbrosioMCP
     SSL -.->|volume mount| Nginx
-
-    Prometheus -->|scrape /metrics| NNewsAPI
-    Prometheus -->|scrape :9100| NodeExporter
-    Grafana -->|query| Prometheus
-
-    BazzucaAPI -->|publish/consume| RabbitMQ
 
     classDef nginx fill:#2563eb,stroke:#1d4ed8,color:#fff
     classDef site fill:#f1f5f9,stroke:#94a3b8,color:#334155
-    classDef subpath fill:#e0f2fe,stroke:#38bdf8,color:#0c4a6e
     classDef api fill:#7c3aed,stroke:#6d28d9,color:#fff
     classDef infra fill:#059669,stroke:#047857,color:#fff
     classDef external fill:#f59e0b,stroke:#d97706,color:#fff
+    classDef cloud fill:#f97316,stroke:#ea580c,color:#fff
+    classDef k8s fill:#0891b2,stroke:#0e7490,color:#fff
 
     class Nginx nginx
-    class Emagine,EasySLA,GoblinWars,MonexUp,NoChainSwap,PandoraVault,Bazzuca,SlapRoyale site
-    class NAuth,DevBlog subpath
-    class NAuthAPI,NNewsAPI,BazzucaAPI api
-    class Prometheus,Grafana,NodeExporter,RabbitMQ infra
+    class GoblinWars,MonexUp,PandoraVault,Bazzuca,ProxyPay,Fortuno,JogoEleicao,Ambrosio site
+    class MonexUpAPI,ProxyPayAPI,FortunoAPI,JogoAPI,AmbrosioAPI,AmbrosioMCP api
+    class RabbitMQ infra
     class SSL external
+    class CF,Tunnel cloud
+    class Ingress,EmagineWeb,Headlamp k8s
