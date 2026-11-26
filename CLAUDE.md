@@ -20,7 +20,7 @@ emagine-deploy/
 └── nginx.conf       # Virtual host config for all 8 domains
 ```
 
-**Hosted domains:** goblinwars.net, monexup.com, slaproyale.com, pandoravault.com, bazzuca.media, avabot.net, proxypay.online, fortuno.online, filhosdonada.com, jogodaeleicao.com, roll6.site, ambrosioai.site
+**Hosted domains:** goblinwars.net, monexup.com, slaproyale.com, pandoravault.com, bazzuca.media, proxypay.online, fortuno.online, filhosdonada.com, jogodaeleicao.com, roll6.site, ambrosioai.site
 
 All other projects (NAuth, etc.) live in sibling repositories. The build scripts pull, build, and copy their outputs into `builds/`.
 

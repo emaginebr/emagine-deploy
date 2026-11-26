@@ -10,7 +10,6 @@ Write-Host "=========================================================" -Foregrou
 & "$ScriptDir/build-pandoravault.ps1"
 & "$ScriptDir/build-bazzucamedia.ps1"
 & "$ScriptDir/build-proxypay.ps1"
-& "$ScriptDir/build-avabot.ps1"
 & "$ScriptDir/build-fortuno.ps1"
 & "$ScriptDir/build-filhosdonada.ps1"
 & "$ScriptDir/build-jogodaeleicao.ps1"
