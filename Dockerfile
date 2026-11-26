@@ -6,7 +6,6 @@ COPY builds/pandoravault /var/www/pandoravault.com/home
 COPY builds/bazzuca-media /var/www/bazzuca.media/home
 COPY builds/proxypay /var/www/proxypay.online/home
 COPY builds/fortuno /var/www/fortuno.online/home
-COPY builds/filhosdonada /var/www/filhosdonada.com/home
 COPY builds/jogodaeleicao /var/www/jogodaeleicao.com/home
 COPY builds/roll6 /var/www/roll6.site/home
 COPY builds/ambrosio /var/www/ambrosioai.site/home

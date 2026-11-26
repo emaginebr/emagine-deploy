@@ -11,7 +11,6 @@ Write-Host "=========================================================" -Foregrou
 & "$ScriptDir/build-bazzucamedia.ps1"
 & "$ScriptDir/build-proxypay.ps1"
 & "$ScriptDir/build-fortuno.ps1"
-& "$ScriptDir/build-filhosdonada.ps1"
 & "$ScriptDir/build-jogodaeleicao.ps1"
 & "$ScriptDir/build-roll6.ps1"
 & "$ScriptDir/build-ambrosio.ps1"
