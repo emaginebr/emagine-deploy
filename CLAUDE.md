@@ -20,7 +20,7 @@ emagine-deploy/
 └── nginx.conf       # Virtual host config for all 8 domains
 ```
 
-**Hosted domains:** goblinwars.net, monexup.com, slaproyale.com, pandoravault.com, bazzuca.media, proxypay.online, fortuno.online, jogodaeleicao.com, roll6.site, ambrosioai.site
+**Hosted domains:** goblinwars.net, monexup.com, slaproyale.com, pandoravault.com, bazzuca.media, proxypay.online, fortuno.online, jogodaeleicao.com, ambrosioai.site
 
 All other projects (NAuth, etc.) live in sibling repositories. The build scripts pull, build, and copy their outputs into `builds/`.
 
@@ -44,7 +44,6 @@ npm run preview  # Preview production build
 ./scripts/build-monexup.ps1       # Pulls from ../MonexUp
 ./scripts/build-fortuno.ps1       # Pulls from ../Fortuno/fortuno-app
 ./scripts/build-jogodaeleicao.ps1 # Pulls from ../jogo-da-eleicao/frontend
-./scripts/build-roll6.ps1         # Pulls from ../Roll6/frontend
 ./scripts/build-ambrosio.ps1      # Pulls from ../ambrosio/frontend (needs VITE_GOOGLE_CLIENT_ID)
 ./scripts/build-all.ps1           # Runs all of the above
 ```

@@ -12,7 +12,6 @@ Write-Host "=========================================================" -Foregrou
 & "$ScriptDir/build-proxypay.ps1"
 & "$ScriptDir/build-fortuno.ps1"
 & "$ScriptDir/build-jogodaeleicao.ps1"
-& "$ScriptDir/build-roll6.ps1"
 & "$ScriptDir/build-ambrosio.ps1"
 
 Write-Host "=========================================================" -ForegroundColor Green
