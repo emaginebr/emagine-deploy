@@ -6,7 +6,6 @@ Write-Host "  Build All Projects" -ForegroundColor Yellow
 Write-Host "=========================================================" -ForegroundColor Yellow
 
 & "$ScriptDir/build-monexup.ps1"
-& "$ScriptDir/build-goblinwars.ps1"
 & "$ScriptDir/build-pandoravault.ps1"
 & "$ScriptDir/build-bazzucamedia.ps1"
 & "$ScriptDir/build-proxypay.ps1"

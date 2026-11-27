@@ -17,7 +17,6 @@ graph TB
         end
 
         subgraph StaticSites["Sites Estáticos (builds/)"]
-            GOBLIN["goblinwars.net<br/>Goblin Wars Reborn"]
             MONEXUP_UI["monexup.com<br/>MonexUp"]
             PANDORA["pandoravault.com<br/>PandoraVault"]
             BAZZUCA_UI["bazzuca.media<br/>Bazzuca Media"]
@@ -71,7 +70,6 @@ graph TB
 
     SSL --> RP
     SECRETS -.->|volume read-only| SSL
-    RP --> GOBLIN
     RP --> MONEXUP_UI
     RP --> PANDORA
     RP --> BAZZUCA_UI
@@ -105,7 +103,7 @@ graph TB
 
     class SSL,RP nginx
     class MONEXUP_API,PROXYPAY_API,FORTUNO_API,JOGO_API,AMBROSIO_API,AMBROSIO_MCP api
-    class GOBLIN,MONEXUP_UI,PANDORA,BAZZUCA_UI,PROXYPAY_UI,FORTUNO_UI,JOGO_UI,AMBROSIO_UI static
+    class MONEXUP_UI,PANDORA,BAZZUCA_UI,PROXYPAY_UI,FORTUNO_UI,JOGO_UI,AMBROSIO_UI static
     class RMQ,AUTOHEAL,SECRETS data
     class EDGE,ACCESS,TUNNEL cloud
     class CFD,INGRESS,EMAGINE,HEADLAMP k8s

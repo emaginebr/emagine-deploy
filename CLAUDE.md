@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-emagine-deploy is a Docker-based multi-site deployment system. It serves 8 web applications through a single Nginx Alpine container with SSL and virtual hosting. Each site has its own domain, SSL certificate, and build pipeline.
+emagine-deploy is a Docker-based multi-site deployment system. It serves 7 web applications through a single Nginx Alpine container with SSL and virtual hosting. Each site has its own domain, SSL certificate, and build pipeline.
 
 ## Architecture
 
@@ -19,10 +19,10 @@ emagine-deploy/
 ├── Dockerfile       # Nginx Alpine - copies builds into container
 ├── docker-compose.yml        # Production web server (SSL mounted from /root/emagine-secrets/SSL)
 ├── docker-compose-infra.yml  # RabbitMQ + autoheal
-└── nginx.conf       # Virtual host config for all 8 domains
+└── nginx.conf       # Virtual host config for all 7 domains
 ```
 
-**Hosted domains:** goblinwars.net, monexup.com, pandoravault.com, bazzuca.media, proxypay.online, fortuno.online, jogodaeleicao.com, ambrosioai.site
+**Hosted domains:** monexup.com, pandoravault.com, bazzuca.media, proxypay.online, fortuno.online, jogodaeleicao.com, ambrosioai.site
 
 All other projects live in sibling repositories. The build scripts pull, build, and copy their outputs into `builds/`.
 
@@ -39,7 +39,6 @@ npm run preview  # Preview production build
 
 ### Build individual projects
 ```powershell
-./scripts/build-goblinwars.ps1    # Pulls from ../gwr-website
 ./scripts/build-monexup.ps1       # Pulls from ../MonexUp
 ./scripts/build-pandoravault.ps1  # Pulls from ../PandoraVault
 ./scripts/build-bazzucamedia.ps1  # Pulls from ../Bazzuca/bazzuca-react

@@ -14,8 +14,7 @@ flowchart TD
             Nginx["🔷 Nginx Alpine\n(emagine-app1)\nPorts: 80 / 443"]
         end
 
-        subgraph Sites["Static Sites (8 domains)"]
-            GoblinWars["goblinwars.net"]
+        subgraph Sites["Static Sites (7 domains)"]
             MonexUp["monexup.com"]
             PandoraVault["pandoravault.com"]
             Bazzuca["bazzuca.media"]
@@ -74,7 +73,7 @@ flowchart TD
     classDef k8s fill:#0891b2,stroke:#0e7490,color:#fff
 
     class Nginx nginx
-    class GoblinWars,MonexUp,PandoraVault,Bazzuca,ProxyPay,Fortuno,JogoEleicao,Ambrosio site
+    class MonexUp,PandoraVault,Bazzuca,ProxyPay,Fortuno,JogoEleicao,Ambrosio site
     class MonexUpAPI,ProxyPayAPI,FortunoAPI,JogoAPI,AmbrosioAPI,AmbrosioMCP api
     class RabbitMQ infra
     class SSL external

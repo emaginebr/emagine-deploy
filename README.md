@@ -7,7 +7,7 @@
 
 ## Overview
 
-**emagine-deploy** is a Docker-based multi-site deployment system that serves 8 web applications through a single Nginx Alpine container with SSL termination and virtual hosting. Each site has its own domain, SSL certificate, and build pipeline. Built using **Nginx**, **Docker**, and **PowerShell** build scripts.
+**emagine-deploy** is a Docker-based multi-site deployment system that serves 7 web applications through a single Nginx Alpine container with SSL termination and virtual hosting. Each site has its own domain, SSL certificate, and build pipeline. Built using **Nginx**, **Docker**, and **PowerShell** build scripts.
 
 The only project with source code in this repository is **emagine-site** (the main Emagine portfolio), which runs on the **Kubernetes cluster** (`deploy/k8s/`), not in this Nginx. All other projects live in sibling repositories — the build scripts pull, build, and copy their outputs into the `builds/` directory.
 
@@ -19,7 +19,7 @@ SSL certificates are stored externally in a separate `emagine-secrets` repositor
 
 ## 🚀 Features
 
-- 🌐 **Multi-Domain Hosting** - Serves 8 domains from a single Nginx container
+- 🌐 **Multi-Domain Hosting** - Serves 7 domains from a single Nginx container
 - 🔒 **SSL/TLS Termination** - Per-domain SSL certificates with automatic HTTP→HTTPS redirect
 - 🐳 **Single-Container Deployment** - All sites bundled into one lightweight Nginx Alpine image
 - 🔄 **Automated Build Pipelines** - PowerShell scripts to build each project independently or all at once
@@ -71,7 +71,6 @@ emagine-deploy/
 │   ├── ambrosio/            # ambrosioai.site
 │   ├── bazzuca-media/       # bazzuca.media
 │   ├── fortuno/             # fortuno.online
-│   ├── goblinwars-reborn/   # goblinwars.net
 │   ├── jogodaeleicao/       # jogodaeleicao.com
 │   ├── monexup/             # monexup.com
 │   ├── pandoravault/        # pandoravault.com
@@ -105,7 +104,6 @@ emagine-deploy/
 |--------|---------|-------|
 | **emagine.com.br** | Emagine Portfolio | Kubernetes (`deploy/k8s/emagine`) |
 | **rancher.emagine.com.br** | Headlamp (cluster dashboard) | Kubernetes (`deploy/k8s/headlamp`), behind Cloudflare Access |
-| **goblinwars.net** | Goblin Wars Reborn | Docker / Nginx |
 | **monexup.com** | MonexUp (+ `/api/` → `monexup-api`) | Docker / Nginx |
 | **pandoravault.com** | PandoraVault | Docker / Nginx |
 | **bazzuca.media** | Bazzuca Media | Docker / Nginx |
@@ -120,7 +118,6 @@ All projects except emagine-site live in sibling repositories:
 
 | Project | Source Repository | Build Script |
 |---------|-------------------|--------------|
-| **Goblin Wars** | `../gwr-website` | `build-goblinwars.ps1` |
 | **MonexUp** | `../MonexUp` | `build-monexup.ps1` |
 | **PandoraVault** | `../PandoraVault` | `build-pandoravault.ps1` |
 | **Bazzuca Media** | `../Bazzuca/bazzuca-react` | `build-bazzucamedia.ps1` |
@@ -227,7 +224,6 @@ docker compose -f docker-compose-local.yml up -d --build
 | Site | Local URL |
 |------|-----------|
 | **Emagine** | `npm run dev` in `emagine-site/` |
-| **Goblin Wars** | http://localhost/goblinwars/ |
 | **MonexUp** | http://localhost/monexup/ |
 | **PandoraVault** | http://localhost/pandoravault/ |
 | **Bazzuca Media** | http://localhost/bazzuca/ |
@@ -278,7 +274,6 @@ Build individual projects or all at once using PowerShell:
 
 ```powershell
 # Build a single project
-./scripts/build-goblinwars.ps1    # Pulls from ../gwr-website
 ./scripts/build-monexup.ps1       # Pulls from ../MonexUp
 ./scripts/build-pandoravault.ps1  # Pulls from ../PandoraVault
 ./scripts/build-bazzucamedia.ps1  # Pulls from ../Bazzuca/bazzuca-react
@@ -341,7 +336,7 @@ For each domain in [`nginx.conf`](nginx.conf):
 - SSL/TLS encryption mode: **Full (strict)**
 - Origin certificate (`*.pem`) placed in `/root/emagine-secrets/SSL/` on the server
 
-The current `nginx.conf` already assumes these are in place for all 8 hosted domains.
+The current `nginx.conf` already assumes these are in place for all 7 hosted domains.
 
 #### Step 2 — Bootstrap (manual, one-off per server)
 
@@ -391,7 +386,7 @@ From a host **outside** Cloudflare's network:
 
 ```bash
 curl -m5 -I http://<server_public_ip>   # should time out / connection refused
-curl -m5 -I https://goblinwars.net      # should respond 200/301 via Cloudflare
+curl -m5 -I https://monexup.com        # should respond 200/301 via Cloudflare
 ```
 
 > 📄 **Full reference (invariants, troubleshooting, rollback):** [`docs/CF_FIREWALL.md`](docs/CF_FIREWALL.md)

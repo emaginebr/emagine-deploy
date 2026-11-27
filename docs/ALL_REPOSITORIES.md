@@ -17,15 +17,14 @@ A Emagine é um ecossistema de microserviços composto por APIs .NET 8, pacotes 
 
 - **Repositório:** https://github.com/emaginebr/emagine-deploy
 - **Linguagem:** TypeScript / Docker / Nginx
-- **Última atualização:** 2026-11-26
-- **Descrição:** Sistema de deploy multi-site via Docker. Serve 8 aplicações web através de um único container Nginx Alpine com SSL e virtual hosting. O emagine.com.br e o Headlamp rodam no cluster Kubernetes (`deploy/k8s/`).
+- **Última atualização:** 2026-11-27
+- **Descrição:** Sistema de deploy multi-site via Docker. Serve 7 aplicações web através de um único container Nginx Alpine com SSL e virtual hosting. O emagine.com.br e o Headlamp rodam no cluster Kubernetes (`deploy/k8s/`).
 
 ### Domínios Hospedados
 | Domínio | Projeto |
 |---------|---------|
 | emagine.com.br | emagine-site (cluster Kubernetes) |
 | rancher.emagine.com.br | Headlamp (cluster Kubernetes, Cloudflare Access) |
-| goblinwars.net | Goblin Wars Reborn |
 | monexup.com | MonexUp |
 | pandoravault.com | PandoraVault |
 | bazzuca.media | Bazzuca Media |

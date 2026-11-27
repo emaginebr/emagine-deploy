@@ -441,7 +441,6 @@ docker-compose up -d --build --force-recreate  # Rebuild completo
 ### Build de Projetos Individuais
 
 ```powershell
-./scripts/build-goblinwars.ps1    # ../gwr-website
 ./scripts/build-monexup.ps1       # ../MonexUp
 ./scripts/build-pandoravault.ps1  # ../PandoraVault
 ./scripts/build-bazzucamedia.ps1  # ../Bazzuca/bazzuca-react

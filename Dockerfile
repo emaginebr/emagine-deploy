@@ -1,7 +1,6 @@
 FROM nginx:alpine 
 
 COPY builds/monexup /var/www/monexup.com/home
-COPY builds/goblinwars-reborn /var/www/goblinwars.net/home
 COPY builds/pandoravault /var/www/pandoravault.com/home
 COPY builds/bazzuca-media /var/www/bazzuca.media/home
 COPY builds/proxypay /var/www/proxypay.online/home
